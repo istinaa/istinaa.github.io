@@ -7,6 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
   <link rel="icon" href="/img/icon1.png">
@@ -19,16 +20,17 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言说起来这届蓝桥杯参赛过程还挺波折的。原定的时间恰好碰到北京大风（一直呆在室内，没有体验一下大风有多大）推迟后的时间又和你航的数分期中撞了…… 一个周末内前后脚比赛和考试，怎么想都很痛苦吧。此外这周内还塞满了许多琐事，导致根本没有大块的空闲时间进行复习。直到周五晚上十点多排练结束回到寝室才想起来第二天就要比赛了，把一些基础的数据结构和算法过了一遍，心里稍微有了点底。 众所周知，备用卷总是容易出现">
+    <meta name="description" content="可能是备用卷难度偏低，赛时的波澜甚至比不上通知延期的时候。虽然挂分，但是省一get。可以爆BUAA的米了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蓝桥杯2025省赛A组游记&amp;题解">
 <meta property="og:url" content="http://istinaa.github.io/2025/04/28/%E8%93%9D%E6%A1%A5%E6%9D%AF2025%E7%9C%81%E8%B5%9BA%E7%BB%84%E6%B8%B8%E8%AE%B0&%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="前言说起来这届蓝桥杯参赛过程还挺波折的。原定的时间恰好碰到北京大风（一直呆在室内，没有体验一下大风有多大）推迟后的时间又和你航的数分期中撞了…… 一个周末内前后脚比赛和考试，怎么想都很痛苦吧。此外这周内还塞满了许多琐事，导致根本没有大块的空闲时间进行复习。直到周五晚上十点多排练结束回到寝室才想起来第二天就要比赛了，把一些基础的数据结构和算法过了一遍，心里稍微有了点底。 众所周知，备用卷总是容易出现">
+<meta property="og:description" content="可能是备用卷难度偏低，赛时的波澜甚至比不上通知延期的时候。虽然挂分，但是省一get。可以爆BUAA的米了。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-28T09:52:19.000Z">
-<meta property="article:modified_time" content="2025-06-29T14:41:05.384Z">
+<meta property="article:modified_time" content="2025-10-07T07:39:57.916Z">
 <meta property="article:author" content="istina">
+<meta property="article:tag" content="蓝桥杯">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          1.8k 字
         
       </span>
     
@@ -275,59 +277,66 @@
             
               <div class="markdown-body">
                 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>说起来这届蓝桥杯参赛过程还挺波折的。原定的时间恰好碰到北京大风（一直呆在室内，没有体验一下大风有多大）推迟后的时间又和你航的数分期中撞了……</p>
+                <h1 id="前言">前言</h1>
+<p>说起来这届蓝桥杯参赛过程还挺波折的。原定的时间恰好碰到北京大风（一直呆在室内，没有体验一下大风有多大）推迟后的时间又和你航的数分期中撞了……</p>
 <p>一个周末内前后脚比赛和考试，怎么想都很痛苦吧。此外这周内还塞满了许多琐事，导致根本没有大块的空闲时间进行复习。直到周五晚上十点多排练结束回到寝室才想起来第二天就要比赛了，把一些基础的数据结构和算法过了一遍，心里稍微有了点底。</p>
 <p>众所周知，备用卷总是容易出现难度或区分度方面的问题。这届也是如此，总体上难度偏低，区分度也不足。</p>
 <p>不同于2024年A组真题E/F/G/H有层次的难度设计与全面的知识面考察，这套题在G题之前几乎没有给到任何强度。而G题又是一个显而易见的线段树模板题，于是区分度等于是全部由H题的差分约束提供了（很不幸我被区分了）</p>
 <p>在此写一篇个人向题解，赛时心路历程会穿插其中。</p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p><strong>题目大意：</strong>大盒尺寸 $200\times 250\times 240$，小盒尺寸 $30\times 40\times 50$，问大盒里能放几个小盒。</p>
+<h1 id="a">A</h1>
+<p><strong>题目大意：</strong>大盒尺寸 <span class="math inline">200 × 250 × 240</span>，小盒尺寸 <span class="math inline">30 × 40 × 50</span>，问大盒里能放几个小盒。</p>
 <p><strong>标签：</strong>小学数学</p>
 <p>我认为将小学二年级数学题放在大学生竞赛里是不妥的。所以我认真思考了很久哪里有坑。</p>
 <p>但事实上这就是一道小学二年级数学题，无语了家人们。</p>
-<p>注意到有 $30|240$，$40|200$，$50|250$ ，所以答案就是大体积除以小体积。</p>
+<p>注意到有 <span class="math inline">30|240</span>，<span class="math inline">40|200</span>，<span class="math inline">50|250</span> ，所以答案就是大体积除以小体积。</p>
 <p>哎哎，出题人的苦心。</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p><strong>题目大意：</strong>求符合要求的正整数 $n$ 的数量：$n+20255202$ 和 $n+10244201$ 都是完全平方数。</p>
+<h1 id="b">B</h1>
+<p><strong>题目大意：</strong>求符合要求的正整数 <span class="math inline"><em>n</em></span> 的数量：<span class="math inline"><em>n</em> + 20255202</span> 和 <span class="math inline"><em>n</em> + 10244201</span> 都是完全平方数。</p>
 <p><strong>标签：</strong>枚举/初中数学</p>
-<p>赛时我先考虑了直接枚举 $n$。分别设 $a^2=n+20255202$，$b^2=n+10244201$。由于 $a^2&gt;b^2$，因此也有 $a^2\geq (b+1)^2$ ，稍加变形可得：$b\leq\frac{a^2-b^2-1}{2}$ ，其中 $a^2-b^2$ 是定值 $10011001$ 。那么 $b$ 的枚举范围就不超过 $5005500$ ，在计算机的承受范围之内。枚举时判断 $b^2+10011001$ 是不是完全平方数即可。</p>
-<p>不过我最终选择的并非此解法。注意到 $(a+b)(a-b)=10011001$ ，可以考虑对 $10011001$ 进行因数分解。由于这是个奇数，所以因数一定同为奇数，解出来的 $a$ 和 $b$ 一定是整数。去掉那些 $a^2\leq20255202$ 的情形后，$10011001$ 剩下的因数对的数量便是最终答案。</p>
-<p>比较幽默的是，我枚举因数的时候是从 $2$ 开始的，因此最终答案少了一种，痛失五分。</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p><strong>题目大意：</strong>用循环的字符串填充矩阵的每一行。每一行的字符串是 <code>LANQIAO</code>  循环左移对应次数后形成的串。求矩阵上 <code>A</code> 的个数。 </p>
+<p>赛时我先考虑了直接枚举 <span class="math inline"><em>n</em></span>。分别设 <span class="math inline"><em>a</em><sup>2</sup> = <em>n</em> + 20255202</span>，<span class="math inline"><em>b</em><sup>2</sup> = <em>n</em> + 10244201</span>。由于 <span class="math inline"><em>a</em><sup>2</sup> &gt; <em>b</em><sup>2</sup></span>，因此也有 <span class="math inline"><em>a</em><sup>2</sup> ≥ (<em>b</em> + 1)<sup>2</sup></span> ，稍加变形可得：<span class="math inline">$b\leq\frac{a^2-b^2-1}{2}$</span> ，其中 <span class="math inline"><em>a</em><sup>2</sup> − <em>b</em><sup>2</sup></span> 是定值 <span class="math inline">10011001</span> 。那么 <span class="math inline"><em>b</em></span> 的枚举范围就不超过 <span class="math inline">5005500</span> ，在计算机的承受范围之内。枚举时判断 <span class="math inline"><em>b</em><sup>2</sup> + 10011001</span> 是不是完全平方数即可。</p>
+<p>不过我最终选择的并非此解法。注意到 <span class="math inline">(<em>a</em> + <em>b</em>)(<em>a</em> − <em>b</em>) = 10011001</span> ，可以考虑对 <span class="math inline">10011001</span> 进行因数分解。由于这是个奇数，所以因数一定同为奇数，解出来的 <span class="math inline"><em>a</em></span> 和 <span class="math inline"><em>b</em></span> 一定是整数。去掉那些 <span class="math inline"><em>a</em><sup>2</sup> ≤ 20255202</span> 的情形后，<span class="math inline">10011001</span> 剩下的因数对的数量便是最终答案。</p>
+<p>比较幽默的是，我枚举因数的时候是从 <span class="math inline">2</span> 开始的，因此最终答案少了一种，痛失五分。</p>
+<h2 id="c">C</h2>
+<p><strong>题目大意：</strong>用循环的字符串填充矩阵的每一行。每一行的字符串是 <code>LANQIAO</code> 循环左移对应次数后形成的串。求矩阵上 <code>A</code> 的个数。</p>
 <p><strong>标签：</strong>模拟</p>
 <p>既然数据范围这么小的话，先把矩阵填满，再取数 <code>A</code> 的数量就行了。没什么好讲的。</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p><strong>题目大意：</strong>给定AB串，重复执行操作，每次删去一个AB子列直至不能操作。问串最终长度可能的最大值。</p>
+<h1 id="d">D</h1>
+<p><strong>题目大意：</strong>给定AB串，重复执行操作，每次删去一个AB子列直至不能操作。问串最终长度可能的最大值。</p>
 <p><strong>标签：</strong>贪心，双指针</p>
 <p>显然串最终形态一定形如 <code>BB...BBAAA...A</code>，否则就还能继续操作。我们应尽量删去所有靠左的A，所有靠右的B。</p>
 <p>那么贪心地去做，用一个双指针维护这个过程。每次删去串中第一个 A 和最后一个 B 。直到双指针相遇。</p>
 <p>贪心的正确性是显然的。因为靠左的 B 与靠右的 B 相比，不被删去从而留在最终串中对答案做出贡献的机会更大。</p>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><p><strong>题目大意：</strong>给定一棵树，每次出发走至多 $k$ 步，步长为 $1$ 或 $2$ ，然后获得路径终点的权值。你可以从 $1$ 号节点出发无数次。问最终获得的权值。</p>
+<h1 id="e">E</h1>
+<p><strong>题目大意：</strong>给定一棵树，每次出发走至多 <span class="math inline"><em>k</em></span> 步，步长为 <span class="math inline">1</span> 或 <span class="math inline">2</span> ，然后获得路径终点的权值。你可以从 <span class="math inline">1</span> 号节点出发无数次。问最终获得的权值。</p>
 <p><strong>标签：</strong>树的遍历</p>
-<p>注意到 $2k$ 以内的所有数字都可以写成不超过 $k$ 个 $1$ 或 $2$ 的和，我们求出所有深度不大于 $2k$ 节点的权值和即可。（初读题的时候还以为只能出发一次，以为是个树形DP类似物，但实际上……）</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p><strong>题目大意：</strong>给定 01 串，问有多少对不重叠的子串互为反串（每个对应位置均相反）</p>
+<p>注意到 <span class="math inline">2<em>k</em></span> 以内的所有数字都可以写成不超过 <span class="math inline"><em>k</em></span> 个 <span class="math inline">1</span> 或 <span class="math inline">2</span> 的和，我们求出所有深度不大于 <span class="math inline">2<em>k</em></span> 节点的权值和即可。（初读题的时候还以为只能出发一次，以为是个树形DP类似物，但实际上……）</p>
+<h1 id="f">F</h1>
+<p><strong>题目大意：</strong>给定 01 串，问有多少对不重叠的子串互为反串（每个对应位置均相反）</p>
 <p><strong>标签：</strong>计数</p>
 <p>不太记得思路从何而来了，这里直接给出我的做法吧：</p>
-<p>记所给 01 串 $s$ 的长度为 $n$ 。</p>
-<p>枚举两串首间的距离 $j$ ，记 $t_i=s_i+s_{i+j}$ $(i+j\leq n)$ ，那么 $t_i=1$ 说明： $s_i$ 与 $s_{i+j}$ 相反，$s_i$ 可成为前串的一部分。</p>
-<p>如果 $t_{L…R}$ 都等于 $1$ ，那么我们从这些能成为前串一部分的字符中任取一段 $s_{l…r}\left(L\leq l \leq r\leq R\right)$ ，都会有 $s_i=1-s_{i+j}\left(l\leq i\leq r\right)$ 恒成立。  </p>
-<p>也就是说：如果 $t_{L…R}$ 与 $t_{L+j…R+j}$ 没有重叠部分 $(R&lt;L+j)$ ，这一段对答案的贡献就是段内的子串数。对于段内每个字符 $s_i$，以它开头的子串数就是 $R-i+1$，整段的贡献为 $\sum_{i=1}^{R-L+1}i.$</p>
-<p>那如果有重叠部分怎么办呢？其实也不难想。不论起点的位置，长度大于 $j$ 的子串一定和后串重叠，不大于 $j$ 的一定合法。所以我们只需对上面的计算方式稍作调整，改为 $\sum_{i=1}^{R-L+1}\min(i,j).$ 可以和上式合并。</p>
-<p>计算所有 $j$ 下贡献的和即可。</p>
-<p>时间复杂度 $O(n^2)$，可以通过此题。</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><p><strong>题目大意：</strong>维护一个支持入栈、出栈、以及查询栈顶前若干数乘积操作的栈。</p>
+<p>记所给 01 串 <span class="math inline"><em>s</em></span> 的长度为 <span class="math inline"><em>n</em></span> 。</p>
+<p>枚举两串首间的距离 <span class="math inline"><em>j</em></span> ，记 <span class="math inline"><em>t</em><sub><em>i</em></sub> = <em>s</em><sub><em>i</em></sub> + <em>s</em><sub><em>i</em> + <em>j</em></sub></span> <span class="math inline">(<em>i</em> + <em>j</em> ≤ <em>n</em>)</span> ，那么 <span class="math inline"><em>t</em><sub><em>i</em></sub> = 1</span> 说明： <span class="math inline"><em>s</em><sub><em>i</em></sub></span> 与 <span class="math inline"><em>s</em><sub><em>i</em> + <em>j</em></sub></span> 相反，<span class="math inline"><em>s</em><sub><em>i</em></sub></span> 可成为前串的一部分。</p>
+<p>如果 <span class="math inline"><em>t</em><sub><em>L</em>...<em>R</em></sub></span> 都等于 <span class="math inline">1</span> ，那么我们从这些能成为前串一部分的字符中任取一段 <span class="math inline"><em>s</em><sub><em>l</em>...<em>r</em></sub>(<em>L</em>≤<em>l</em>≤<em>r</em>≤<em>R</em>)</span> ，都会有 <span class="math inline"><em>s</em><sub><em>i</em></sub> = 1 − <em>s</em><sub><em>i</em> + <em>j</em></sub>(<em>l</em>≤<em>i</em>≤<em>r</em>)</span> 恒成立。</p>
+<p>也就是说：如果 <span class="math inline"><em>t</em><sub><em>L</em>...<em>R</em></sub></span> 与 <span class="math inline"><em>t</em><sub><em>L</em> + <em>j</em>...<em>R</em> + <em>j</em></sub></span> 没有重叠部分 <span class="math inline">(<em>R</em> &lt; <em>L</em> + <em>j</em>)</span> ，这一段对答案的贡献就是段内的子串数。对于段内每个字符 <span class="math inline"><em>s</em><sub><em>i</em></sub></span>，以它开头的子串数就是 <span class="math inline"><em>R</em> − <em>i</em> + 1</span>，整段的贡献为 <span class="math inline">$\sum_{i=1}^{R-L+1}i.$</span></p>
+<p>那如果有重叠部分怎么办呢？其实也不难想。不论起点的位置，长度大于 <span class="math inline"><em>j</em></span> 的子串一定和后串重叠，不大于 <span class="math inline"><em>j</em></span> 的一定合法。所以我们只需对上面的计算方式稍作调整，改为 <span class="math inline">$\sum_{i=1}^{R-L+1}\min(i,j).$</span> 可以和上式合并。</p>
+<p>计算所有 <span class="math inline"><em>j</em></span> 下贡献的和即可。</p>
+<p>时间复杂度 <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span>，可以通过此题。</p>
+<h1 id="g">G</h1>
+<p><strong>题目大意：</strong>维护一个支持入栈、出栈、以及查询栈顶前若干数乘积操作的栈。</p>
 <p><strong>标签：</strong>线段树</p>
 <p>单点修改，区间乘积查询，线段树的暗示已经给得很明显了。</p>
-<p>考虑到栈内的数不超过 $Q$ 个，线段树的容量开到 $4e5$ 级别已经足够。</p>
+<p>考虑到栈内的数不超过 <span class="math inline"><em>Q</em></span> 个，线段树的容量开到 <span class="math inline">4<em>e</em>5</span> 级别已经足够。</p>
 <p>入栈操作就是把栈当前容量加一处的数修改为目标数；出栈操作只需让记录栈当前容量的变量自减；查询操作只需调用线段树区间乘积查询函数即可。</p>
-<p>为了让超过 $2^{32}$ 的数输出为 <code>OVERFLOW</code>，我们可以修改区间合并的函数。对每个节点以 $-1$ 值记录乘积超出 $2^{32}$ 的情况。区间合并时分以下情况（按从上往下的优先级判断）：</p>
+<p>为了让超过 <span class="math inline">2<sup>32</sup></span> 的数输出为 <code>OVERFLOW</code>，我们可以修改区间合并的函数。对每个节点以 <span class="math inline"> − 1</span> 值记录乘积超出 <span class="math inline">2<sup>32</sup></span> 的情况。区间合并时分以下情况（按从上往下的优先级判断）：</p>
 <ul>
-<li>左右子区间节点值有 $0$，则父区间节点值为 $0$。</li>
-<li>左右子区间节点值有 $-1$ ，则父区间节点值为 $-1$。</li>
-<li>左右子区间节点值乘积大于等于 $2^{32}$ ，则父区间节点值为 $-1$。</li>
-<li>左右子区间节点值乘积小于 $2^{32}$ ，则父区间节点值为左右子区间节点值乘积。</li>
+<li>左右子区间节点值有 <span class="math inline">0</span>，则父区间节点值为 <span class="math inline">0</span>。</li>
+<li>左右子区间节点值有 <span class="math inline"> − 1</span> ，则父区间节点值为 <span class="math inline"> − 1</span>。</li>
+<li>左右子区间节点值乘积大于等于 <span class="math inline">2<sup>32</sup></span> ，则父区间节点值为 <span class="math inline"> − 1</span>。</li>
+<li>左右子区间节点值乘积小于 <span class="math inline">2<sup>32</sup></span> ，则父区间节点值为左右子区间节点值乘积。</li>
 </ul>
 <p>剩下就是线段树的常规写法了。算是一道很好调的DS题了。</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p> <strong>题目大意：</strong>给定序列 $a$ 以及若干约束 $(l,r,p,q)$，求解序列内最大最小差值的可能最小值。约束的意义是：</p>
-<script type="math/tex; mode=display">
-\min_{l\leq x\leq r}a_x - \max_{p\leq y\leq q}a_y\geq ans</script><p><strong>标签：</strong>差分约束</p>
+<h1 id="h">H</h1>
+<p><strong>题目大意：</strong>给定序列 <span class="math inline"><em>a</em></span> 以及若干约束 <span class="math inline">(<em>l</em>, <em>r</em>, <em>p</em>, <em>q</em>)</span>，求解序列内最大最小差值的可能最小值。约束的意义是： <span class="math display">min<sub><em>l</em> ≤ <em>x</em> ≤ <em>r</em></sub><em>a</em><sub><em>x</em></sub> − max<sub><em>p</em> ≤ <em>y</em> ≤ <em>q</em></sub><em>a</em><sub><em>y</em></sub> ≥ <em>a</em><em>n</em><em>s</em></span> <strong>标签：</strong>差分约束</p>
 
                 
               </div>
@@ -346,7 +355,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" class="category-chain-item">算法竞赛</a>
   
   
 
@@ -357,6 +366,13 @@
 
     </div>
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" class="print-no-link">#蓝桥杯</a>
+      
+    </div>
   
 </div>
 
