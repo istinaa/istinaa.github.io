@@ -1,254 +1,731 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>暑训5&amp;6 补题 | Istina's Blog</title><meta name="author" content="istina"><meta name="copyright" content="istina"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="5H 题目大意：给定 $n, m, s, t, \{a_n\},\{k_n\},\{b_n\},\{c_n\}$。每次操作，选定任一非 $0$ 的 $b_i \to \max\{b_i - p, 0\}$ ，若此后 $b_i&#x3D;0$， $a_i\to \max\{a_i - c_i, 0\}$.然后选择一项：  使第一个非 $0$ 的 $a_i \to \max\{a_i - m, 0\}$。若此后">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="istina">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="5H  题目大意： 给定 n, m, s, t, {an}, {kn}, {bn}, {cn}。 每次操作，选定任一非 0 的 bi → max {bi − p, 0} ，若此后 bi &#x3D; 0， ai → max {ai − ci, 0}. 然后选择一项：  使第一个非 0 的 ai → max {ai − m, 0}。若此后 ai &#x3D; 0， m → m + ki. cnt → cnt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="暑训5&amp;6 补题">
 <meta property="og:url" content="http://istinaa.github.io/2025/07/25/%E6%9A%91%E8%AE%AD5&6%20%E8%A1%A5%E9%A2%98/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="5H 题目大意：给定 $n, m, s, t, \{a_n\},\{k_n\},\{b_n\},\{c_n\}$。每次操作，选定任一非 $0$ 的 $b_i \to \max\{b_i - p, 0\}$ ，若此后 $b_i&#x3D;0$， $a_i\to \max\{a_i - c_i, 0\}$.然后选择一项：  使第一个非 $0$ 的 $a_i \to \max\{a_i - m, 0\}$。若此后">
+<meta property="og:description" content="5H  题目大意： 给定 n, m, s, t, {an}, {kn}, {bn}, {cn}。 每次操作，选定任一非 0 的 bi → max {bi − p, 0} ，若此后 bi &#x3D; 0， ai → max {ai − ci, 0}. 然后选择一项：  使第一个非 0 的 ai → max {ai − m, 0}。若此后 ai &#x3D; 0， m → m + ki. cnt → cnt">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://istinaa.github.io/img/cf.jpeg">
 <meta property="article:published_time" content="2025-07-25T15:45:36.000Z">
 <meta property="article:modified_time" content="2025-10-05T13:48:09.209Z">
 <meta property="article:author" content="istina">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://istinaa.github.io/img/cf.jpeg"><link rel="shortcut icon" href="/img/icon1.png"><link rel="canonical" href="http://istinaa.github.io/2025/07/25/%E6%9A%91%E8%AE%AD5&amp;6%20%E8%A1%A5%E9%A2%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.19/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: undefined,
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2.1.2/dist/fjGallery.min.css'
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>暑训5&amp;6 补题 - Istina&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"istinaa.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '暑训5&6 补题',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2025-10-05 21:48:09'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
+
+
   
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
   
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+
+  <header>
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="暑训5&amp;6 补题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/icon1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/cf.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="Istina's Blog"><img class="site-icon" src="/img/icon1.jpg"/><span class="site-name">Istina's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">暑训5&amp;6 补题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-25T15:45:36.000Z" title="发表于 2025-07-25 23:45:36">2025-07-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-05T13:48:09.209Z" title="更新于 2025-10-05 21:48:09">2025-10-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="暑训5&amp;6 补题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="5H"><a href="#5H" class="headerlink" title="5H"></a>5H</h1><blockquote>
-<p><strong>题目大意：</strong><br>给定 $n, m, s, t, \{a_n\},\{k_n\},\{b_n\},\{c_n\}$。<br>每次操作，选定任一非 $0$ 的 $b_i \to \max\{b_i - p, 0\}$ ，若此后 $b_i=0$， $a_i\to \max\{a_i - c_i, 0\}$.<br>然后选择一项：</p>
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-25 23:45" pubdate>
+          2025年7月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">暑训5&amp;6 补题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="h">5H</h1>
+<blockquote>
+<p><strong>题目大意：</strong> 给定 <span class="math inline"><em>n</em>, <em>m</em>, <em>s</em>, <em>t</em>, {<em>a</em><sub><em>n</em></sub>}, {<em>k</em><sub><em>n</em></sub>}, {<em>b</em><sub><em>n</em></sub>}, {<em>c</em><sub><em>n</em></sub>}</span>。 每次操作，选定任一非 <span class="math inline">0</span> 的 <span class="math inline"><em>b</em><sub><em>i</em></sub> → max {<em>b</em><sub><em>i</em></sub> − <em>p</em>, 0}</span> ，若此后 <span class="math inline"><em>b</em><sub><em>i</em></sub> = 0</span>， <span class="math inline"><em>a</em><sub><em>i</em></sub> → max {<em>a</em><sub><em>i</em></sub> − <em>c</em><sub><em>i</em></sub>, 0}</span>. 然后选择一项：</p>
 <ul>
-<li>使第一个非 $0$ 的 $a_i \to \max\{a_i - m, 0\}$。若此后 $a_i=0$， $m\to m+k_i$.</li>
-<li>$cnt \to cnt + m$ （$cnt$ 初始为 $0$）<br>求 $\min p$ ，使得存在一种方案使得 $t$ 次操作内可能使 $cnt\geq s$.</li>
+<li>使第一个非 <span class="math inline">0</span> 的 <span class="math inline"><em>a</em><sub><em>i</em></sub> → max {<em>a</em><sub><em>i</em></sub> − <em>m</em>, 0}</span>。若此后 <span class="math inline"><em>a</em><sub><em>i</em></sub> = 0</span>， <span class="math inline"><em>m</em> → <em>m</em> + <em>k</em><sub><em>i</em></sub></span>.</li>
+<li><span class="math inline"><em>c</em><em>n</em><em>t</em> → <em>c</em><em>n</em><em>t</em> + <em>m</em></span> （<span class="math inline"><em>c</em><em>n</em><em>t</em></span> 初始为 <span class="math inline">0</span>） 求 <span class="math inline">min <em>p</em></span> ，使得存在一种方案使得 <span class="math inline"><em>t</em></span> 次操作内可能使 <span class="math inline"><em>c</em><em>n</em><em>t</em> ≥ <em>s</em></span>.</li>
 </ul>
+</blockquote>
+<blockquote>
 <p><strong>知识点：</strong> 二分，dp</p>
 </blockquote>
 <p>这题的难度相当一部分来自于冗长的题面，我费了老大劲才把原题面中 <strong>Civilization VI</strong> 的元素换成了数学语言。赛时也是被这题面吓到以为是大模拟。</p>
-<p>首先显然可以二分答案，将问题转化成给定 $p$ ，判定方案存在性。</p>
-<p>考虑 $dp$ 来做。令 $dp_{i,j,l}$ 表示前 $i$ 次操作中，已经使 $a_j=0$，选择了 $l$ 次 $b_{\{j + 1…n\}}$ 中元素的情况下 $cnt$ 的最大值。</p>
-<p>设 $sum_i = m+\sum_{j=1}^{i}k_j$ ，有如下三种转移：</p>
+<p>首先显然可以二分答案，将问题转化成给定 <span class="math inline"><em>p</em></span> ，判定方案存在性。</p>
+<p>考虑 <span class="math inline"><em>d</em><em>p</em></span> 来做。令 <span class="math inline"><em>d</em><em>p</em><sub><em>i</em>, <em>j</em>, <em>l</em></sub></span> 表示前 <span class="math inline"><em>i</em></span> 次操作中，已经使 <span class="math inline"><em>a</em><sub><em>j</em></sub> = 0</span>，选择了 <span class="math inline"><em>l</em></span> 次 <span class="math inline"><em>b</em><sub>{<em>j</em> + 1...<em>n</em>}</sub></span> 中元素的情况下 <span class="math inline"><em>c</em><em>n</em><em>t</em></span> 的最大值。</p>
+<p>设 <span class="math inline">$sum_i = m+\sum_{j=1}^{i}k_j$</span> ，有如下三种转移：</p>
 <ul>
-<li><p>第 $i$ 次操作选择增加 $cnt$：</p>
-<script type="math/tex; mode=display">
-dp_{i,j,l}+sum_j\to dp_{i+1,j,l+1}</script></li>
-<li><p>通过若干次操作使 $a_{j+1}\to0$（未触发 $a_i\to \max\{a_i - c_i, 0\}$）：</p>
-<script type="math/tex; mode=display">
-dp_{i,j,l}\to dp_{i+\left \lceil \frac{a_{j+1}}{sum_j} \right \rceil,j+1, l+\left \lceil \frac{a_{j+1}}{sum_j} \right \rceil}</script></li>
-<li><p>通过若干次操作使 $a_{j+1}\to0$（触发 $a_i\to \max\{a_i - c_i, 0\}$）：</p>
-<script type="math/tex; mode=display">
-dp_{i,j,l}\to dp_{i+ \left \lceil \frac{a_{j+1} - c_{j+1}}{sum_j} \right \rceil,j+1,l-\left \lceil \frac{b_{j+1}}{p} \right \rceil + \left \lceil \frac{a_{j+1} - c_{j+1}}{sum_j} \right \rceil}</script><p>其中 $l-\left \lceil \frac{b_{j+1}}{p} \right \rceil + \left \lceil \frac{a_{j+1} - c_{j+1}}{sum_j} \right \rceil \geq 0$ 。</p>
-</li>
+<li><p>第 <span class="math inline"><em>i</em></span> 次操作选择增加 <span class="math inline"><em>c</em><em>n</em><em>t</em></span>： <span class="math display"><em>d</em><em>p</em><sub><em>i</em>, <em>j</em>, <em>l</em></sub> + <em>s</em><em>u</em><em>m</em><sub><em>j</em></sub> → <em>d</em><em>p</em><sub><em>i</em> + 1, <em>j</em>, <em>l</em> + 1</sub></span></p></li>
+<li><p>通过若干次操作使 <span class="math inline"><em>a</em><sub><em>j</em> + 1</sub> → 0</span>（未触发 <span class="math inline"><em>a</em><sub><em>i</em></sub> → max {<em>a</em><sub><em>i</em></sub> − <em>c</em><sub><em>i</em></sub>, 0}</span>）： <span class="math display">$$
+dp_{i,j,l}\to dp_{i+\left \lceil \frac{a_{j+1}}{sum_j} \right \rceil,j+1, l+\left \lceil \frac{a_{j+1}}{sum_j} \right \rceil}
+$$</span></p></li>
+<li><p>通过若干次操作使 <span class="math inline"><em>a</em><sub><em>j</em> + 1</sub> → 0</span>（触发 <span class="math inline"><em>a</em><sub><em>i</em></sub> → max {<em>a</em><sub><em>i</em></sub> − <em>c</em><sub><em>i</em></sub>, 0}</span>）： <span class="math display">$$
+dp_{i,j,l}\to dp_{i+ \left \lceil \frac{a_{j+1} - c_{j+1}}{sum_j} \right \rceil,j+1,l-\left \lceil \frac{b_{j+1}}{p} \right \rceil + \left \lceil \frac{a_{j+1} - c_{j+1}}{sum_j} \right \rceil}
+$$</span> 其中 <span class="math inline">$l-\left \lceil \frac{b_{j+1}}{p} \right \rceil + \left \lceil \frac{a_{j+1} - c_{j+1}}{sum_j} \right \rceil \geq 0$</span> 。</p></li>
 </ul>
-<p>存在某 $dp_{i,j,l}\geq s$ 则方案存在。</p>
-<p>注意写好转移时的边界条件，并特判 $p=0$ 的情况即可。</p>
-<p>时间复杂度 $\mathcal O(t^2n\log b)$ ，可以通过本题。</p>
+<p>存在某 <span class="math inline"><em>d</em><em>p</em><sub><em>i</em>, <em>j</em>, <em>l</em></sub> ≥ <em>s</em></span> 则方案存在。</p>
+<p>注意写好转移时的边界条件，并特判 <span class="math inline"><em>p</em> = 0</span> 的情况即可。</p>
+<p>时间复杂度 <span class="math inline">𝒪(<em>t</em><sup>2</sup><em>n</em>log <em>b</em>)</span> ，可以通过本题。</p>
 <p><strong>Code：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOR(i,a,b) for (int i = a; i &lt;= b; i++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ceiL(x, y) ((x - 1) / y + 1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">105</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF = LONG_LONG_MAX;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, s, t;</span><br><span class="line"><span class="type">int</span> sumk[N];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[N], k[N], b[N], c[N];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> dp[N][N][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">0</span>, t) <span class="built_in">FOR</span>(j, <span class="number">0</span>, n) <span class="built_in">FOR</span>(l, <span class="number">0</span>, t) dp[i][j][l] = -INF;</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">0</span>, t) &#123;</span><br><span class="line">        <span class="built_in">FOR</span>(j, <span class="number">0</span>, n) &#123;</span><br><span class="line">            <span class="built_in">FOR</span>(l, <span class="number">0</span>, i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (dp[i][j][l] == -INF) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (dp[i][j][l] &gt;= s) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="number">1</span> &lt; N &amp;&amp; l + <span class="number">1</span> &lt; N) dp[i + <span class="number">1</span>][j][l + <span class="number">1</span>] = <span class="built_in">max</span>(dp[i + <span class="number">1</span>][j][l + <span class="number">1</span>], dp[i][j][l] + sumk[j]);</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j]) &lt; N &amp;&amp; j + <span class="number">1</span> &lt; N &amp;&amp; l + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j]) &lt; N)</span><br><span class="line">                    dp[i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])][j + <span class="number">1</span>][l + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])] </span><br><span class="line">                    = <span class="built_in">max</span>(dp[i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])][j + <span class="number">1</span>][l + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])], dp[i][j][l]);</span><br><span class="line">                <span class="type">int</span> newl = l - <span class="built_in">ceiL</span>(b[j + <span class="number">1</span>], x) + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>] - c[j + <span class="number">1</span>], sumk[j]);</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>] - c[j + <span class="number">1</span>], sumk[j]) &lt; N &amp;&amp; j + <span class="number">1</span> &lt; N &amp;&amp; newl &gt;= <span class="number">0</span> &amp;&amp; newl &lt; N) </span><br><span class="line">                    dp[i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>] - c[j + <span class="number">1</span>], sumk[j])][j + <span class="number">1</span>][newl]</span><br><span class="line">                    = <span class="built_in">max</span>(dp[i][j][l], dp[i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>] - c[j + <span class="number">1</span>], sumk[j])][j + <span class="number">1</span>][newl]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; m &gt;&gt; s &gt;&gt; t;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">1</span>, n) cin &gt;&gt; a[i] &gt;&gt; k[i] &gt;&gt; b[i] &gt;&gt; c[i];</span><br><span class="line">    sumk[<span class="number">0</span>] = m;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">1</span>, n) sumk[i] = sumk[i - <span class="number">1</span>] + k[i];</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">0</span>, N - <span class="number">1</span>) <span class="built_in">FOR</span>(j, <span class="number">0</span>, N - <span class="number">1</span>) <span class="built_in">FOR</span>(k, <span class="number">0</span>, N - <span class="number">1</span>) dp[i][j][k] = -INF;</span><br><span class="line">    <span class="comment">// 先判断 p = 0 行不行，只有前两种转移</span></span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">0</span>, t) &#123;</span><br><span class="line">        <span class="built_in">FOR</span>(j, <span class="number">0</span>, n) &#123;</span><br><span class="line">            <span class="built_in">FOR</span>(l, <span class="number">0</span>, i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (dp[i][j][l] == -INF) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span> (dp[i][j][l] &gt;= s) &#123; cout &lt;&lt; <span class="number">0</span> &lt;&lt; <span class="string">&#x27;\n&#x27;</span>; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="number">1</span> &lt; N &amp;&amp; l + <span class="number">1</span> &lt; N) dp[i + <span class="number">1</span>][j][l + <span class="number">1</span>] = <span class="built_in">max</span>(dp[i + <span class="number">1</span>][j][l + <span class="number">1</span>], dp[i][j][l] + sumk[j]);</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j]) &lt; N &amp;&amp; j + <span class="number">1</span> &lt; N &amp;&amp; l + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j]) &lt; N)</span><br><span class="line">                    dp[i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])][j + <span class="number">1</span>][l + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])] </span><br><span class="line">                    = <span class="built_in">max</span>(dp[i + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])][j + <span class="number">1</span>][l + <span class="built_in">ceiL</span>(a[j + <span class="number">1</span>], sumk[j])], dp[i][j][l]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> L = <span class="number">1</span>, R = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">while</span> (L &lt; R) &#123;</span><br><span class="line">        <span class="type">int</span> mid = (L + R) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) R = mid;</span><br><span class="line">        <span class="keyword">else</span> L = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">check</span>(L)) cout &lt;&lt; <span class="string">&quot;-1\n&quot;</span>;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; L &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="5L"><a href="#5L" class="headerlink" title="5L"></a>5L</h1><blockquote>
-<p><strong>题目大意：</strong><br>现有 $a=0$ 和 $b=z$，目标为使 $a=n$。你每次尝试有 $p$ 的概率成功使 $a\to a + 1$ ，另有 $1−p$ 的概率失败。<br>失败时，若 $b&gt;0,b\to b-1$，否则 $a\to 0$。对于每个 $z \in[0,m]$，求期望尝试次数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FOR(i,a,b) for (int i = a; i &lt;= b; i++)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> ceiL(x, y) ((x - 1) / y + 1)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">105</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> INF = LONG_LONG_MAX;<br><br><span class="hljs-type">int</span> n, m, s, t;<br><span class="hljs-type">int</span> sumk[N];<br><br><span class="hljs-type">int</span> a[N], k[N], b[N], c[N];<br><br><span class="hljs-type">int</span> dp[N][N][N];<br><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">0</span>, t) <span class="hljs-built_in">FOR</span>(j, <span class="hljs-number">0</span>, n) <span class="hljs-built_in">FOR</span>(l, <span class="hljs-number">0</span>, t) dp[i][j][l] = -INF;<br>    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">0</span>, t) &#123;<br>        <span class="hljs-built_in">FOR</span>(j, <span class="hljs-number">0</span>, n) &#123;<br>            <span class="hljs-built_in">FOR</span>(l, <span class="hljs-number">0</span>, i) &#123;<br>                <span class="hljs-keyword">if</span> (dp[i][j][l] == -INF) <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span> (dp[i][j][l] &gt;= s) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">if</span> (i + <span class="hljs-number">1</span> &lt; N &amp;&amp; l + <span class="hljs-number">1</span> &lt; N) dp[i + <span class="hljs-number">1</span>][j][l + <span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i + <span class="hljs-number">1</span>][j][l + <span class="hljs-number">1</span>], dp[i][j][l] + sumk[j]);<br>                <span class="hljs-keyword">if</span> (i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j]) &lt; N &amp;&amp; j + <span class="hljs-number">1</span> &lt; N &amp;&amp; l + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j]) &lt; N)<br>                    dp[i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])][j + <span class="hljs-number">1</span>][l + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])] <br>                    = <span class="hljs-built_in">max</span>(dp[i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])][j + <span class="hljs-number">1</span>][l + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])], dp[i][j][l]);<br>                <span class="hljs-type">int</span> newl = l - <span class="hljs-built_in">ceiL</span>(b[j + <span class="hljs-number">1</span>], x) + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>] - c[j + <span class="hljs-number">1</span>], sumk[j]);<br>                <span class="hljs-keyword">if</span> (i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>] - c[j + <span class="hljs-number">1</span>], sumk[j]) &lt; N &amp;&amp; j + <span class="hljs-number">1</span> &lt; N &amp;&amp; newl &gt;= <span class="hljs-number">0</span> &amp;&amp; newl &lt; N) <br>                    dp[i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>] - c[j + <span class="hljs-number">1</span>], sumk[j])][j + <span class="hljs-number">1</span>][newl]<br>                    = <span class="hljs-built_in">max</span>(dp[i][j][l], dp[i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>] - c[j + <span class="hljs-number">1</span>], sumk[j])][j + <span class="hljs-number">1</span>][newl]);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    cin &gt;&gt; m &gt;&gt; s &gt;&gt; t;<br>    cin &gt;&gt; n;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">1</span>, n) cin &gt;&gt; a[i] &gt;&gt; k[i] &gt;&gt; b[i] &gt;&gt; c[i];<br>    sumk[<span class="hljs-number">0</span>] = m;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">1</span>, n) sumk[i] = sumk[i - <span class="hljs-number">1</span>] + k[i];<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">0</span>, N - <span class="hljs-number">1</span>) <span class="hljs-built_in">FOR</span>(j, <span class="hljs-number">0</span>, N - <span class="hljs-number">1</span>) <span class="hljs-built_in">FOR</span>(k, <span class="hljs-number">0</span>, N - <span class="hljs-number">1</span>) dp[i][j][k] = -INF;<br>    <span class="hljs-comment">// 先判断 p = 0 行不行，只有前两种转移</span><br>    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">0</span>, t) &#123;<br>        <span class="hljs-built_in">FOR</span>(j, <span class="hljs-number">0</span>, n) &#123;<br>            <span class="hljs-built_in">FOR</span>(l, <span class="hljs-number">0</span>, i) &#123;<br>                <span class="hljs-keyword">if</span> (dp[i][j][l] == -INF) <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span> (dp[i][j][l] &gt;= s) &#123; cout &lt;&lt; <span class="hljs-number">0</span> &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>; <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; &#125;<br>                <span class="hljs-keyword">if</span> (i + <span class="hljs-number">1</span> &lt; N &amp;&amp; l + <span class="hljs-number">1</span> &lt; N) dp[i + <span class="hljs-number">1</span>][j][l + <span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i + <span class="hljs-number">1</span>][j][l + <span class="hljs-number">1</span>], dp[i][j][l] + sumk[j]);<br>                <span class="hljs-keyword">if</span> (i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j]) &lt; N &amp;&amp; j + <span class="hljs-number">1</span> &lt; N &amp;&amp; l + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j]) &lt; N)<br>                    dp[i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])][j + <span class="hljs-number">1</span>][l + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])] <br>                    = <span class="hljs-built_in">max</span>(dp[i + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])][j + <span class="hljs-number">1</span>][l + <span class="hljs-built_in">ceiL</span>(a[j + <span class="hljs-number">1</span>], sumk[j])], dp[i][j][l]);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-type">int</span> L = <span class="hljs-number">1</span>, R = <span class="hljs-number">1e5</span> + <span class="hljs-number">10</span>;<br>    <span class="hljs-keyword">while</span> (L &lt; R) &#123;<br>        <span class="hljs-type">int</span> mid = (L + R) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">check</span>(mid)) R = mid;<br>        <span class="hljs-keyword">else</span> L = mid + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">check</span>(L)) cout &lt;&lt; <span class="hljs-string">&quot;-1\n&quot;</span>;<br>    <span class="hljs-keyword">else</span> cout &lt;&lt; L &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="l">5L</h1>
+<blockquote>
+<p><strong>题目大意：</strong> 现有 <span class="math inline"><em>a</em> = 0</span> 和 <span class="math inline"><em>b</em> = <em>z</em></span>，目标为使 <span class="math inline"><em>a</em> = <em>n</em></span>。你每次尝试有 <span class="math inline"><em>p</em></span> 的概率成功使 <span class="math inline"><em>a</em> → <em>a</em> + 1</span> ，另有 <span class="math inline">1 − <em>p</em></span> 的概率失败。 失败时，若 <span class="math inline"><em>b</em> &gt; 0, <em>b</em> → <em>b</em> − 1</span>，否则 <span class="math inline"><em>a</em> → 0</span>。对于每个 <span class="math inline"><em>z</em> ∈ [0, <em>m</em>]</span>，求期望尝试次数。</p>
+</blockquote>
+<blockquote>
 <p><strong>知识点：</strong> 期望dp</p>
 </blockquote>
-<p>将总期望尝试次数拆成 $b &gt; 0$ 和 $b = 0$ 两部分（可能在第一部分中已经达成目标，那么第二部分就没有被经过）</p>
-<p>先考虑 $b &gt; 0$ 的情形。考虑二维状态 $(i, j)$ ，表示当前 $a = i$，$b = z - j$。初始状态为 $(0,0)$ ，目标状态为 $(n,?)$ 。状态转移为：有 $p$ 的概率 $(i,j)\to (i+1,j)$ ，$(1 - p)$ 的概率 $(i,j) \to (i, j + 1)$。由于不会走回头路，第一部分的期望步数就是所有状态的概率之和。</p>
-<p>假设 $P_{i,j}$ 表示经过某状态的概率，可得方程：</p>
-<script type="math/tex; mode=display">
+<p>将总期望尝试次数拆成 <span class="math inline"><em>b</em> &gt; 0</span> 和 <span class="math inline"><em>b</em> = 0</span> 两部分（可能在第一部分中已经达成目标，那么第二部分就没有被经过）</p>
+<p>先考虑 <span class="math inline"><em>b</em> &gt; 0</span> 的情形。考虑二维状态 <span class="math inline">(<em>i</em>, <em>j</em>)</span> ，表示当前 <span class="math inline"><em>a</em> = <em>i</em></span>，<span class="math inline"><em>b</em> = <em>z</em> − <em>j</em></span>。初始状态为 <span class="math inline">(0, 0)</span> ，目标状态为 <span class="math inline">(<em>n</em>, ?)</span> 。状态转移为：有 <span class="math inline"><em>p</em></span> 的概率 <span class="math inline">(<em>i</em>, <em>j</em>) → (<em>i</em> + 1, <em>j</em>)</span> ，<span class="math inline">(1 − <em>p</em>)</span> 的概率 <span class="math inline">(<em>i</em>, <em>j</em>) → (<em>i</em>, <em>j</em> + 1)</span>。由于不会走回头路，第一部分的期望步数就是所有状态的概率之和。</p>
+<p>假设 <span class="math inline"><em>P</em><sub><em>i</em>, <em>j</em></sub></span> 表示经过某状态的概率，可得方程： <span class="math display">$$
 P_{i,j}=\begin{cases}
-1 &\text {if } i, j = 0
+1 &amp;\text {if } i, j = 0
 \\
-p P_{i - 1, j} &\text{if } j = 0
+p P_{i - 1, j} &amp;\text{if } j = 0
 \\
-(1-p)P_{i, j - 1} & \text{if } i = 0
+(1-p)P_{i, j - 1} &amp; \text{if } i = 0
 \\
-pP_{i - 1,j}+(1 - p)P_{i,j - 1} & \text{if } i, j\neq 0
-\end{cases}</script><p>设 $S_j = \sum_{i = 0}^{n - 1}P_{i, j}$，由于 $P_{i, j} = pP_{i - 1, j} + (1 - p)P_{i, j - 1}$ ， 累加可得：</p>
-<script type="math/tex; mode=display">
-\sum_{i = 0} ^ {n - 1} P_{i, j} = p\sum_{i = 0} ^{n - 1}P_{i - 1, j} + (1 - p) \sum_{i = 0}^{n - 1} P_{i, j - 1}</script><p>整理之后可得：</p>
-<script type="math/tex; mode=display">
+pP_{i - 1,j}+(1 - p)P_{i,j - 1} &amp; \text{if } i, j\neq 0
+\end{cases}
+$$</span> 设 <span class="math inline">$S_j = \sum_{i = 0}^{n - 1}P_{i, j}$</span>，由于 <span class="math inline"><em>P</em><sub><em>i</em>, <em>j</em></sub> = <em>p</em><em>P</em><sub><em>i</em> − 1, <em>j</em></sub> + (1 − <em>p</em>)<em>P</em><sub><em>i</em>, <em>j</em> − 1</sub></span> ， 累加可得： <span class="math display">$$
+\sum_{i = 0} ^ {n - 1} P_{i, j} = p\sum_{i = 0} ^{n - 1}P_{i - 1, j} + (1 - p) \sum_{i = 0}^{n - 1} P_{i, j - 1}
+$$</span> 整理之后可得： <span class="math display">$$
 S_j = p(S_j - P_{n - 1, j} + P_{-1, j})+(1 - p)S_{j - 1}
 \\
 S_j = S_{j - 1}-\frac p {1 - p} P_{n - 1, j}
 \\
-S_0 = \frac{1 - p^n}{1 - p}</script><p>再结合 $P_{n - 1, j}$ 的递推式：</p>
-<script type="math/tex; mode=display">
-P_{n - 1, j} = C_{n - 1 + j}^{j}p^{n - 1}(1 - p)^{j} = \frac{(n - 1 + j)(1 - p)}{j} P_{n - 1, j - 1}</script><p>就可以通过递推得到 $S_j$ ，而对于每个 $z$ ，这一部分的答案就是 $\sum_{j = 0}^{z}S_j$。</p>
-<p>再考虑 $b = 0$ 的情形。这一部分的期望尝试次数是好计算的。</p>
-<p>设从 $a$ 从 $0$ 到 $i$ 期望尝试次数为 $D_i$ ，从 $i - 1$ 到 $i$ 的期望尝试次数为 $d_i$ ，则可以得到以下式子：</p>
-<script type="math/tex; mode=display">
+S_0 = \frac{1 - p^n}{1 - p}
+$$</span> 再结合 <span class="math inline"><em>P</em><sub><em>n</em> − 1, <em>j</em></sub></span> 的递推式： <span class="math display">$$
+P_{n - 1, j} = C_{n - 1 + j}^{j}p^{n - 1}(1 - p)^{j} = \frac{(n - 1 + j)(1 - p)}{j} P_{n - 1, j - 1}
+$$</span> 就可以通过递推得到 <span class="math inline"><em>S</em><sub><em>j</em></sub></span> ，而对于每个 <span class="math inline"><em>z</em></span> ，这一部分的答案就是 <span class="math inline">$\sum_{j = 0}^{z}S_j$</span>。</p>
+<p>再考虑 <span class="math inline"><em>b</em> = 0</span> 的情形。这一部分的期望尝试次数是好计算的。</p>
+<p>设从 <span class="math inline"><em>a</em></span> 从 <span class="math inline">0</span> 到 <span class="math inline"><em>i</em></span> 期望尝试次数为 <span class="math inline"><em>D</em><sub><em>i</em></sub></span> ，从 <span class="math inline"><em>i</em> − 1</span> 到 <span class="math inline"><em>i</em></span> 的期望尝试次数为 <span class="math inline"><em>d</em><sub><em>i</em></sub></span> ，则可以得到以下式子： <span class="math display">$$
 \begin{align}
 \begin{cases}
 d_i = p + (1 - p) (D_i+1)
  \\
 d_i = D_i - D_{i - 1}
 \end{cases}
-\end{align}</script><p>可以解得：</p>
-<script type="math/tex; mode=display">
+\end{align}
+$$</span> 可以解得： <span class="math display">$$
 pD_i = D_{i - 1} + 1
 \\
 p(D_i + \frac{1}{1-p}) = D_{i - 1} +\frac{1}{1 - p}
 \\
-D_i = \frac{1 - p^i}{(1 - p)p^i}</script><p>而进入第二部分的概率就是是简单的 $S_z(1-p)$ ，将概率和期望尝试次数相乘即为第二部分的答案。</p>
-<p>总体上时间复杂度为 $\mathcal O (m\log m)$ ，可通过预处理逆元优化为线性。</p>
+D_i = \frac{1 - p^i}{(1 - p)p^i}
+$$</span> 而进入第二部分的概率就是是简单的 <span class="math inline"><em>S</em><sub><em>z</em></sub>(1 − <em>p</em>)</span> ，将概率和期望尝试次数相乘即为第二部分的答案。</p>
+<p>总体上时间复杂度为 <span class="math inline">𝒪(<em>m</em>log <em>m</em>)</span> ，可通过预处理逆元优化为线性。</p>
 <p><strong>Code:</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cin &gt;&gt; n &gt;&gt; m &gt;&gt; p;</span><br><span class="line"><span class="keyword">if</span> (p == <span class="number">1</span>) &#123;</span><br><span class="line">	<span class="built_in">FOR</span>(i, <span class="number">0</span>, m) cout &lt;&lt; n % MOD &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">pbex = <span class="built_in">qp</span>(<span class="built_in">inv</span>(p), n) - <span class="number">1ll</span>;</span><br><span class="line">pp = <span class="built_in">qp</span>(p, n - <span class="number">1ll</span>);</span><br><span class="line">ans = sum = (<span class="built_in">qp</span>(p, n) + MOD - <span class="number">1ll</span>) * <span class="built_in">inv</span>(p + MOD - <span class="number">1ll</span>) % MOD;</span><br><span class="line">cout &lt;&lt; (ans + pbex * sum % MOD) % MOD &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line"><span class="built_in">FOR</span>(i, <span class="number">1</span>, m) &#123;</span><br><span class="line">    pp = pp * (n - <span class="number">1ll</span> + i) % MOD * <span class="built_in">inv</span>(i) % MOD * (MOD + <span class="number">1ll</span> - p) % MOD;</span><br><span class="line">    sum = (sum + pp * (MOD - p) % MOD * <span class="built_in">inv</span>(MOD + <span class="number">1ll</span> - p) % MOD) % MOD;</span><br><span class="line">    ans = (ans + sum) % MOD;</span><br><span class="line">    cout &lt;&lt; (ans + pbex * sum % MOD) % MOD &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="6E"><a href="#6E" class="headerlink" title="6E"></a>6E</h1><blockquote>
-<p><strong>题目大意：</strong><br>给定 $a$ 和 $p$ 两个数组，在线处理 $q$ 个操作，操作有两种类型：</p>
-<ul>
-<li>给定 $l$ ， $r$ ，$x$。使 $a_i \to a_i + x (i\in [l, r])$</li>
-<li>给定 $l$， $r$。 计算 $\sum_{i = l} ^r a_{p_i}$ 。</li>
-</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs C++">cin &gt;&gt; n &gt;&gt; m &gt;&gt; p;<br><span class="hljs-keyword">if</span> (p == <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">0</span>, m) cout &lt;&lt; n % MOD &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br>pbex = <span class="hljs-built_in">qp</span>(<span class="hljs-built_in">inv</span>(p), n) - <span class="hljs-number">1ll</span>;<br>pp = <span class="hljs-built_in">qp</span>(p, n - <span class="hljs-number">1ll</span>);<br>ans = sum = (<span class="hljs-built_in">qp</span>(p, n) + MOD - <span class="hljs-number">1ll</span>) * <span class="hljs-built_in">inv</span>(p + MOD - <span class="hljs-number">1ll</span>) % MOD;<br>cout &lt;&lt; (ans + pbex * sum % MOD) % MOD &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br><span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">1</span>, m) &#123;<br>    pp = pp * (n - <span class="hljs-number">1ll</span> + i) % MOD * <span class="hljs-built_in">inv</span>(i) % MOD * (MOD + <span class="hljs-number">1ll</span> - p) % MOD;<br>    sum = (sum + pp * (MOD - p) % MOD * <span class="hljs-built_in">inv</span>(MOD + <span class="hljs-number">1ll</span> - p) % MOD) % MOD;<br>    ans = (ans + sum) % MOD;<br>    cout &lt;&lt; (ans + pbex * sum % MOD) % MOD &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="e">6E</h1>
+<blockquote>
+<p><strong>题目大意：</strong> 给定 <span class="math inline"><em>a</em></span> 和 <span class="math inline"><em>p</em></span> 两个数组，在线处理 <span class="math inline"><em>q</em></span> 个操作，操作有两种类型： + 给定 <span class="math inline"><em>l</em></span> ， <span class="math inline"><em>r</em></span> ，<span class="math inline"><em>x</em></span>。使 <span class="math inline"><em>a</em><sub><em>i</em></sub> → <em>a</em><sub><em>i</em></sub> + <em>x</em>(<em>i</em> ∈ [<em>l</em>, <em>r</em>])</span> + 给定 <span class="math inline"><em>l</em></span>， <span class="math inline"><em>r</em></span>。 计算 <span class="math inline">$\sum_{i = l} ^r a_{p_i}$</span> 。</p>
+</blockquote>
+<blockquote>
 <p><strong>知识点：</strong> 分块</p>
 </blockquote>
-<p>考虑朴素的分块。记块长为 $L$ ，$a$ 的第 $i$ 个块为 $A_i$ ，$a_p$ 的第 $i$ 个块是 $B_i$ 。</p>
-<p>再记 $A_i$ 整块加一后 $B_j$ 的增量为 $f_{i, j}$ 。并对 $f_i$ 做前缀和 $S_{i, j}$ 。（可以在预处理时 $\mathcal O(n + (\frac{n}{L})^2)$ 求得）</p>
-<p>修改涉及整块时，对 $A_i$ 维护一个懒标记 $tag_i$ ，则其对 $B_{l..r}$ 的影响之和为 $tag_i \sum_{j = l}^{r}f_{i,j}$ ，即 $tag_i (S_{i, r} - S_{i, l - 1})$ 。至于不成整块的部分，直接暴力修改。单次修改时间复杂度为 $\mathcal O(\frac nL + L)$  。</p>
-<p>查询时类似。整块用懒标记统计增量，不成整块的部分直接暴力统计。单次修改时间复杂度也为 $\mathcal O(\frac n L + L)$ 。</p>
-<p>取 $L = \sqrt n$，则总时间复杂度为 $\mathcal O(n + q\sqrt n)$ ，可以通过本题。</p>
+<p>考虑朴素的分块。记块长为 <span class="math inline"><em>L</em></span> ，<span class="math inline"><em>a</em></span> 的第 <span class="math inline"><em>i</em></span> 个块为 <span class="math inline"><em>A</em><sub><em>i</em></sub></span> ，<span class="math inline"><em>a</em><sub><em>p</em></sub></span> 的第 <span class="math inline"><em>i</em></span> 个块是 <span class="math inline"><em>B</em><sub><em>i</em></sub></span> 。</p>
+<p>再记 <span class="math inline"><em>A</em><sub><em>i</em></sub></span> 整块加一后 <span class="math inline"><em>B</em><sub><em>j</em></sub></span> 的增量为 <span class="math inline"><em>f</em><sub><em>i</em>, <em>j</em></sub></span> 。并对 <span class="math inline"><em>f</em><sub><em>i</em></sub></span> 做前缀和 <span class="math inline"><em>S</em><sub><em>i</em>, <em>j</em></sub></span> 。（可以在预处理时 <span class="math inline">$\mathcal O(n + (\frac{n}{L})^2)$</span> 求得）</p>
+<p>修改涉及整块时，对 <span class="math inline"><em>A</em><sub><em>i</em></sub></span> 维护一个懒标记 <span class="math inline"><em>t</em><em>a</em><em>g</em><sub><em>i</em></sub></span> ，则其对 <span class="math inline"><em>B</em><sub><em>l</em>..<em>r</em></sub></span> 的影响之和为 <span class="math inline">$tag_i \sum_{j = l}^{r}f_{i,j}$</span> ，即 <span class="math inline"><em>t</em><em>a</em><em>g</em><sub><em>i</em></sub>(<em>S</em><sub><em>i</em>, <em>r</em></sub> − <em>S</em><sub><em>i</em>, <em>l</em> − 1</sub>)</span> 。至于不成整块的部分，直接暴力修改。单次修改时间复杂度为 <span class="math inline">$\mathcal O(\frac nL + L)$</span> 。</p>
+<p>查询时类似。整块用懒标记统计增量，不成整块的部分直接暴力统计。单次修改时间复杂度也为 <span class="math inline">$\mathcal O(\frac n L + L)$</span> 。</p>
+<p>取 <span class="math inline">$L = \sqrt n$</span>，则总时间复杂度为 <span class="math inline">$\mathcal O(n + q\sqrt n)$</span> ，可以通过本题。</p>
 <p><strong>Code：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FOR(i,j,k) for (int i = j; i &lt;= k; i++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int, int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb(x) push_back(x)</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> B = <span class="number">320</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, k, q;</span><br><span class="line"><span class="type">int</span> op, l, r, x, ans;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[N], ap[N], c[N], p[N], bg[N], ed[N];</span><br><span class="line"><span class="type">int</span> lz[B + <span class="number">10</span>], f[B + <span class="number">10</span>][B + <span class="number">10</span>], sum[B + <span class="number">10</span>][B + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vc[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; q;</span><br><span class="line">    m = (n - <span class="number">1</span>) / B + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">1</span>, n) &#123;</span><br><span class="line">        cin &gt;&gt; p[i];</span><br><span class="line">        vc[p[i]].<span class="built_in">pb</span>(i);</span><br><span class="line">        c[i] = (i - <span class="number">1</span>) / B + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (i % B == <span class="number">1</span>) bg[c[i]] = i;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i % B == <span class="number">0</span> || i == n) ed[c[i]] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">1</span>, n) f[c[p[i]]][c[i]] += <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">FOR</span>(i, <span class="number">1</span>, m) <span class="built_in">FOR</span>(j, <span class="number">1</span>, m) sum[i][j] = sum[i][j - <span class="number">1</span>] + f[i][j];</span><br><span class="line">    <span class="keyword">while</span> (q--) &#123;</span><br><span class="line">        cin &gt;&gt; op &gt;&gt; l &gt;&gt; r; l ^= ans; r ^= ans;</span><br><span class="line">        <span class="keyword">if</span> (op == <span class="number">1</span>) &#123;</span><br><span class="line">            cin &gt;&gt; x; x ^= ans;</span><br><span class="line">            <span class="keyword">if</span> (c[l] == c[r]) &#123;</span><br><span class="line">                <span class="built_in">FOR</span>(i, l, r) &#123;</span><br><span class="line">                    a[i] += x;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j : vc[i]) ap[c[j]] += x;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">FOR</span>(i, c[l] + <span class="number">1</span>, c[r] - <span class="number">1</span>) lz[i] += x;</span><br><span class="line">                <span class="built_in">FOR</span>(i, l, ed[c[l]]) &#123;</span><br><span class="line">                    a[i] += x;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j : vc[i]) ap[c[j]] += x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">FOR</span>(i, bg[c[r]], r) &#123;</span><br><span class="line">                    a[i] += x;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> j : vc[i]) ap[c[j]] += x;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (c[l] == c[r]) <span class="built_in">FOR</span>(i, l, r) ret += a[p[i]] + lz[c[p[i]]];</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">FOR</span>(i, c[l] + <span class="number">1</span>, c[r] - <span class="number">1</span>) ret += ap[i];</span><br><span class="line">                <span class="built_in">FOR</span>(i, <span class="number">1</span>, m) ret += lz[i] * (sum[i][c[r] - <span class="number">1</span>] - sum[i][c[l]]);</span><br><span class="line">                <span class="built_in">FOR</span>(i, l, ed[c[l]]) ret += a[p[i]] + lz[c[p[i]]];</span><br><span class="line">                <span class="built_in">FOR</span>(i, bg[c[r]], r) ret += a[p[i]] + lz[c[p[i]]];</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; ret &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">            ans = ret;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://istinaa.github.io">istina</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://istinaa.github.io/2025/07/25/%E6%9A%91%E8%AE%AD5&amp;6%20%E8%A1%A5%E9%A2%98/">http://istinaa.github.io/2025/07/25/%E6%9A%91%E8%AE%AD5&amp;6%20%E8%A1%A5%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://istinaa.github.io" target="_blank">Istina's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/cf.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/07/25/%E6%9A%91%E8%AE%AD3&amp;4%20%E8%A1%A5%E9%A2%98/" title="暑训3&amp;4 补题"><img class="cover" src="/img/cf.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">暑训3&amp;4 补题</div></div></a></div><div class="next-post pull-right"><a href="/2025/07/16/%E6%9A%91%E8%AE%AD1&amp;2%20%E8%A1%A5%E9%A2%98/" title="暑训1&amp;2 补题"><img class="cover" src="/img/cf.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">暑训1&amp;2 补题</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/icon1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">istina</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/istinaa"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/istinaa" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2524926597@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到 istina's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#5H"><span class="toc-number">1.</span> <span class="toc-text">5H</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5L"><span class="toc-number">2.</span> <span class="toc-text">5L</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6E"><span class="toc-number">3.</span> <span class="toc-text">6E</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/05/%E4%B9%9D%E6%9C%88%E5%90%88%E9%9B%86/" title="九月合集"><img src="/img/cf.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="九月合集"/></a><div class="content"><a class="title" href="/2025/10/05/%E4%B9%9D%E6%9C%88%E5%90%88%E9%9B%86/" title="九月合集">九月合集</a><time datetime="2025-10-05T13:46:47.000Z" title="发表于 2025-10-05 21:46:47">2025-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/05/Hexo%20%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" title="Hexo 建站记录"><img src="/img/cf.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo 建站记录"/></a><div class="content"><a class="title" href="/2025/10/05/Hexo%20%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" title="Hexo 建站记录">Hexo 建站记录</a><time datetime="2025-10-05T08:53:43.804Z" title="发表于 2025-10-05 16:53:43">2025-10-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/08/%E6%9A%91%E8%AE%AD7&amp;8%20%E8%A1%A5%E9%A2%98/" title="暑训#7#8 补题"><img src="/img/cf.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="暑训#7#8 补题"/></a><div class="content"><a class="title" href="/2025/08/08/%E6%9A%91%E8%AE%AD7&amp;8%20%E8%A1%A5%E9%A2%98/" title="暑训#7#8 补题">暑训#7#8 补题</a><time datetime="2025-08-08T06:42:47.000Z" title="发表于 2025-08-08 14:42:47">2025-08-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/01/%E5%85%AB%E6%9C%88%E5%90%88%E9%9B%86/" title="八月合集"><img src="/img/cf.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="八月合集"/></a><div class="content"><a class="title" href="/2025/08/01/%E5%85%AB%E6%9C%88%E5%90%88%E9%9B%86/" title="八月合集">八月合集</a><time datetime="2025-07-31T18:47:02.000Z" title="发表于 2025-08-01 02:47:02">2025-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/25/%E6%9A%91%E8%AE%AD3&amp;4%20%E8%A1%A5%E9%A2%98/" title="暑训3&amp;4 补题"><img src="/img/cf.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="暑训3&amp;4 补题"/></a><div class="content"><a class="title" href="/2025/07/25/%E6%9A%91%E8%AE%AD3&amp;4%20%E8%A1%A5%E9%A2%98/" title="暑训3&amp;4 补题">暑训3&amp;4 补题</a><time datetime="2025-07-25T15:45:36.000Z" title="发表于 2025-07-25 23:45:36">2025-07-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By istina</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.9.0"></script><script src="/js/main.js?v=4.9.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.19/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FOR(i,j,k) for (int i = j; i &lt;= k; i++)</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> pii pair<span class="hljs-string">&lt;int, int&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> pb(x) push_back(x)</span><br><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">1e5</span> + <span class="hljs-number">10</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> B = <span class="hljs-number">320</span>;<br><br><span class="hljs-type">int</span> n, m, k, q;<br><span class="hljs-type">int</span> op, l, r, x, ans;<br><br><span class="hljs-type">int</span> a[N], ap[N], c[N], p[N], bg[N], ed[N];<br><span class="hljs-type">int</span> lz[B + <span class="hljs-number">10</span>], f[B + <span class="hljs-number">10</span>][B + <span class="hljs-number">10</span>], sum[B + <span class="hljs-number">10</span>][B + <span class="hljs-number">10</span>];<br><br>vector&lt;<span class="hljs-type">int</span>&gt; vc[N];<br><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    cin &gt;&gt; n &gt;&gt; q;<br>    m = (n - <span class="hljs-number">1</span>) / B + <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">1</span>, n) &#123;<br>        cin &gt;&gt; p[i];<br>        vc[p[i]].<span class="hljs-built_in">pb</span>(i);<br>        c[i] = (i - <span class="hljs-number">1</span>) / B + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span> (i % B == <span class="hljs-number">1</span>) bg[c[i]] = i;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i % B == <span class="hljs-number">0</span> || i == n) ed[c[i]] = i;<br>    &#125;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">1</span>, n) f[c[p[i]]][c[i]] += <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">1</span>, m) <span class="hljs-built_in">FOR</span>(j, <span class="hljs-number">1</span>, m) sum[i][j] = sum[i][j - <span class="hljs-number">1</span>] + f[i][j];<br>    <span class="hljs-keyword">while</span> (q--) &#123;<br>        cin &gt;&gt; op &gt;&gt; l &gt;&gt; r; l ^= ans; r ^= ans;<br>        <span class="hljs-keyword">if</span> (op == <span class="hljs-number">1</span>) &#123;<br>            cin &gt;&gt; x; x ^= ans;<br>            <span class="hljs-keyword">if</span> (c[l] == c[r]) &#123;<br>                <span class="hljs-built_in">FOR</span>(i, l, r) &#123;<br>                    a[i] += x;<br>                    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j : vc[i]) ap[c[j]] += x;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-built_in">FOR</span>(i, c[l] + <span class="hljs-number">1</span>, c[r] - <span class="hljs-number">1</span>) lz[i] += x;<br>                <span class="hljs-built_in">FOR</span>(i, l, ed[c[l]]) &#123;<br>                    a[i] += x;<br>                    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j : vc[i]) ap[c[j]] += x;<br>                &#125;<br>                <span class="hljs-built_in">FOR</span>(i, bg[c[r]], r) &#123;<br>                    a[i] += x;<br>                    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j : vc[i]) ap[c[j]] += x;<br>                &#125;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-type">int</span> ret = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">if</span> (c[l] == c[r]) <span class="hljs-built_in">FOR</span>(i, l, r) ret += a[p[i]] + lz[c[p[i]]];<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-built_in">FOR</span>(i, c[l] + <span class="hljs-number">1</span>, c[r] - <span class="hljs-number">1</span>) ret += ap[i];<br>                <span class="hljs-built_in">FOR</span>(i, <span class="hljs-number">1</span>, m) ret += lz[i] * (sum[i][c[r] - <span class="hljs-number">1</span>] - sum[i][c[l]]);<br>                <span class="hljs-built_in">FOR</span>(i, l, ed[c[l]]) ret += a[p[i]] + lz[c[p[i]]];<br>                <span class="hljs-built_in">FOR</span>(i, bg[c[r]], r) ret += a[p[i]] + lz[c[p[i]]];<br>            &#125;<br>            cout &lt;&lt; ret &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>            ans = ret;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>暑训5&amp;6 补题</div>
+      <div>http://istinaa.github.io/2025/07/25/暑训5&amp;6 补题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>istina</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/25/%E6%9A%91%E8%AE%AD3&amp;4%20%E8%A1%A5%E9%A2%98/" title="暑训3&amp;4 补题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">暑训3&amp;4 补题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/16/%E6%9A%91%E8%AE%AD1&amp;2%20%E8%A1%A5%E9%A2%98/" title="暑训1&amp;2 补题">
+                        <span class="hidden-mobile">暑训1&amp;2 补题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
