@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
-  <link rel="icon" href="/img/icon1.png">
+  <link rel="icon" href="/img/avatar.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.6k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          13 分钟
+          14 分钟
         
       </span>
     
@@ -277,63 +277,56 @@
             
               <div class="markdown-body">
                 
-                <h3 id="codeforces-round-1048div.-2">2139. <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139">CodeForces Round 1048（Div. 2）</a></h3>
-<p><strong>过题：</strong> 3/7 <strong>排名：</strong> 3750 <strong>上分：</strong> -（unr）</p>
+                <h3 id="2139-CodeForces-Round-1048（Div-2）"><a href="#2139-CodeForces-Round-1048（Div-2）" class="headerlink" title="2139. CodeForces Round 1048（Div. 2）"></a>2139. <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139">CodeForces Round 1048（Div. 2）</a></h3><p><strong>过题：</strong> 3&#x2F;7	<strong>排名：</strong> 3750	<strong>上分：</strong> -（unr）</p>
 <p>被出题人的疏忽拯救的一场。如果题面没锅不unr得掉大分了。戏剧性的是室友和队友这场打得都非常强势，得知unr后都相当愤怒。</p>
-<h4 id="a.-maple-and-multiplication">A. Maple and Multiplication</h4>
-<p>如果 <span class="math inline"><em>a</em> = <em>b</em></span>，不用操作。如果 <span class="math inline"><em>a</em> ∣ <em>b</em></span> 或 <span class="math inline"><em>b</em> ∣ <em>a</em></span>，操作一次。否则先 <span class="math inline"><em>a</em> → <em>a</em><em>b</em></span>，再 <span class="math inline"><em>b</em> → <em>a</em><em>b</em></span>，操作两次。 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337556954">Code</a>.</p>
-<h4 id="b.-cake-collection">B. Cake Collection</h4>
-<p>可以注意到，累积过程不因中途的取走操作而改变。因此每个烤箱至多只取一次。</p>
-<p>越早取，该烤箱最终累积没取的蛋糕会越多。可以这样考虑：对于一个每秒生产 <span class="math inline"><em>x</em></span> 个蛋糕的烤箱而言，早取一秒就使总数亏损 <span class="math inline"><em>x</em></span>。于是我们给出贪心的方案：按 <span class="math inline"><em>x</em></span> 排序，<span class="math inline"><em>x</em></span> 越大的越靠后取。</p>
-<p>时间复杂度 <span class="math inline">𝒪(<em>n</em>log <em>n</em>)</span>，<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337577025">Code</a>.</p>
-<h4 id="c.-cake-assignment">C. Cake Assignment</h4>
-<p>是一道似曾相识的找规律题（好像在牛客多校做过）。</p>
-<p>下面记 <span class="math inline"><em>K</em> = 2<sup><em>k</em></sup></span> 。</p>
-<p>一次操作后 Chocola 的值为 <span class="math inline">2<sup><em>k</em> − 1</sup></span>（执行操作一）或 <span class="math inline">3 × 2<sup><em>k</em> − 1</sup></span> （执行操作二）。</p>
-<p>两次操作后为 <span class="math inline">2<sup><em>k</em> − 2</sup>, 5 × 2<sup><em>k</em> − 2</sup>, 3 × 2<sup><em>k</em> − 2</sup></span> 或 <span class="math inline">7 × 2<sup><em>k</em> − 2</sup></span>。以此类推。</p>
-<p>所以根据 <span class="math inline"><em>x</em></span> 因子中 <span class="math inline">2</span> 的次数就可以判断操作次数。至于操作序列，依次模一个每次自乘 <span class="math inline">2</span> 的 <span class="math inline">2</span> 的幂次。如果余数小于模数的一半，计 <span class="math inline">1</span>（操作为 Chocola 送出蛋糕），反之计 <span class="math inline">2</span>（操作为 Chocola 收到蛋糕）。</p>
-<p>然后挨个输出即可。时间复杂度 <span class="math inline">𝒪(<em>k</em>)</span>。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337602145">Code</a>.</p>
-<h4 id="d.-antiamuny-wants-to-learn-swap">D. Antiamuny Wants to Learn Swap</h4>
-<blockquote>
+<h4 id="A-Maple-and-Multiplication"><a href="#A-Maple-and-Multiplication" class="headerlink" title="A. Maple and Multiplication"></a>A. Maple and Multiplication</h4><p>如果 $a&#x3D;b$，不用操作。如果 $a\mid b$ 或 $b\mid a$，操作一次。否则先 $a\to ab$，再 $b\to ab$，操作两次。 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337556954">Code</a>.</p>
+<h4 id="B-Cake-Collection"><a href="#B-Cake-Collection" class="headerlink" title="B. Cake Collection"></a>B. Cake Collection</h4><p>可以注意到，累积过程不因中途的取走操作而改变。因此每个烤箱至多只取一次。</p>
+<p>越早取，该烤箱最终累积没取的蛋糕会越多。可以这样考虑：对于一个每秒生产 $x$ 个蛋糕的烤箱而言，早取一秒就使总数亏损 $x$。于是我们给出贪心的方案：按 $x$ 排序，$x$ 越大的越靠后取。</p>
+<p>时间复杂度 $\mathcal O(n\log n)$，<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337577025">Code</a>.</p>
+<h4 id="C-Cake-Assignment"><a href="#C-Cake-Assignment" class="headerlink" title="C. Cake Assignment"></a>C. Cake Assignment</h4><p>是一道似曾相识的找规律题（好像在牛客多校做过）。</p>
+<p>下面记 $K &#x3D; 2 ^ k$ 。</p>
+<p>一次操作后 Chocola 的值为 $2 ^ {k - 1}$（执行操作一）或 $3\times2^{k - 1}$ （执行操作二）。 </p>
+<p>两次操作后为 $2^{k - 2},5\times2^{k - 2},3\times2^{k - 2}$ 或 $7\times 2^{k - 2}$。以此类推。</p>
+<p>所以根据 $x$ 因子中 $2$ 的次数就可以判断操作次数。至于操作序列，依次模一个每次自乘 $2$ 的 $2$ 的幂次。如果余数小于模数的一半，计 $1$（操作为 Chocola 送出蛋糕），反之计 $2$（操作为 Chocola 收到蛋糕）。</p>
+<p>然后挨个输出即可。时间复杂度 $\mathcal O(k)$。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337602145">Code</a>.</p>
+<h4 id="D-Antiamuny-Wants-to-Learn-Swap"><a href="#D-Antiamuny-Wants-to-Learn-Swap" class="headerlink" title="D. Antiamuny Wants to Learn Swap"></a>D. Antiamuny Wants to Learn Swap</h4><blockquote>
 <p>此题原题面与 std 做法不符，出题组赛时对题面进行了修改，导致整场比赛UNR。区别在于能否多次执行操作二。</p>
 <p>能多次执行的原题面我暂时没有想到解决方案。也许是不可做题。此处只讨论修改后的题面。</p>
 </blockquote>
 <p>先考虑什么时候操作二能减少总操作次数。</p>
 <p>首先联想到冒泡排序。本质上交换次数就是原序列中逆序对的数量，每次交换可以减少一个逆序对。</p>
-<p>仔细分析：长度为三的序列中逆序对的数量为 <span class="math inline">0 ∼ 3</span> 。操作二若减少不少于两个逆序对，则原序列中逆序对数为二或三。</p>
+<p>仔细分析：长度为三的序列中逆序对的数量为 $0\sim 3$ 。操作二若减少不少于两个逆序对，则原序列中逆序对数为二或三。</p>
 <ul>
-<li><p>若为二，则交换后变为零。交换后的序列为正序。因而反推知原序列为倒序，逆序对数应为三。与假设矛盾。</p></li>
-<li><p>若为三，原序列为倒序。交换后为正序，逆序对数为零。当次交换减少了三个逆序对，优于操作一。符合要求。</p></li>
+<li><p>若为二，则交换后变为零。交换后的序列为正序。因而反推知原序列为倒序，逆序对数应为三。与假设矛盾。</p>
+</li>
+<li><p>若为三，原序列为倒序。交换后为正序，逆序对数为零。当次交换减少了三个逆序对，优于操作一。符合要求。</p>
+</li>
 </ul>
-<p>因此如果存在 <span class="math inline"><em>a</em><sub><em>i</em></sub> &gt; <em>a</em><sub><em>i</em> + 1</sub> &gt; <em>a</em><sub><em>i</em> + 2</sub>(1 ≤ <em>i</em> ≤ <em>n</em> − 2)</span> ，则 <span class="math inline"><em>f</em>(<em>b</em>) ≠ <em>g</em>(<em>b</em>)</span>。</p>
-<p>再发现只要存在 <span class="math inline">1 ≤ <em>i</em> &lt; <em>j</em> &lt; <em>k</em> ≤ <em>n</em></span> ，使得 <span class="math inline"><em>a</em><sub><em>i</em></sub> &gt; <em>a</em><sub><em>j</em></sub> &gt; <em>a</em><sub><em>k</em></sub></span>，就可以通过几次相邻逆序对间的交换，化为上面的情况。（之所以强调逆序对间的交换是因为：如果交换了非逆序对就必须再花一次换回来，使最终代价加二，这在只允许一次操作二的前提下是不可接受的）</p>
-<p><strong>证明显然</strong>：如果存在 <span class="math inline"><em>i</em> &lt; <em>l</em><sub>1</sub> &lt; <em>l</em><sub>2</sub> &lt; … &lt; <em>l</em><sub><em>N</em></sub> &lt; <em>j</em></span> ，且 <span class="math inline"><em>a</em><sub><em>l</em><sub><em>i</em></sub></sub> &lt; <em>a</em><sub><em>j</em></sub>(1 ≤ <em>i</em> ≤ <em>N</em>)</span>，则总可以每次从中找到一个最小的往前做逆序对交换（选择了最小的所以前面的一定比他大），直到 <span class="math inline"><em>j</em></span> 就是 <span class="math inline"><em>i</em></span> 右侧第一个满足 <span class="math inline"><em>a</em><sub><em>j</em></sub> &lt; <em>a</em><sub><em>i</em></sub></span> 的。此时就可以将 <span class="math inline"><em>j</em></span> 往前做逆序对交换了，最终交换到原 <span class="math inline"><em>a</em><sub><em>i</em></sub></span> 右侧紧邻的位置。同理可以把 <span class="math inline"><em>k</em></span> 也换过来。</p>
+<p>因此如果存在 $a_{i} &gt; a_{i + 1} &gt; a_{i + 2}(1\leq i\leq n - 2)$ ，则 $f(b)\neq g(b)$。</p>
+<p>再发现只要存在 $1\leq i&lt;j&lt;k\leq n$ ，使得 $a_i &gt;a_j&gt;a_k$，就可以通过几次相邻逆序对间的交换，化为上面的情况。（之所以强调逆序对间的交换是因为：如果交换了非逆序对就必须再花一次换回来，使最终代价加二，这在只允许一次操作二的前提下是不可接受的）</p>
+<p><strong>证明显然</strong>：如果存在 $i&lt;l_1&lt;l_2&lt;\dots &lt;l_N&lt;j$ ，且 $a_{l_i}&lt;a_j(1\leq i\leq N)$，则总可以每次从中找到一个最小的往前做逆序对交换（选择了最小的所以前面的一定比他大），直到 $j$ 就是 $i$ 右侧第一个满足 $a_j&lt;a_i$ 的。此时就可以将 $j$ 往前做逆序对交换了，最终交换到原 $a_i$ 右侧紧邻的位置。同理可以把 $k$ 也换过来。</p>
 <p>因此问题转化成了：</p>
-<p><span class="math inline"><em>Q</em></span> 次形如 <span class="math inline">[<em>l</em>, <em>r</em>]</span> 的询问，回答是否存在 <span class="math inline"><em>l</em> ≤ <em>i</em> &lt; <em>j</em> &lt; <em>k</em> ≤ <em>r</em></span> ，使得 <span class="math inline"><em>a</em><sub><em>i</em></sub> &gt; <em>a</em><sub><em>j</em></sub> &gt; <em>a</em><sub><em>k</em></sub></span>。</p>
-<p>这一问题做法众多，线性的，带 <span class="math inline">log </span> 的，在线的，离线的，都有。此处介绍笔者的高码量低效率做法。</p>
-<p>总体思路是对于每个 <span class="math inline"><em>i</em></span> ，预处理出其对应的 <span class="math inline"><em>k</em></span> 的最小值。然后就是简单的 RMQ 问题了——如果询问区间内的 <span class="math inline"><em>k</em><sub>min</sub> ≤ <em>r</em></span>，证明能找到三元递减子列，输出 <code>NO</code>。否则输出 <code>YES</code>。</p>
-<p>预处理的过程如下：首先用单调栈预处理出每个数右边离其最近的小于其的数，记为 <span class="math inline"><em>b</em><sub><em>i</em></sub></span>。然后从右往左依次往权值线段树中加点 <span class="math inline">(<em>a</em><sub><em>i</em></sub>, <em>b</em><sub><em>i</em></sub>)</span>，并询问当前 <span class="math inline">1 ∼ <em>a</em><sub><em>i</em></sub> − 1</span> 中最小的 <span class="math inline"><em>b</em></span> 值，存下来作为预处理的结果。</p>
-<p>总时间复杂度 <span class="math inline">𝒪(<em>n</em>log <em>n</em> + <em>Q</em>)</span>。Code.（链接以后再加）</p>
-<h3 id="codeforces-round-1049div.-2">2140. <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140">CodeForces Round 1049（Div. 2）</a></h3>
-<p><strong>过题：</strong> 2/7 <strong>排名：</strong> 6256 <strong>上分：</strong> -95（1625）</p>
+<p>$Q$ 次形如 $[l, r]$ 的询问，回答是否存在 $l\leq i&lt;j&lt;k\leq r$ ，使得 $a_i&gt;a_j&gt;a_k$。</p>
+<p>这一问题做法众多，线性的，带 $\log$ 的，在线的，离线的，都有。此处介绍笔者的高码量低效率做法。 </p>
+<p>总体思路是对于每个 $i$ ，预处理出其对应的 $k$ 的最小值。然后就是简单的 RMQ 问题了——如果询问区间内的 $k_{\min} \leq r$，证明能找到三元递减子列，输出 <code>NO</code>。否则输出 <code>YES</code>。</p>
+<p>预处理的过程如下：首先用单调栈预处理出每个数右边离其最近的小于其的数，记为 $b_i$。然后从右往左依次往权值线段树中加点 $(a_i, b_i)$，并询问当前 $1\sim a_i - 1$ 中最小的 $b$ 值，存下来作为预处理的结果。</p>
+<p>总时间复杂度 $\mathcal O(n\log n+ Q)$。Code.（链接以后再加）</p>
+<h3 id="2140-CodeForces-Round-1049（Div-2）"><a href="#2140-CodeForces-Round-1049（Div-2）" class="headerlink" title="2140. CodeForces Round 1049（Div. 2）"></a>2140. <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140">CodeForces Round 1049（Div. 2）</a></h3><p><strong>过题：</strong> 2&#x2F;7	<strong>排名：</strong> 6256	<strong>上分：</strong> -95（1625）</p>
 <p>纯菜。C 这种萌萌题都写不出还能说什么呢。</p>
-<h4 id="a.-shift-sort">A. Shift Sort</h4>
-<p>每次操作可以把一个 <span class="math inline">0</span> 归位。统计有几个没归位的 <span class="math inline">0</span> 即可。</p>
-<p>时间复杂度 <span class="math inline">𝒪(<em>n</em>)</span>。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140/submission/337772533">Code</a>.</p>
-<h4 id="b.-another-divisibility-problem">B. Another Divisibility Problem</h4>
-<p>输出 <span class="math inline"><em>y</em> = 2<em>x</em></span> 即可。因为 <span class="math inline">$\overline{xy}=(10^k+2)x$</span> 有因子 <span class="math inline">3<em>x</em></span> ，而 <span class="math inline"><em>x</em> + <em>y</em> = 3<em>x</em></span>。所以 <span class="math inline">$\overline{xy}\mid x+y$</span>。</p>
-<p>同理输出 <span class="math inline">8<em>x</em></span> 也可以。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140/submission/337800301">Code</a>.</p>
-<h4 id="c.-ultimate-value">C. Ultimate Value</h4>
-<p>首先注意到轮到 B 操作时，B一定直接结束游戏。因为不管 B 怎么操作，A 只需做逆操作复原即可，而这个过程中 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span> 值正在增长，这是不利于 B 的。（如果拖到第 <span class="math inline">10<sup>100</sup></span> 轮，当然 A 已经没有机会做逆操作了，但 B 在这一轮创造的收益一定是无法抵消前 <span class="math inline">10<sup>100</sup> − 1</span> 个回合累积的 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span> 的）</p>
+<h4 id="A-Shift-Sort"><a href="#A-Shift-Sort" class="headerlink" title="A. Shift Sort"></a>A. Shift Sort</h4><p>每次操作可以把一个 $0$ 归位。统计有几个没归位的 $0$ 即可。</p>
+<p>时间复杂度 $\mathcal O(n)$。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140/submission/337772533">Code</a>.</p>
+<h4 id="B-Another-Divisibility-Problem"><a href="#B-Another-Divisibility-Problem" class="headerlink" title="B. Another Divisibility Problem"></a>B. Another Divisibility Problem</h4><p>输出 $y &#x3D; 2x$ 即可。因为 $\overline{xy}&#x3D;(10^k+2)x$ 有因子 $3x$ ，而 $x+y &#x3D; 3x$。所以 $\overline{xy}\mid x+y$。</p>
+<p>同理输出 $8x$ 也可以。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140/submission/337800301">Code</a>.</p>
+<h4 id="C-Ultimate-Value"><a href="#C-Ultimate-Value" class="headerlink" title="C. Ultimate Value"></a>C. Ultimate Value</h4><p>首先注意到轮到 B 操作时，B一定直接结束游戏。因为不管 B 怎么操作，A 只需做逆操作复原即可，而这个过程中 $cost$ 值正在增长，这是不利于 B 的。（如果拖到第 $10^{100}$ 轮，当然 A 已经没有机会做逆操作了，但 B 在这一轮创造的收益一定是无法抵消前 $10^{100} - 1$ 个回合累积的 $cost$ 的）</p>
 <p>因此我们只需判断 A 是否操作。如果操作，怎么操作。</p>
-<p>首先记所有操作前的 <span class="math inline"><em>f</em></span> 值为 <span class="math inline"><em>s</em><em>u</em><em>m</em></span>。</p>
-<p>如果不进行奇偶位之间的交换，最优的操作为交换最左和最右奇数位上的数。若 <span class="math inline"><em>n</em></span> 为奇数，答案为 <span class="math inline"><em>s</em><em>u</em><em>m</em> + <em>n</em> − 1</span>，否则为 <span class="math inline"><em>s</em><em>u</em><em>m</em> + <em>n</em> − 2</span>。</p>
-<p>如果进行奇偶位之间的交换，设选择的是 <span class="math inline"><em>a</em><sub><em>i</em></sub></span> 和 <span class="math inline"><em>a</em><sub><em>j</em></sub></span>，其中 <span class="math inline"><em>i</em></span> 为奇数，<span class="math inline"><em>j</em></span> 为偶数。则答案为 <span class="math inline"><em>s</em><em>u</em><em>m</em> − 2<em>a</em><sub><em>i</em></sub> + 2<em>a</em><sub><em>j</em></sub> + |<em>i</em> − <em>j</em>|</span>。考虑分类讨论去掉绝对值。</p>
+<p>首先记所有操作前的 $f$ 值为 $sum$。</p>
+<p>如果不进行奇偶位之间的交换，最优的操作为交换最左和最右奇数位上的数。若 $n$ 为奇数，答案为 $sum+n - 1$，否则为 $sum+n -2$。</p>
+<p>如果进行奇偶位之间的交换，设选择的是 $a_i$ 和 $a_j$，其中 $i$ 为奇数，$j$ 为偶数。则答案为 $sum - 2a_i + 2a_j + |i - j|$。考虑分类讨论去掉绝对值。</p>
 <ul>
-<li><span class="math inline"><em>i</em> &lt; <em>j</em></span> ，式子为 <span class="math inline"><em>s</em><em>u</em><em>m</em> + (2<em>a</em><sub><em>j</em></sub> + <em>j</em>) − (2<em>a</em><sub><em>i</em></sub> + <em>i</em>)</span>；</li>
-<li><span class="math inline"><em>i</em> &gt; <em>j</em></span>， 式子为 <span class="math inline"><em>s</em><em>u</em><em>m</em> + (2<em>a</em><sub><em>j</em></sub> − <em>j</em>) − (2<em>a</em><sub><em>i</em></sub> − <em>i</em>)</span>。</li>
+<li>$i&lt;j$ ，式子为 $sum + (2a_j+j) - (2a_i+i)$；</li>
+<li>$i &gt; j$， 式子为 $sum + (2a_j - j) - (2a_i - i)$。</li>
 </ul>
-<p>我们考虑预处理 <span class="math inline">{2<em>a</em><sub><em>i</em></sub> + <em>i</em>}</span> 的前缀最小值和 <span class="math inline">{2<em>a</em><sub><em>i</em></sub> − <em>i</em>}</span> 的后缀最小值。然后依次枚举 <span class="math inline"><em>j</em></span> 计算。</p>
+<p>我们考虑预处理 ${2a_i+i}$ 的前缀最小值和 ${2a_i - i}$ 的后缀最小值。然后依次枚举 $j$ 计算。</p>
 <p>对得到的所有答案取最大值即可。</p>
 
                 
