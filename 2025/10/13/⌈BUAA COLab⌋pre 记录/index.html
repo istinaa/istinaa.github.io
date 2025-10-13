@@ -20,24 +20,28 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录了九月份的日常CF战况，包括 Round 1048 至 Round 1049。">
+    <meta name="description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="⌈Codeforces⌋ 九月合集">
-<meta property="og:url" content="http://istinaa.github.io/2025/09/03/%E4%B9%9D%E6%9C%88%E5%90%88%E9%9B%86/index.html">
+<meta property="og:title" content="⌈BUAA CO⌋ pre 记录">
+<meta property="og:url" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="记录了九月份的日常CF战况，包括 Round 1048 至 Round 1049。">
+<meta property="og:description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-09-03T13:46:47.000Z">
-<meta property="article:modified_time" content="2025-10-13T07:26:51.231Z">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png">
+<meta property="article:published_time" content="2025-10-13T02:19:03.000Z">
+<meta property="article:modified_time" content="2025-10-13T06:55:50.835Z">
 <meta property="article:author" content="istina">
-<meta property="article:tag" content="CF">
+<meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>⌈Codeforces⌋ 九月合集 - Istina&#39;s Blog</title>
+  <title>⌈BUAA CO⌋ pre 记录 - Istina&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="⌈Codeforces⌋ 九月合集"></span>
+            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ pre 记录"></span>
           
         </div>
 
@@ -206,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-09-03 21:46" pubdate>
-          2025年9月3日 晚上
+        <time datetime="2025-10-13 10:19" pubdate>
+          2025年10月13日 上午
         </time>
       </span>
     
@@ -218,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          916 字
         
       </span>
     
@@ -229,7 +233,7 @@
         
         
         
-          14 分钟
+          8 分钟
         
       </span>
     
@@ -266,63 +270,57 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">⌈Codeforces⌋ 九月合集</h1>
+            <h1 id="seo-header">⌈BUAA CO⌋ pre 记录</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="2139-CodeForces-Round-1048（Div-2）"><a href="#2139-CodeForces-Round-1048（Div-2）" class="headerlink" title="2139. CodeForces Round 1048（Div. 2）"></a>2139. <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139">CodeForces Round 1048（Div. 2）</a></h3><p><strong>过题：</strong> 3&#x2F;7	<strong>排名：</strong> 3750	<strong>上分：</strong> -（unr）</p>
-<p>被出题人的疏忽拯救的一场。如果题面没锅不unr得掉大分了。戏剧性的是室友和队友这场打得都非常强势，得知unr后都相当愤怒。</p>
-<h4 id="A-Maple-and-Multiplication"><a href="#A-Maple-and-Multiplication" class="headerlink" title="A. Maple and Multiplication"></a>A. Maple and Multiplication</h4><p>如果 $a&#x3D;b$，不用操作。如果 $a\mid b$ 或 $b\mid a$，操作一次。否则先 $a\to ab$，再 $b\to ab$，操作两次。 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337556954">Code</a>.</p>
-<h4 id="B-Cake-Collection"><a href="#B-Cake-Collection" class="headerlink" title="B. Cake Collection"></a>B. Cake Collection</h4><p>可以注意到，累积过程不因中途的取走操作而改变。因此每个烤箱至多只取一次。</p>
-<p>越早取，该烤箱最终累积没取的蛋糕会越多。可以这样考虑：对于一个每秒生产 $x$ 个蛋糕的烤箱而言，早取一秒就使总数亏损 $x$。于是我们给出贪心的方案：按 $x$ 排序，$x$ 越大的越靠后取。</p>
-<p>时间复杂度 $\mathcal O(n\log n)$，<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337577025">Code</a>.</p>
-<h4 id="C-Cake-Assignment"><a href="#C-Cake-Assignment" class="headerlink" title="C. Cake Assignment"></a>C. Cake Assignment</h4><p>是一道似曾相识的找规律题（好像在牛客多校做过）。</p>
-<p>下面记 $K &#x3D; 2 ^ k$ 。</p>
-<p>一次操作后 Chocola 的值为 $2 ^ {k - 1}$（执行操作一）或 $3\times2^{k - 1}$ （执行操作二）。 </p>
-<p>两次操作后为 $2^{k - 2},5\times2^{k - 2},3\times2^{k - 2}$ 或 $7\times 2^{k - 2}$。以此类推。</p>
-<p>所以根据 $x$ 因子中 $2$ 的次数就可以判断操作次数。至于操作序列，依次模一个每次自乘 $2$ 的 $2$ 的幂次。如果余数小于模数的一半，计 $1$（操作为 Chocola 送出蛋糕），反之计 $2$（操作为 Chocola 收到蛋糕）。</p>
-<p>然后挨个输出即可。时间复杂度 $\mathcal O(k)$。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2139/submission/337602145">Code</a>.</p>
-<h4 id="D-Antiamuny-Wants-to-Learn-Swap"><a href="#D-Antiamuny-Wants-to-Learn-Swap" class="headerlink" title="D. Antiamuny Wants to Learn Swap"></a>D. Antiamuny Wants to Learn Swap</h4><blockquote>
-<p>此题原题面与 std 做法不符，出题组赛时对题面进行了修改，导致整场比赛UNR。区别在于能否多次执行操作二。</p>
-<p>能多次执行的原题面我暂时没有想到解决方案。也许是不可做题。此处只讨论修改后的题面。</p>
+                <h3 id="翻涌数字-Pre-roll"><a href="#翻涌数字-Pre-roll" class="headerlink" title="翻涌数字 Pre_roll"></a>翻涌数字 Pre_roll</h3><hr>
+<blockquote>
+<p><strong>题意</strong>：</p>
+<p>给定位宽 $32$ 的输入 $a$，代表 $8$ 个位宽为 $4$ 的数据 $a_0,a_1\cdots, a_7$。同时令每一个 $a_i&#x3D;\sum_{j&#x3D;0}^{i}a_j$ ，对 <code>4&#39;d16</code> 取模后，按原顺序拼接输出。</p>
 </blockquote>
-<p>先考虑什么时候操作二能减少总操作次数。</p>
-<p>首先联想到冒泡排序。本质上交换次数就是原序列中逆序对的数量，每次交换可以减少一个逆序对。</p>
-<p>仔细分析：长度为三的序列中逆序对的数量为 $0\sim 3$ 。操作二若减少不少于两个逆序对，则原序列中逆序对数为二或三。</p>
+<p>考场上先开的这个题。只需要先设置 $8$ 个 <code>wire</code> 型数据 $a_0,a_1\cdots,a_7$ 拆分 <code>input</code>  中的数据，再对 ${a_n}$ 做前缀和，最后拼接输出即可。然而由于对 <code>Verilog</code>  语法的不熟悉，写的过程非常不顺利。以下是一些需要记住的语法规则：</p>
 <ul>
-<li><p>若为二，则交换后变为零。交换后的序列为正序。因而反推知原序列为倒序，逆序对数应为三。与假设矛盾。</p>
+<li><p><code>assign</code> 的作用对象为 <code>wire</code> 型，称为连续赋值，属于结构描述。不能放在 <code>always</code> 和 <code>initial</code> 块里面；</p>
+<p>而过程赋值的作用对象为 <code>reg</code> 型，必须放在 <code>always</code> 和 <code>initial</code> 块里面。</p>
 </li>
-<li><p>若为三，原序列为倒序。交换后为正序，逆序对数为零。当次交换减少了三个逆序对，优于操作一。符合要求。</p>
+<li><p>阻塞赋值（<code>=</code>）与 <code>c++</code> 中的赋值语句类似，更新完被赋值数的值才会执行接下来的操作。而非阻塞赋值（<code>&lt;=</code>）操作会等到全部语句计算完后统一更新。</p>
+</li>
+<li><p><code>Verilog</code> 中位选择 <code>[msb:lsb]</code> 必须是常量表达式。因此 <code>a[i*4 + 3 : i*4]</code> 这种写法是非法的。然而我们可以写 <code>a[i*4 + 3 -: 4]</code> 或者 <code>a[i*4 +: 4]</code>。</p>
 </li>
 </ul>
-<p>因此如果存在 $a_{i} &gt; a_{i + 1} &gt; a_{i + 2}(1\leq i\leq n - 2)$ ，则 $f(b)\neq g(b)$。</p>
-<p>再发现只要存在 $1\leq i&lt;j&lt;k\leq n$ ，使得 $a_i &gt;a_j&gt;a_k$，就可以通过几次相邻逆序对间的交换，化为上面的情况。（之所以强调逆序对间的交换是因为：如果交换了非逆序对就必须再花一次换回来，使最终代价加二，这在只允许一次操作二的前提下是不可接受的）</p>
-<p><strong>证明显然</strong>：如果存在 $i&lt;l_1&lt;l_2&lt;\dots &lt;l_N&lt;j$ ，且 $a_{l_i}&lt;a_j(1\leq i\leq N)$，则总可以每次从中找到一个最小的往前做逆序对交换（选择了最小的所以前面的一定比他大），直到 $j$ 就是 $i$ 右侧第一个满足 $a_j&lt;a_i$ 的。此时就可以将 $j$ 往前做逆序对交换了，最终交换到原 $a_i$ 右侧紧邻的位置。同理可以把 $k$ 也换过来。</p>
-<p>因此问题转化成了：</p>
-<p>$Q$ 次形如 $[l, r]$ 的询问，回答是否存在 $l\leq i&lt;j&lt;k\leq r$ ，使得 $a_i&gt;a_j&gt;a_k$。</p>
-<p>这一问题做法众多，线性的，带 $\log$ 的，在线的，离线的，都有。此处介绍笔者的高码量低效率做法。 </p>
-<p>总体思路是对于每个 $i$ ，预处理出其对应的 $k$ 的最小值。然后就是简单的 RMQ 问题了——如果询问区间内的 $k_{\min} \leq r$，证明能找到三元递减子列，输出 <code>NO</code>。否则输出 <code>YES</code>。</p>
-<p>预处理的过程如下：首先用单调栈预处理出每个数右边离其最近的小于其的数，记为 $b_i$。然后从右往左依次往权值线段树中加点 $(a_i, b_i)$，并询问当前 $1\sim a_i - 1$ 中最小的 $b$ 值，存下来作为预处理的结果。</p>
-<p>总时间复杂度 $\mathcal O(n\log n+ Q)$。Code.（链接以后再加）</p>
-<h3 id="2140-CodeForces-Round-1049（Div-2）"><a href="#2140-CodeForces-Round-1049（Div-2）" class="headerlink" title="2140. CodeForces Round 1049（Div. 2）"></a>2140. <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140">CodeForces Round 1049（Div. 2）</a></h3><p><strong>过题：</strong> 2&#x2F;7	<strong>排名：</strong> 6256	<strong>上分：</strong> -95（1625）</p>
-<p>纯菜。C 这种萌萌题都写不出还能说什么呢。</p>
-<h4 id="A-Shift-Sort"><a href="#A-Shift-Sort" class="headerlink" title="A. Shift Sort"></a>A. Shift Sort</h4><p>每次操作可以把一个 $0$ 归位。统计有几个没归位的 $0$ 即可。</p>
-<p>时间复杂度 $\mathcal O(n)$。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140/submission/337772533">Code</a>.</p>
-<h4 id="B-Another-Divisibility-Problem"><a href="#B-Another-Divisibility-Problem" class="headerlink" title="B. Another Divisibility Problem"></a>B. Another Divisibility Problem</h4><p>输出 $y &#x3D; 2x$ 即可。因为 $\overline{xy}&#x3D;(10^k+2)x$ 有因子 $3x$ ，而 $x+y &#x3D; 3x$。所以 $\overline{xy}\mid x+y$。</p>
-<p>同理输出 $8x$ 也可以。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/2140/submission/337800301">Code</a>.</p>
-<h4 id="C-Ultimate-Value"><a href="#C-Ultimate-Value" class="headerlink" title="C. Ultimate Value"></a>C. Ultimate Value</h4><p>首先注意到轮到 B 操作时，B一定直接结束游戏。因为不管 B 怎么操作，A 只需做逆操作复原即可，而这个过程中 $cost$ 值正在增长，这是不利于 B 的。（如果拖到第 $10^{100}$ 轮，当然 A 已经没有机会做逆操作了，但 B 在这一轮创造的收益一定是无法抵消前 $10^{100} - 1$ 个回合累积的 $cost$ 的）</p>
-<p>因此我们只需判断 A 是否操作。如果操作，怎么操作。</p>
-<p>首先记所有操作前的 $f$ 值为 $sum$。</p>
-<p>如果不进行奇偶位之间的交换，最优的操作为交换最左和最右奇数位上的数。若 $n$ 为奇数，答案为 $sum+n - 1$，否则为 $sum+n -2$。</p>
-<p>如果进行奇偶位之间的交换，设选择的是 $a_i$ 和 $a_j$，其中 $i$ 为奇数，$j$ 为偶数。则答案为 $sum - 2a_i + 2a_j + |i - j|$。考虑分类讨论去掉绝对值。</p>
+<h3 id="MIPS-Submatrix"><a href="#MIPS-Submatrix" class="headerlink" title="MIPS_Submatrix"></a>MIPS_Submatrix</h3><hr>
+<blockquote>
+<p><strong>题意：</strong></p>
+<p>读入 $16$ 个整数代表一个 $4\times 4$ 的矩阵 $A_{0}\sim A_{15}$ .再读入子矩阵的左上坐标以及长宽数据。输出子矩阵内的值。如果超出边界，改为输出 <code>Out of bounds</code>。</p>
+</blockquote>
+<p>主要考察的其实还是 MIPS 的基本语法。除了需要对基础的语法更加熟悉之外，还要尽量提升自己代码的可读性。</p>
 <ul>
-<li>$i&lt;j$ ，式子为 $sum + (2a_j+j) - (2a_i+i)$；</li>
-<li>$i &gt; j$， 式子为 $sum + (2a_j - j) - (2a_i - i)$。</li>
+<li><p>一些与赋值有关，容易混淆的命令：</p>
+<p><img src="/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png" srcset="/img/loading.gif" lazyload alt="常用命令"></p>
+</li>
+<li><p>关于数组的存取操作。一般我们可以写一个宏定义来快速计算某下标对应的偏移量。比如图中的宏可以用来计算列数为 <code>%len</code> 的二维数组中指定坐标的偏移量，进而进行存储和载入的操作。</p>
+<p><img src="/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png" srcset="/img/loading.gif" lazyload alt="数组存取"></p>
+<p>这里出现了乘法的写法。涉及 <code>mult</code> 和 <code>mflo</code> 两个命令，需要特殊记忆。</p>
+</li>
 </ul>
-<p>我们考虑预处理 ${2a_i+i}$ 的前缀最小值和 ${2a_i - i}$ 的后缀最小值。然后依次枚举 $j$ 计算。</p>
-<p>对得到的所有答案取最大值即可。</p>
-
+<h3 id="Logisim-Sokoban"><a href="#Logisim-Sokoban" class="headerlink" title="Logisim_Sokoban"></a>Logisim_Sokoban</h3><hr>
+<blockquote>
+<p><strong>题意：</strong> </p>
+<p>初始时玩家在 $6\times 6$ 地图上的 $(0,0)$ 处。地图上有若干障碍。除了 <code>clk</code> 和 <code>reset</code> 信号（异步复位）外，每时刻还会收到 <code>dx</code> 和 <code>dy</code> 信号。</p>
+<p>假设玩家在 $(x,y)$ 位置，收到信号时，会尝试移动到 $(x+dx,y+dy)$ 位置。若目标位置超出地图或为障碍，则留在原位置，将 <code>flag</code> 置高 $1$ 个周期。当前位置为 $(5,5)$ 时，<code>out</code> 输出为 $1$，否则为 $0$。</p>
+</blockquote>
+<p>考场上没有成功搭出来这道题。是课下补题时做的。</p>
+<p>根据经典的 <code>Moore</code> 状态机的框架来搭就可以。如下图所示：</p>
+<p><img src="/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png" srcset="/img/loading.gif" lazyload alt="Moore 状态机框架"></p>
+<p>状态转移是电路的核心部分。此处我用一个八位二进制数表示此状态下的 $x,y$ 坐标。将它的各位和 <code>dx</code>，<code>dy</code> 一起作为状态转移电路的输入。</p>
+<p>转移电路中先用一个四位加法器计算出 <code>x + dx</code> 和 <code>y + dy</code> （注意要先用 <code>Bit Extender</code> 将 <code>dx</code> 和 <code>dy</code> 同样扩展为 $4$ 位），检查 $(x + dx,y+dy)$ 是否为合法位置。</p>
+<p>是否为合法位置，用若干个比较器即可完成。（需要注意到是，如果选用六位二进制数表示状态，则须将比较器的属性设为 <code>Unsigned</code>，否则最高位会被识别为符号位）</p>
+<p>如果是合法位置，将 <code>x + dx</code> 和 <code>y + dy</code> 拼接成八位二进制数输出，<code>flag</code> 置 <code>0</code> ；否则将输入的数再输出，<code>flag</code> 置 <code>1</code>。</p>
+<p>于是就完成了。其实都算不上一个难题，只能怪自己没好好学。</p>
+<hr>
+<h3 id="最后，P0上机顺利-！"><a href="#最后，P0上机顺利-！" class="headerlink" title="最后，P0上机顺利 -(^_^)-！"></a>最后，P0上机顺利 -(^_^)-！</h3>
                 
               </div>
             
@@ -340,7 +338,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" class="category-chain-item">算法竞赛</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
   
   
 
@@ -355,7 +353,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CF/" class="print-no-link">#CF</a>
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
       
     </div>
   
@@ -367,8 +365,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>⌈Codeforces⌋ 九月合集</div>
-      <div>http://istinaa.github.io/2025/09/03/九月合集/</div>
+      <div>⌈BUAA CO⌋ pre 记录</div>
+      <div>http://istinaa.github.io/2025/10/13/⌈BUAA COLab⌋pre 记录/</div>
     </div>
     <div class="license-meta">
       
@@ -380,7 +378,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年9月3日</div>
+          <div>2025年10月13日</div>
         </div>
       
       
@@ -412,18 +410,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/05/Hexo%20%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" title="⌈Hexo⌋ 建站记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">⌈Hexo⌋ 建站记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/08/08/%E6%9A%91%E8%AE%AD7&amp;8%20%E8%A1%A5%E9%A2%98/" title="⌈25暑训⌋ 第7&amp;8场补题">
-                        <span class="hidden-mobile">⌈25暑训⌋ 第7&amp;8场补题</span>
+                      <a href="/2025/10/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-1/" title="⌈离散数学II⌋ 第一章">
+                        <span class="hidden-mobile">⌈离散数学II⌋ 第一章</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
