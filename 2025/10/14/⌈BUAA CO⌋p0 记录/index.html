@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/P0_Moore.png">
 <meta property="og:image" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/trans.png">
 <meta property="article:published_time" content="2025-10-13T17:45:09.000Z">
-<meta property="article:modified_time" content="2025-10-15T05:53:17.309Z">
+<meta property="article:modified_time" content="2025-10-15T05:58:16.273Z">
 <meta property="article:author" content="istina">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -331,7 +331,7 @@
 <p><strong>题意：</strong></p>
 <p>搭建一个识别串行输入中“起起伏起”规律的 Moore 状态机。</p>
 <p>每个周期输入一个位宽 $5$ 的无符号数，当最近四个周期输入满足“起起伏起”，输出 $1$，否则输出 $0$。（支持循环检测）</p>
-<p>**注：**在初始状态和复位后，默认的第零项为 <code>5&#39;d7</code>。</p>
+<p><strong>注：</strong> 在初始状态和复位后，默认的第零项为 <code>5&#39;d7</code>。</p>
 </blockquote>
 <p>这题的难点在于如何去表示“第零项为 $7$” 这件事。自己做的时候一头雾水，看了提示之后意识到可以用计时器来检测是否为初始状态。</p>
 <p>用寄存器存上一个周期的输入，记为 <code>last</code>。如果计时器为 $0$，则不存在上个周期，<code>last</code> 视为 <code>5&#39;d7</code>。将 <code>now</code> 和 <code>last</code> 间的大小关系作为起落 <code>Moore</code> 机的输入。这一部分结构如图所示：</p>
