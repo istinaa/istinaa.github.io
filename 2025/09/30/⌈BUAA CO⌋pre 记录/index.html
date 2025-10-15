@@ -20,26 +20,28 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta name="description" content="《离散数学 II》课程第一章笔记。主要内容为集合的基本概念和运算。">
+    <meta name="description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="⌈离散数学II⌋ 第一章">
-<meta property="og:url" content="http://istinaa.github.io/2025/10/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-1/index.html">
+<meta property="og:title" content="⌈BUAA CO⌋ pre 记录">
+<meta property="og:url" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="《离散数学 II》课程第一章笔记。主要内容为集合的基本概念和运算。">
+<meta property="og:description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://istinaa.github.io/2025/10/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-1/vens.png">
-<meta property="article:published_time" content="2025-10-07T09:51:25.000Z">
-<meta property="article:modified_time" content="2025-10-13T07:27:20.802Z">
+<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png">
+<meta property="article:published_time" content="2025-09-30T02:19:03.000Z">
+<meta property="article:modified_time" content="2025-10-13T17:45:02.455Z">
 <meta property="article:author" content="istina">
-<meta property="article:tag" content="离散数学">
+<meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://istinaa.github.io/2025/10/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-1/vens.png">
+<meta name="twitter:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>⌈离散数学II⌋ 第一章 - Istina&#39;s Blog</title>
+  <title>⌈BUAA CO⌋ pre 记录 - Istina&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="⌈离散数学II⌋ 第一章"></span>
+            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ pre 记录"></span>
           
         </div>
 
@@ -208,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-07 17:51" pubdate>
-          2025年10月7日 下午
+        <time datetime="2025-09-30 10:19" pubdate>
+          2025年9月30日 上午
         </time>
       </span>
     
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          763 字
+          916 字
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -268,85 +270,57 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">⌈离散数学II⌋ 第一章</h1>
+            <h1 id="seo-header">⌈BUAA CO⌋ pre 记录</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="一、集合的基本概念和运算"><a href="#一、集合的基本概念和运算" class="headerlink" title="一、集合的基本概念和运算"></a>一、集合的基本概念和运算</h3><hr>
-<h4 id="1-1-集合与元素"><a href="#1-1-集合与元素" class="headerlink" title="1.1 集合与元素"></a>1.1 集合与元素</h4><p><strong>集合与元素的关系</strong></p>
-<p>设 $a$ 是任意一个对象， $A$ 是任意一个集合。在 $a$ 和 $A$ 之间有且仅有下列两种情况：</p>
-<ul>
-<li>$a$ 是 $A$ 中元素，记为 $a\in A$；</li>
-<li>$a$ 不是 $A$ 中元素，记为 $a\notin A$。</li>
-</ul>
-<p><strong>集合的表示方法</strong></p>
-<p>列举法（全部枚举），部分列举法，抽象法（用命题表示），归纳定义法。</p>
-<p>抽象法很危险，可能会出现 <strong>理发师悖论</strong> 这样的问题。</p>
-<hr>
-<h4 id="1-2-集合间的关系"><a href="#1-2-集合间的关系" class="headerlink" title="1.2 集合间的关系"></a>1.2 集合间的关系</h4><p><strong>集合相等</strong></p>
-<p>$A&#x3D;B \Leftrightarrow \forall x(x\in A \leftrightarrow x\in B)$</p>
-<p><strong>集合的包含关系</strong></p>
-<p>若 $A$ 中每个元素都是集合 $B$ 的元素，称 $A$ 是 $B$ 的子集。记作 $A\subseteq B$。</p>
-<p>$A\subseteq B \Leftrightarrow \forall x(x\in A \to x \in B)$</p>
-<p>$A\nsubseteq B \Leftrightarrow \neg \forall x(x\in A \to x \in B)$</p>
-<hr>
-<h4 id="1-3-幂集"><a href="#1-3-幂集" class="headerlink" title="1.3 幂集"></a>1.3 幂集</h4><p><strong>生成方式：</strong></p>
-<p>用二进制编码表示某个元素的取与不取。有字典序生成方法、格雷码生成方法（相邻二进制编码只有一位不同）等。</p>
-<p>若 $B$ 有 $n$ 个元素，那么 $P(B)$ 有 $2^n$ 个元素。</p>
+                <h3 id="翻涌数字-Pre-roll"><a href="#翻涌数字-Pre-roll" class="headerlink" title="翻涌数字 Pre_roll"></a>翻涌数字 Pre_roll</h3><hr>
 <blockquote>
-<p><strong>例题：</strong></p>
-<p>证明：若 $B\subseteq C$ ，则 $P(B)\subseteq P(C)$</p>
-<p>$X\in P(B)\Rightarrow X\subseteq B\Rightarrow X\subseteq C\Rightarrow X\in P(C)$</p>
+<p><strong>题意</strong>：</p>
+<p>给定位宽 $32$ 的输入 $a$，代表 $8$ 个位宽为 $4$ 的数据 $a_0,a_1\cdots, a_7$。同时令每一个 $a_i&#x3D;\sum_{j&#x3D;0}^{i}a_j$ ，对 <code>4&#39;d16</code> 取模后，按原顺序拼接输出。</p>
 </blockquote>
-<hr>
-<h4 id="1-4-集合运算"><a href="#1-4-集合运算" class="headerlink" title="1.4 集合运算"></a>1.4 集合运算</h4><p><strong>基础运算</strong></p>
+<p>考场上先开的这个题。只需要先设置 $8$ 个 <code>wire</code> 型数据 $a_0,a_1\cdots,a_7$ 拆分 <code>input</code>  中的数据，再对 ${a_n}$ 做前缀和，最后拼接输出即可。然而由于对 <code>Verilog</code>  语法的不熟悉，写的过程非常不顺利。以下是一些需要记住的语法规则：</p>
 <ul>
-<li><p>交：$A\cap B &#x3D; {x\mid x\in A \cap x\in B}$</p>
+<li><p><code>assign</code> 的作用对象为 <code>wire</code> 型，称为连续赋值，属于结构描述。不能放在 <code>always</code> 和 <code>initial</code> 块里面；</p>
+<p>而过程赋值的作用对象为 <code>reg</code> 型，必须放在 <code>always</code> 和 <code>initial</code> 块里面。</p>
 </li>
-<li><p>并：$A\cup B &#x3D; {x\mid x\in A \cup x\in B}$</p>
+<li><p>阻塞赋值（<code>=</code>）与 <code>c++</code> 中的赋值语句类似，更新完被赋值数的值才会执行接下来的操作。而非阻塞赋值（<code>&lt;=</code>）操作会等到全部语句计算完后统一更新。</p>
 </li>
-<li><p>差：$A- B &#x3D; {x\mid x\in A \cap x\notin B}$</p>
-</li>
-<li><p>补：$\sim A &#x3D; {x\mid \neg (x\in A)}$</p>
-</li>
-<li><p>对称差集：$A\oplus B &#x3D; (A - B)\cup(B - A)$</p>
+<li><p><code>Verilog</code> 中位选择 <code>[msb:lsb]</code> 必须是常量表达式。因此 <code>a[i*4 + 3 : i*4]</code> 这种写法是非法的。然而我们可以写 <code>a[i*4 + 3 -: 4]</code> 或者 <code>a[i*4 +: 4]</code>。</p>
 </li>
 </ul>
-<p><strong>运算性质</strong></p>
-<p>幂等律、交换律、结合律、分配律、同一律、零律、否定律、吸收律、德摩根律……</p>
-<p><strong>对偶原理</strong></p>
-<p>在不含 $-$ 的集合恒等式中，将 $\cup$ 和 $\cap$ 交换，$\varnothing$ 和 $\text U$ 互换，所得结果仍是集合恒等式。</p>
-<p><strong>广义运算（集类上）</strong></p>
+<h3 id="MIPS-Submatrix"><a href="#MIPS-Submatrix" class="headerlink" title="MIPS_Submatrix"></a>MIPS_Submatrix</h3><hr>
+<blockquote>
+<p><strong>题意：</strong></p>
+<p>读入 $16$ 个整数代表一个 $4\times 4$ 的矩阵 $A_{0}\sim A_{15}$ .再读入子矩阵的左上坐标以及长宽数据。输出子矩阵内的值。如果超出边界，改为输出 <code>Out of bounds</code>。</p>
+</blockquote>
+<p>主要考察的其实还是 MIPS 的基本语法。除了需要对基础的语法更加熟悉之外，还要尽量提升自己代码的可读性。</p>
 <ul>
-<li>广义并：$\cup A &#x3D; {x\mid \exists B( B \in A \cap x\in B)}$ ；</li>
-<li>广义交：若 $A\ne \varnothing, \cap A &#x3D; {x\mid \forall B(B\in A \to x\in B) }$。</li>
-</ul>
-<div class="note note-success">
-            <p>之所以要强调 $A\ne \varnothing$，是因为如果 $A\ne \varnothing$ ，则 $B\in A \to x\in B$ 前件始终为假，$\cap A$ 是全集。这是无意义的。</p>
-          </div>
-
-<hr>
-<h4 id="1-5-有穷集的计数原理"><a href="#1-5-有穷集的计数原理" class="headerlink" title="1.5 有穷集的计数原理"></a>1.5 有穷集的计数原理</h4><p>多个集合的交并问题可以参考文氏图。所谓计数原理其实和容斥原理是一回事。</p>
-<p><img src="/2025/10/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-1/vens.png" srcset="/img/loading.gif" lazyload alt="文氏图"></p>
-<hr>
-<h4 id="1-6-集合的归纳表示"><a href="#1-6-集合的归纳表示" class="headerlink" title="1.6 集合的归纳表示"></a>1.6 集合的归纳表示</h4><div class="note note-info">
-            <p><strong>例题</strong>：不允许有前导 $0$ 的十进制整数集合：</p><p><strong>解答：</strong> 采用归纳表示法：</p><ul><li><p>令 $S_0 &#x3D; {0,1,2,3,4,5,6,7,8,9}\subseteq A$；</p></li><li><p>若 $\alpha, \beta \in A$ 且 $\alpha \ne 0$，则 $\alpha \beta \in A$。</p></li></ul>
-          </div>
-
-<hr>
-<h4 id="1-7-有序偶和笛卡尔积"><a href="#1-7-有序偶和笛卡尔积" class="headerlink" title="1.7 有序偶和笛卡尔积"></a>1.7 有序偶和笛卡尔积</h4><ul>
-<li>无序偶集：任意两个元素 $x$， $y$ 组成的集合 ${x, y}$。</li>
-<li>有序偶：将两个对象按规定的顺序构成的序列称为有序偶，记为 $\left \langle x, y \right \rangle $。</li>
-<li>$n$ 元序偶：设 $x_1,x_2,\cdots x_n$ 为 $n$ 个元素。<ul>
-<li>若 $n&#x3D;1$，令 $\left \langle x_1 \right \rangle&#x3D;x_1$</li>
-<li>若 $n&#x3D;2$，规定 $\left \langle x_1,x_2 \right \rangle$ 为包含 ${x_1}$ 和 ${x_1,x_2}$ 两个元素的集合。</li>
-<li>若 $n\geq 3$，令 $\left \langle x_1,x_2,\cdots,x_n \right \rangle &#x3D; \left \langle \left \langle x_1,x_2,\cdots,x_{n-1} \right \rangle ,x_n \right \rangle $</li>
-</ul>
+<li><p>一些与赋值有关，容易混淆的命令：</p>
+<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png" srcset="/img/loading.gif" lazyload alt="常用命令"></p>
 </li>
-<li>笛卡尔积：集合 $A$ 和 $B$ 的笛卡尔积 $A\times B$ 定义为：$A\times B &#x3D; {\left \langle  x, y \right \rangle \mid x\in A \cap y \in B }$ 。</li>
+<li><p>关于数组的存取操作。一般我们可以写一个宏定义来快速计算某下标对应的偏移量。比如图中的宏可以用来计算列数为 <code>%len</code> 的二维数组中指定坐标的偏移量，进而进行存储和载入的操作。</p>
+<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png" srcset="/img/loading.gif" lazyload alt="数组存取"></p>
+<p>这里出现了乘法的写法。涉及 <code>mult</code> 和 <code>mflo</code> 两个命令，需要特殊记忆。</p>
+</li>
 </ul>
-
+<h3 id="Logisim-Sokoban"><a href="#Logisim-Sokoban" class="headerlink" title="Logisim_Sokoban"></a>Logisim_Sokoban</h3><hr>
+<blockquote>
+<p><strong>题意：</strong> </p>
+<p>初始时玩家在 $6\times 6$ 地图上的 $(0,0)$ 处。地图上有若干障碍。除了 <code>clk</code> 和 <code>reset</code> 信号（异步复位）外，每时刻还会收到 <code>dx</code> 和 <code>dy</code> 信号。</p>
+<p>假设玩家在 $(x,y)$ 位置，收到信号时，会尝试移动到 $(x+dx,y+dy)$ 位置。若目标位置超出地图或为障碍，则留在原位置，将 <code>flag</code> 置高 $1$ 个周期。当前位置为 $(5,5)$ 时，<code>out</code> 输出为 $1$，否则为 $0$。</p>
+</blockquote>
+<p>考场上没有成功搭出来这道题。是课下补题时做的。</p>
+<p>根据经典的 <code>Moore</code> 状态机的框架来搭就可以。如下图所示：</p>
+<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png" srcset="/img/loading.gif" lazyload alt="Moore 状态机框架"></p>
+<p>状态转移是电路的核心部分。此处我用一个八位二进制数表示此状态下的 $x,y$ 坐标。将它的各位和 <code>dx</code>，<code>dy</code> 一起作为状态转移电路的输入。</p>
+<p>转移电路中先用一个四位加法器计算出 <code>x + dx</code> 和 <code>y + dy</code> （注意要先用 <code>Bit Extender</code> 将 <code>dx</code> 和 <code>dy</code> 同样扩展为 $4$ 位），检查 $(x + dx,y+dy)$ 是否为合法位置。</p>
+<p>是否为合法位置，用若干个比较器即可完成。（需要注意到是，如果选用六位二进制数表示状态，则须将比较器的属性设为 <code>Unsigned</code>，否则最高位会被识别为符号位）</p>
+<p>如果是合法位置，将 <code>x + dx</code> 和 <code>y + dy</code> 拼接成八位二进制数输出，<code>flag</code> 置 <code>0</code> ；否则将输入的数再输出，<code>flag</code> 置 <code>1</code>。</p>
+<p>于是就完成了。其实都算不上一个难题，只能怪自己没好好学。</p>
+<hr>
+<h3 id="最后，P0上机顺利-！"><a href="#最后，P0上机顺利-！" class="headerlink" title="最后，P0上机顺利 -(^_^)-！"></a>最后，P0上机顺利 -(^_^)-！</h3>
                 
               </div>
             
@@ -379,7 +353,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" class="print-no-link">#离散数学</a>
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
       
     </div>
   
@@ -391,8 +365,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>⌈离散数学II⌋ 第一章</div>
-      <div>http://istinaa.github.io/2025/10/07/离散数学II-1/</div>
+      <div>⌈BUAA CO⌋ pre 记录</div>
+      <div>http://istinaa.github.io/2025/09/30/⌈BUAA CO⌋pre 记录/</div>
     </div>
     <div class="license-meta">
       
@@ -404,7 +378,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月7日</div>
+          <div>2025年9月30日</div>
         </div>
       
       
@@ -436,9 +410,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p0 记录">
+                      <a href="/2025/10/05/Hexo%20%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" title="⌈Hexo⌋ 建站记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">⌈BUAA CO⌋ p0 记录</span>
+                        <span class="hidden-mobile">⌈Hexo⌋ 建站记录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -446,8 +420,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/05/Hexo%20%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" title="⌈Hexo⌋ 建站记录">
-                        <span class="hidden-mobile">⌈Hexo⌋ 建站记录</span>
+                      <a href="/2025/09/03/%E4%B9%9D%E6%9C%88%E5%90%88%E9%9B%86/" title="⌈Codeforces⌋ 九月合集">
+                        <span class="hidden-mobile">⌈Codeforces⌋ 九月合集</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

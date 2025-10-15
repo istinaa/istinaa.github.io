@@ -20,28 +20,29 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
+    <meta name="description" content="记录了10&#x2F;13 Pre上机的感受。在Hint的提示下，勉强全部完成了。有种死里逃生的感觉。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="⌈BUAA CO⌋ pre 记录">
-<meta property="og:url" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="⌈BUAA CO⌋ p0 记录">
+<meta property="og:url" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
+<meta property="og:description" content="记录了10&#x2F;13 Pre上机的感受。在Hint的提示下，勉强全部完成了。有种死里逃生的感觉。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
-<meta property="og:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png">
-<meta property="og:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png">
-<meta property="article:published_time" content="2025-10-13T02:19:03.000Z">
-<meta property="article:modified_time" content="2025-10-13T06:55:50.835Z">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/one-hot.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/%E6%89%93%E8%A1%A8.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/P0_Moore.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/trans.png">
+<meta property="article:published_time" content="2025-10-13T17:45:09.000Z">
+<meta property="article:modified_time" content="2025-10-15T05:53:17.309Z">
 <meta property="article:author" content="istina">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://istinaa.github.io/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
+<meta name="twitter:image" content="http://istinaa.github.io/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/one-hot.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>⌈BUAA CO⌋ pre 记录 - Istina&#39;s Blog</title>
+  <title>⌈BUAA CO⌋ p0 记录 - Istina&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ pre 记录"></span>
+            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ p0 记录"></span>
           
         </div>
 
@@ -210,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-10-13 10:19" pubdate>
-          2025年10月13日 上午
+        <time datetime="2025-10-14 01:45" pubdate>
+          2025年10月14日 凌晨
         </time>
       </span>
     
@@ -222,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          916 字
+          1.2k 字
         
       </span>
     
@@ -233,7 +234,7 @@
         
         
         
-          8 分钟
+          10 分钟
         
       </span>
     
@@ -270,57 +271,77 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">⌈BUAA CO⌋ pre 记录</h1>
+            <h1 id="seo-header">⌈BUAA CO⌋ p0 记录</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="翻涌数字-Pre-roll"><a href="#翻涌数字-Pre-roll" class="headerlink" title="翻涌数字 Pre_roll"></a>翻涌数字 Pre_roll</h3><hr>
-<blockquote>
-<p><strong>题意</strong>：</p>
-<p>给定位宽 $32$ 的输入 $a$，代表 $8$ 个位宽为 $4$ 的数据 $a_0,a_1\cdots, a_7$。同时令每一个 $a_i&#x3D;\sum_{j&#x3D;0}^{i}a_j$ ，对 <code>4&#39;d16</code> 取模后，按原顺序拼接输出。</p>
-</blockquote>
-<p>考场上先开的这个题。只需要先设置 $8$ 个 <code>wire</code> 型数据 $a_0,a_1\cdots,a_7$ 拆分 <code>input</code>  中的数据，再对 ${a_n}$ 做前缀和，最后拼接输出即可。然而由于对 <code>Verilog</code>  语法的不熟悉，写的过程非常不顺利。以下是一些需要记住的语法规则：</p>
-<ul>
-<li><p><code>assign</code> 的作用对象为 <code>wire</code> 型，称为连续赋值，属于结构描述。不能放在 <code>always</code> 和 <code>initial</code> 块里面；</p>
-<p>而过程赋值的作用对象为 <code>reg</code> 型，必须放在 <code>always</code> 和 <code>initial</code> 块里面。</p>
-</li>
-<li><p>阻塞赋值（<code>=</code>）与 <code>c++</code> 中的赋值语句类似，更新完被赋值数的值才会执行接下来的操作。而非阻塞赋值（<code>&lt;=</code>）操作会等到全部语句计算完后统一更新。</p>
-</li>
-<li><p><code>Verilog</code> 中位选择 <code>[msb:lsb]</code> 必须是常量表达式。因此 <code>a[i*4 + 3 : i*4]</code> 这种写法是非法的。然而我们可以写 <code>a[i*4 + 3 -: 4]</code> 或者 <code>a[i*4 +: 4]</code>。</p>
-</li>
-</ul>
-<h3 id="MIPS-Submatrix"><a href="#MIPS-Submatrix" class="headerlink" title="MIPS_Submatrix"></a>MIPS_Submatrix</h3><hr>
-<blockquote>
-<p><strong>题意：</strong></p>
-<p>读入 $16$ 个整数代表一个 $4\times 4$ 的矩阵 $A_{0}\sim A_{15}$ .再读入子矩阵的左上坐标以及长宽数据。输出子矩阵内的值。如果超出边界，改为输出 <code>Out of bounds</code>。</p>
-</blockquote>
-<p>主要考察的其实还是 MIPS 的基本语法。除了需要对基础的语法更加熟悉之外，还要尽量提升自己代码的可读性。</p>
-<ul>
-<li><p>一些与赋值有关，容易混淆的命令：</p>
-<p><img src="/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png" srcset="/img/loading.gif" lazyload alt="常用命令"></p>
-</li>
-<li><p>关于数组的存取操作。一般我们可以写一个宏定义来快速计算某下标对应的偏移量。比如图中的宏可以用来计算列数为 <code>%len</code> 的二维数组中指定坐标的偏移量，进而进行存储和载入的操作。</p>
-<p><img src="/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png" srcset="/img/loading.gif" lazyload alt="数组存取"></p>
-<p>这里出现了乘法的写法。涉及 <code>mult</code> 和 <code>mflo</code> 两个命令，需要特殊记忆。</p>
-</li>
-</ul>
-<h3 id="Logisim-Sokoban"><a href="#Logisim-Sokoban" class="headerlink" title="Logisim_Sokoban"></a>Logisim_Sokoban</h3><hr>
-<blockquote>
-<p><strong>题意：</strong> </p>
-<p>初始时玩家在 $6\times 6$ 地图上的 $(0,0)$ 处。地图上有若干障碍。除了 <code>clk</code> 和 <code>reset</code> 信号（异步复位）外，每时刻还会收到 <code>dx</code> 和 <code>dy</code> 信号。</p>
-<p>假设玩家在 $(x,y)$ 位置，收到信号时，会尝试移动到 $(x+dx,y+dy)$ 位置。若目标位置超出地图或为障碍，则留在原位置，将 <code>flag</code> 置高 $1$ 个周期。当前位置为 $(5,5)$ 时，<code>out</code> 输出为 $1$，否则为 $0$。</p>
-</blockquote>
-<p>考场上没有成功搭出来这道题。是课下补题时做的。</p>
-<p>根据经典的 <code>Moore</code> 状态机的框架来搭就可以。如下图所示：</p>
-<p><img src="/2025/10/13/%E2%8C%88BUAA%20COLab%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png" srcset="/img/loading.gif" lazyload alt="Moore 状态机框架"></p>
-<p>状态转移是电路的核心部分。此处我用一个八位二进制数表示此状态下的 $x,y$ 坐标。将它的各位和 <code>dx</code>，<code>dy</code> 一起作为状态转移电路的输入。</p>
-<p>转移电路中先用一个四位加法器计算出 <code>x + dx</code> 和 <code>y + dy</code> （注意要先用 <code>Bit Extender</code> 将 <code>dx</code> 和 <code>dy</code> 同样扩展为 $4$ 位），检查 $(x + dx,y+dy)$ 是否为合法位置。</p>
-<p>是否为合法位置，用若干个比较器即可完成。（需要注意到是，如果选用六位二进制数表示状态，则须将比较器的属性设为 <code>Unsigned</code>，否则最高位会被识别为符号位）</p>
-<p>如果是合法位置，将 <code>x + dx</code> 和 <code>y + dy</code> 拼接成八位二进制数输出，<code>flag</code> 置 <code>0</code> ；否则将输入的数再输出，<code>flag</code> 置 <code>1</code>。</p>
-<p>于是就完成了。其实都算不上一个难题，只能怪自己没好好学。</p>
+                <p>P0 的考察内容是 Logisim。由于正式题面是带不出考场的，所以这边只能写个人回忆版题面了。题目顺序是按照笔者做题顺序来的，与官方排序无关。</p>
 <hr>
-<h3 id="最后，P0上机顺利-！"><a href="#最后，P0上机顺利-！" class="headerlink" title="最后，P0上机顺利 -(^_^)-！"></a>最后，P0上机顺利 -(^_^)-！</h3>
+<h3 id="第一题（组合电路）"><a href="#第一题（组合电路）" class="headerlink" title="第一题（组合电路）"></a>第一题（组合电路）</h3><blockquote>
+<p><strong>题意</strong>：</p>
+<p>某幢楼房共有 $0\sim 3$ 四层。以 $8$ 位二进制形式给出每层的人数（保证各不相同且均不为 $0$），以独热码的形式给出电梯初始时刻所在的楼层。</p>
+<p>电梯会在载入初始楼层所有人后，前往剩下楼层中人数最多的楼层。到达后再载入该楼层的所有人，然后前往剩下楼层中人数最多的楼层……重复直至各层人数都为 $0$ 时停止。</p>
+<p>以 $8$ 位二进制输出电梯移动的总楼层数。</p>
+</blockquote>
+<p>没有做太多思考就急忙开搭了，导致这道题实现得非常差。简单记录一下我的神人暴力做法，如下：</p>
+<p>首先用一个 <code>MUX</code> 把起始楼层的独热码转化成 $2$ 位二进制数，最终答案根据起始楼层进行分类。</p>
+<p><img src="/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/one-hot.png" srcset="/img/loading.gif" lazyload></p>
+<p>接下来是对各起始楼层的答案进行分类，笔者构建得非常丑陋。</p>
+<p>确定了起始楼层后，由于剩下的三个楼层各不相同，所以大小排序只有 $6$ 种。用比较器对两两间的大小关系编码，再用 <code>Splitter</code> 将三个大小关系编为 $3$ 位二进制数，作为 <code>MUX</code> 的读入。</p>
+<p>除了循环大于和循环小于的 $2$ 种情况，其余 $6$ 种大小关系都可能存在。至于每种情况对应的答案…我是用 <code>C++</code> 打完表手动输入的。</p>
+<p><img src="/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/%E6%89%93%E8%A1%A8.png" srcset="/img/loading.gif" lazyload></p>
+<p>将各个初始楼层讨论完就完成了这道题！如果你的做法和我一样，恭喜你考场上大半时间都栽这了。</p>
+<hr>
+<h3 id="第二题（Mealy机）"><a href="#第二题（Mealy机）" class="headerlink" title="第二题（Mealy机）"></a>第二题（Mealy机）</h3><blockquote>
+<p><strong>题意：</strong></p>
+<p>每个周期读入 $2$ 位操作码 $op$ 和 $8$ 位操作数 $x$，输出计算结果并将结果存入寄存器。操作码与运算的对应关系如下表：</p>
+<table>
+<thead>
+<tr>
+<th>$op$</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$00$</td>
+<td>将寄存器清零</td>
+</tr>
+<tr>
+<td>$01$</td>
+<td>将寄存器数值左移一位，加上 $x$</td>
+</tr>
+<tr>
+<td>$10$</td>
+<td>将寄存器数值左移一位，减去 $x$</td>
+</tr>
+<tr>
+<td>$11$</td>
+<td>将寄存器数值左移一位，异或上 $x$</td>
+</tr>
+</tbody></table>
+<p><strong>注：</strong> 要求使用 Mealy 机，同一周期内输入可能不停变化，但只要时钟上升沿没有到达，状态就不会被写入寄存器。</p>
+</blockquote>
+<p>前后反复 <code>WA</code> 了四五发，问题出在题面的理解上。</p>
+<p>做的时候，看到 <code>op==0</code> 对应的功能是“将寄存器清零”这样一个斩钉截铁的动词词组，先入为主地觉得这是一个立即执行的异步复位，不用遵守“上升沿不到达，状态就不会被写入寄存器”的题面约束。</p>
+<p>直到下发提示，我才意识到复位后的状态也是状态。那还说啥了，理解能力已经不存在了。</p>
+<p>其他就不多说了，结构就是经典得不能再经典的 <code>Mealy</code> 机。</p>
+<hr>
+<h3 id="第三题（Moore机）"><a href="#第三题（Moore机）" class="headerlink" title="第三题（Moore机）"></a>第三题（Moore机）</h3><blockquote>
+<p><strong>题意：</strong></p>
+<p>搭建一个识别串行输入中“起起伏起”规律的 Moore 状态机。</p>
+<p>每个周期输入一个位宽 $5$ 的无符号数，当最近四个周期输入满足“起起伏起”，输出 $1$，否则输出 $0$。（支持循环检测）</p>
+<p>**注：**在初始状态和复位后，默认的第零项为 <code>5&#39;d7</code>。</p>
+</blockquote>
+<p>这题的难点在于如何去表示“第零项为 $7$” 这件事。自己做的时候一头雾水，看了提示之后意识到可以用计时器来检测是否为初始状态。</p>
+<p>用寄存器存上一个周期的输入，记为 <code>last</code>。如果计时器为 $0$，则不存在上个周期，<code>last</code> 视为 <code>5&#39;d7</code>。将 <code>now</code> 和 <code>last</code> 间的大小关系作为起落 <code>Moore</code> 机的输入。这一部分结构如图所示：</p>
+<p><img src="/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/P0_Moore.png" srcset="/img/loading.gif" lazyload></p>
+<p>需要注意的是此处需将 <code>Counter</code>的 <code>Action On Overflow</code> 属性设置为 <code>Stay at Value</code>。笔者一开始没注意此处，选用了默认的 <code>Wrap around</code> ,导致 <code>cnt</code> 一直处于 $0&#x2F;1$ 交替状态，不能正确运行。</p>
+<p>得到了最新周期起落情况后，搭建状态机就是比较容易的事了。按照匹配了多少有效位划分状态，需要 $3$ 位二进制数来表示。很容易画出下图的状态转移图，手动输入真值表生成转移电路，<code>Moore</code> 机基本就搭完了。</p>
+<p><img src="/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/trans.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p>有惊无险地通过了 P0，下周 P1 的主题是更为陌生的 <code>Verilog</code> 。哦哦大考还在后面。</p>
+
                 
               </div>
             
@@ -365,8 +386,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>⌈BUAA CO⌋ pre 记录</div>
-      <div>http://istinaa.github.io/2025/10/13/⌈BUAA COLab⌋pre 记录/</div>
+      <div>⌈BUAA CO⌋ p0 记录</div>
+      <div>http://istinaa.github.io/2025/10/14/⌈BUAA CO⌋p0 记录/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +399,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年10月13日</div>
+          <div>2025年10月14日</div>
         </div>
       
       
