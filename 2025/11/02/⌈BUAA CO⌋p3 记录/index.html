@@ -1,0 +1,1161 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
+  <link rel="icon" href="/img/avatar.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#222">
+  <meta name="author" content="istina">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="通过阅读本文，你大概率无法学会怎么搭cpu以及怎么通过p3，因为笔者觉得自己过不了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="⌈BUAA CO⌋ p3 记录">
+<meta property="og:url" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Istina&#39;s Blog">
+<meta property="og:description" content="通过阅读本文，你大概率无法学会怎么搭cpu以及怎么通过p3，因为笔者觉得自己过不了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/main.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/IFU_cover.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/IFU.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/NPC_cover.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/NPC.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/ALU_cover.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/ALU.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/GRF_cover.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/GRF.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/DM_cover.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/DM.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/EXT_cover.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/EXT.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/CTRL_cover.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/CTRL.png">
+<meta property="article:published_time" content="2025-11-02T07:41:19.000Z">
+<meta property="article:modified_time" content="2025-11-02T13:22:34.615Z">
+<meta property="article:author" content="istina">
+<meta property="article:tag" content="CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/main.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>⌈BUAA CO⌋ p3 记录 - Istina&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"istinaa.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Istina&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ p3 记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-02 15:41" pubdate>
+          2025年11月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">⌈BUAA CO⌋ p3 记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p> 各种事情一拖再拖，留给p3课下的时间非常紧张了。四处翻前辈的博客，终于是集百家之所短完成了本 CPU 的设计。笔者翘了合唱团的排练写下这篇设计文档。</p>
+<h3 id="CPU-设计概述"><a href="#CPU-设计概述" class="headerlink" title="CPU 设计概述"></a>CPU 设计概述</h3><p>本次的设计的 <code>Logisim</code> cpu 在作业的要求（<code>add</code>，<code>sub</code>，<code>ori</code>，<code>lw</code>，<code>sw</code>，<code>beq</code>，<code>lui</code>，<code>nop</code>）外，并不支持其他的指令。那可拓展空间很大了。</p>
+<p>总体采用模块化设计。由于我偏爱 <code>Tunnel</code>，各个模块之间并不像其他人的设计一样复杂交错，而是相当分立。从顶层看说这是个 CPU 都不是很让人信服。</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/main.png" srcset="/img/loading.gif" lazyload alt="CPU顶层示意图"></p>
+<p>下面我将分模块讲一讲各模块的作用，和一些搭建时的注意点。</p>
+<h3 id="IFU-指令单元"><a href="#IFU-指令单元" class="headerlink" title="IFU: 指令单元"></a>IFU: 指令单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/IFU_cover.png" srcset="/img/loading.gif" lazyload alt="IFU外观"></p>
+<p>IFU的接口如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">信号名</th>
+<th align="left">位宽</th>
+<th align="left">方向</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>clk</code></td>
+<td align="left">1</td>
+<td align="left">I</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>reset</code></td>
+<td align="left">1</td>
+<td align="left">I</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>PC_next</code></td>
+<td align="left">32</td>
+<td align="left">I</td>
+<td align="left">下一条执行指令的地址</td>
+</tr>
+<tr>
+<td align="left"><code>Instr</code></td>
+<td align="left">32</td>
+<td align="left">O</td>
+<td align="left">当前执行的指令</td>
+</tr>
+<tr>
+<td align="left"><code>PC</code></td>
+<td align="left">32</td>
+<td align="left">O</td>
+<td align="left">当前执行指令的地址</td>
+</tr>
+</tbody></table>
+<p>其实是将 <strong>PC</strong>（程序计数器）和 <strong>IM</strong>（指令存储器）拼接构成。其中 PC 用寄存器实现，IM 通过 <code>ROM</code> 实现。具体连线如下：</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/IFU.png" srcset="/img/loading.gif" lazyload alt="IFU结构"></p>
+<p>这一部分的逻辑可能会让人想起 P0 时搭的有限状态机。寄存器输出的 <code>PC</code> 经过一系列状态转移后得到 <code>PC_next</code> ，然后再重新作用于寄存器。</p>
+<p>值得注意的地方有两点：</p>
+<ul>
+<li><p>根据题目要求：<code>PC</code> 的初始值是 <code>0x00003000</code>，对应的指令存在 <code>ROM</code> 的 <code>0x00000000</code> 位置。因此 <code>PC</code> 需要用一个多路选择器实现等效初始化，而 <code>ROM</code> 读入的地址应为 <code>PC-0x00003000</code>。</p>
+<p>还有一种写法是内部实现不管题目“初值为 <code>0x00003000</code>” 的要求，直接一一对应。而在顶层面向评测机的输出时加上 <code>0x00003000</code>（zhp的写法）应该都可以？</p>
+</li>
+<li><p>可以看到 <code>ROM</code> 读入的是 $2\sim13$ 位，而非 $0\sim 11$ 位。这是因为 <code>PC</code> 和 <code>ROM</code> 计算地址的方式不一样。前者认为每 $+4$ 是下个指令，后者则认为每 $+1$ 是下个指令。为了使二者的操作能对上，需要将 <code>PC</code> 除以 $4$，也就是舍弃了最后两位。</p>
+</li>
+</ul>
+<h3 id="NPC-此地址计算单元"><a href="#NPC-此地址计算单元" class="headerlink" title="NPC: 此地址计算单元"></a>NPC: 此地址计算单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/NPC_cover.png" srcset="/img/loading.gif" lazyload alt="NPC外观"></p>
+<p>NPC 的接口如下：</p>
+<table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>位宽</th>
+<th>方向</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PC</td>
+<td>32</td>
+<td>I</td>
+<td>当前指令的地址</td>
+</tr>
+<tr>
+<td>immExtended</td>
+<td>32</td>
+<td>I</td>
+<td>经过扩展的 32 位立即数</td>
+</tr>
+<tr>
+<td>isBeq?</td>
+<td>1</td>
+<td>I</td>
+<td>当前指令是否为 <code>Beq</code></td>
+</tr>
+<tr>
+<td>ALU&#x3D;0?</td>
+<td>1</td>
+<td>I</td>
+<td>ALU 计算结果是否为 0</td>
+</tr>
+<tr>
+<td>PC_next</td>
+<td>32</td>
+<td>O</td>
+<td>下条指令的地址</td>
+</tr>
+</tbody></table>
+<p>具体的连线是下面这样。唯一需要注意的地方可能就是 <code>Beq</code> 指令跳转除了加立即数外还要加 $4$。不过这部分在加入 <code>J</code> 类型指令后需要大改。</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/NPC.png" srcset="/img/loading.gif" lazyload alt="NPC结构"></p>
+<h3 id="ALU-计算单元"><a href="#ALU-计算单元" class="headerlink" title="ALU: 计算单元"></a>ALU: 计算单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/ALU_cover.png" srcset="/img/loading.gif" lazyload alt="ALU外观"></p>
+<p>ALU 的接口如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">信号名</th>
+<th align="left">位宽</th>
+<th align="left">方向</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">inA</td>
+<td align="left">32</td>
+<td align="left">I</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">inB</td>
+<td align="left">32</td>
+<td align="left">I</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">op</td>
+<td align="left">2</td>
+<td align="left">I</td>
+<td align="left">运算种类，详情见下表。</td>
+</tr>
+<tr>
+<td align="left">res</td>
+<td align="left">32</td>
+<td align="left">O</td>
+<td align="left">ALU 运算结果</td>
+</tr>
+<tr>
+<td align="left">isZero?</td>
+<td align="left">1</td>
+<td align="left">O</td>
+<td align="left">判断结果是否为 $0$，用于 <code>NPC</code> 模块中的 <code>beq</code> 判等。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">OP</th>
+<th align="left">操作类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">00</td>
+<td align="left">A+B</td>
+</tr>
+<tr>
+<td align="left">01</td>
+<td align="left">A-B</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">A or B</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">B &lt;&lt; 16</td>
+</tr>
+</tbody></table>
+<p>这些肯定是不够的。感觉最好要预留出两位操作指令的空间。</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/ALU.png" srcset="/img/loading.gif" lazyload alt="ALU结构"></p>
+<h3 id="GRF-寄存器堆"><a href="#GRF-寄存器堆" class="headerlink" title="GRF: 寄存器堆"></a>GRF: 寄存器堆</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/GRF_cover.png" srcset="/img/loading.gif" lazyload alt="GRF外观"></p>
+<p>GRF的接口如下：</p>
+<table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>位宽</th>
+<th>方向</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A1</td>
+<td>5</td>
+<td>I</td>
+<td>地址1，读出寄存器数据到 <code>RD1</code></td>
+</tr>
+<tr>
+<td>A2</td>
+<td>5</td>
+<td>I</td>
+<td>地址2，读出寄存器数据到 <code>RD2</code></td>
+</tr>
+<tr>
+<td>A3</td>
+<td>5</td>
+<td>I</td>
+<td>写地址</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td>clk</td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td>W_Enable</td>
+<td>1</td>
+<td>I</td>
+<td>写使能信号</td>
+</tr>
+<tr>
+<td>W_Data</td>
+<td>32</td>
+<td>I</td>
+<td>写入的内容</td>
+</tr>
+<tr>
+<td>RD1</td>
+<td>32</td>
+<td>O</td>
+<td><code>A1</code> 对应的数据</td>
+</tr>
+<tr>
+<td>RD2</td>
+<td>32</td>
+<td>O</td>
+<td><code>A2</code> 对应的数据</td>
+</tr>
+</tbody></table>
+<p>实现这边直接复用了P0课下搭的。连线很繁琐，但总得来说没什么好说。</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/GRF.png" srcset="/img/loading.gif" lazyload alt="GRF结构"></p>
+<h3 id="DM-内存组"><a href="#DM-内存组" class="headerlink" title="DM: 内存组"></a>DM: 内存组</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/DM_cover.png" srcset="/img/loading.gif" lazyload alt="DM外观"></p>
+<p>DM 的接口如下：</p>
+<table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>位宽</th>
+<th>方向</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Address</td>
+<td>32</td>
+<td>I</td>
+<td>访问的内存地址</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>32</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td>clk</td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td>WE</td>
+<td>1</td>
+<td>I</td>
+<td>写使能</td>
+</tr>
+<tr>
+<td>clr</td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td>RD</td>
+<td>32</td>
+<td>O</td>
+<td>读出内存的数据</td>
+</tr>
+</tbody></table>
+<p>其实就是一个 <code>ROM</code> 。如果加入半字和字节的读写就麻烦了，此处不涉及。</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/DM.png" srcset="/img/loading.gif" lazyload alt="DM结构"></p>
+<h3 id="EXT-扩展单元"><a href="#EXT-扩展单元" class="headerlink" title="EXT: 扩展单元"></a>EXT: 扩展单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/EXT_cover.png" srcset="/img/loading.gif" lazyload alt="EXT外观"></p>
+<p>用于将 $16$ 位的立即数扩展为 $32$ 位。接口如下：</p>
+<table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>位宽</th>
+<th>方向</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>in</td>
+<td>16</td>
+<td>I</td>
+<td>原立即数</td>
+</tr>
+<tr>
+<td>ExtOp</td>
+<td>1</td>
+<td>I</td>
+<td>扩展类型（1: 符号扩展 | 0: 零扩展）</td>
+</tr>
+<tr>
+<td>out</td>
+<td>32</td>
+<td>O</td>
+<td>扩展后的立即数</td>
+</tr>
+</tbody></table>
+<p>大概是最简单的一个部件了。布线如下：</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/EXT.png" srcset="/img/loading.gif" lazyload alt="EXT结构"></p>
+<h3 id="CTRL-控制器"><a href="#CTRL-控制器" class="headerlink" title="CTRL: 控制器"></a>CTRL: 控制器</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/CTRL_cover.png" srcset="/img/loading.gif" lazyload alt="CTRL外观"></p>
+<p>控制器接口如下：</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>位宽</th>
+<th>方向</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Opcode[5:0]</td>
+<td>6</td>
+<td>I</td>
+<td>指令的 31-26 位</td>
+</tr>
+<tr>
+<td>func[5:0]</td>
+<td>6</td>
+<td>I</td>
+<td>指令的 5-0 位</td>
+</tr>
+<tr>
+<td>ToRegD</td>
+<td>1</td>
+<td>O</td>
+<td>寄存器指示信号（1: 写入<code>rd</code></td>
+</tr>
+<tr>
+<td>ALUsrc</td>
+<td>1</td>
+<td>O</td>
+<td>ALU功能选择信号（1: 用 <code>immExtended</code> | 0: 用 RD2）</td>
+</tr>
+<tr>
+<td>Mem2Reg</td>
+<td>1</td>
+<td>O</td>
+<td>寄存器堆数据选择信号（1: 从 DM 写入| 0: 从 ALU 写入）</td>
+</tr>
+<tr>
+<td>RegWrite</td>
+<td>1</td>
+<td>O</td>
+<td>寄存器堆写入使能信号</td>
+</tr>
+<tr>
+<td>MemWrite</td>
+<td>1</td>
+<td>O</td>
+<td>DM 写入使能信号</td>
+</tr>
+<tr>
+<td>isBeq</td>
+<td>1</td>
+<td>O</td>
+<td>是否是 <code>BEQ</code> 指令</td>
+</tr>
+<tr>
+<td>ExtOp</td>
+<td>1</td>
+<td>O</td>
+<td>EXT扩展类型（1: 符号拓展 | 0: 0扩展）</td>
+</tr>
+<tr>
+<td>ALUOp[1:0]</td>
+<td>2</td>
+<td>O</td>
+<td>ALU 控制信号</td>
+</tr>
+</tbody></table>
+<p>控制器可以说是整个CPU的大脑。与逻辑部分确保只有对应指令为通，而或逻辑部分相当于完成了译码的任务，将各指令触发的信号点亮。</p>
+<p>连线的时候需要先考虑对应指令需要用到哪些信号，列出真值表，再仔细地完成连接。排线方法参考了先人的博客，总体还算美观。</p>
+<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AE%B0%E5%BD%95/CTRL.png" srcset="/img/loading.gif" lazyload alt="CTRL结构"></p>
+<p>一个避免连错线的小技巧是先把 <code>Op</code> 和 <code>func</code> 点成指令的样子，然后无脑连亮线就行了。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>基本上是照着几篇博客依葫芦画瓢搭出来的，截止日才堪堪做完。计算机组成原理，太困难。</p>
+<p>一个小插曲是我第一次提交交错了 <code>.circ</code> 文件的版本，但我没有发现。而是用眼睛盯了很久运行样例时 <code>Logisim</code> 和 <code>MARS</code> 中的情况是否有差别。一小时后我确认没差别，就又交了一发。结果直接过了。</p>
+<p>如何提高电路的可维护性、可扩展性，以便上机时提交代码，还需学习。</p>
+<h3 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h3><p>我也尝试着折腾了一下学长们留下的自动化评测脚本，但是始终没有运行成功。最后还是采用了最原始的瞪眼调试法，希望不要出 BUG。</p>
+<p>测试流程大概就是：</p>
+<ul>
+<li><p>在 <code>MARS</code> 里编写 <code>MIPS</code> 测试程序。我这边使用的程序只是在官方提供的样例基础上做了一定的修改。下面贴出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $a0, $0, 123<br>ori $a1, $a0, 456<br>lui $a2, 123         <br>lui $a3, 0xffff       <br>ori $a3, $a3, 0xffff    <br>add $s0, $a0, $a2   <br>add $s1, $a0, $a3   <br>add $s2, $a3, $a3    <br>sub $s0, $a0, $a2    <br>sub $s1, $a0, $a3   <br>sub $s2, $a3, $a3    <br>ori $t0, $0, 0x0000<br>sw $a0, 0($t0)<br>sw $a1, 4($t0)<br>sw $a2, 8($t0)<br>sw $a3, 12($t0)<br>sw $s0, 16($t0)<br>sw $s1, 20($t0)<br>sw $s2, 24($t0)<br>lw $a0, 0($t0)<br>lw $a1, 12($t0)<br>sw $a0, 28($t0)<br>sw $a1, 32($t0)<br>ori $t0, $0, 0x0020<br>sw $a0, 0($t0)<br>sw $a1, -4($t0)<br>sw $a2, -8($t0)<br>sw $a3, -12($t0)<br>lw $a0, 0($t0)<br>lw $a1, -12($t0)<br>ori $a0, $0, 1<br>ori $a1, $0, 2<br>ori $a2, $0, 1<br>beq $a0, $a1, loop1    <br>beq $a0, $a2, loop2    <br>loop1:sw $a0, 36($t0)<br>loop2:sw $a1, 40($t0)<br>sub $a1, $a1, $a0<br>nop<br>beq $a1, $a2, loop2  <br>nop<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>将 <code>.asm</code> 文件导出为 $16$ 进制码。然后在 <code>IFU</code> 模块的 <code>ROM</code> 中导入。</p>
+</li>
+<li><p>一边单步执行 <code>MARS</code>，一边双击 <code>Logisim</code> 的时钟。观察寄存器、内存的变化和 <code>Logisim</code> 所示是否一致。</p>
+</li>
+</ul>
+<h3 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h3><p>1. </p>
+<p>   **Q：**上面我们介绍了通过 FSM 理解单周期 CPU 的基本方法。请大家指出单周期 CPU 所用到的模块中，哪些发挥状态存储功能，哪些发挥状态转移功能。</p>
+<p>   **A：**状态存储：PC、GRF、DM 状态转移：NPC、ALU、CTRL</p>
+<p>2. </p>
+<p>   **Q：**现在我们的模块中 IM 使用 ROM， DM 使用 RAM， GRF 使用 Register，这种做法合理吗？ 请给出分析，若有改进意见也请一并给出。</p>
+<p>   <strong>A：</strong> 还算合理。ROM是只读存储器，数据保有性好，可以用来存储指令；RAM可读可写，满足DM的需求；GRF是寄存器堆，对读写速度要求较高，适合用寄存器实现。</p>
+<p>   但用ROM存储指令使得CPU变成一次性的了，难以扩展。</p>
+<p>3. </p>
+<p>   **Q：**在上述提示的模块之外，你是否在实际实现时设计了其他的模块？如果是的话，请给出介绍和设计的思路。</p>
+<p>   **A：**暂时没有，但有一些在顶层看不够简洁美观的线路（如 <code>Splitter</code>、寄存器选择电路等）也可以被封装一下。</p>
+<p>4. </p>
+<p>   **Q：**事实上，实现 nop 空指令，我们并不需要将它加入控制信号真值表，为什么？请给出你的理由。</p>
+<p>   **A：**nop的机器码相当于执行 <code>sll $0, $0, 0</code>，执行后没有任何影响。</p>
+<p>5. </p>
+<p>   **Q：**阅读 Pre 的 <a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/tutorial/mips/mips-6/mips6-1/">“MIPS 指令集及汇编语言”</a> 一节中给出的测试样例，评价其强度（可从各个指令的覆盖情况，单一指令各种行为的覆盖情况等方面分析），并指出具体的不足之处。</p>
+<p>   **A：**还算全面，但没有测试 <code>offset</code> 为负数的情况。此外，没有测试 <code>nop</code> 指令。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/i_want_ak_noip/article/details/134204098">2023北航计组p3课下部分_北航机组单周期logisim-CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://mercuryrecords.github.io/p/co-p3-doc/">CO | P3 - Logisim 单周期 CPU 设计文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhhangbian.github.io/2024/01/10/%E8%AE%A1%E7%BB%84-%E5%AE%9E%E9%AA%8C-P3/">计组-实验-P3 | 浮泛之舟</a></li>
+<li><a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/tutorial/P3/P3-3/">控制器设计 - 计算机组成教程</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/" class="category-chain-item">上机记录</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>⌈BUAA CO⌋ p3 记录</div>
+      <div>http://istinaa.github.io/2025/11/02/⌈BUAA CO⌋p3 记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>istina</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/29/%E2%8C%88BUAA%20CO%E2%8C%8Bp2%20%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p2 记录">
+                        <span class="hidden-mobile">⌈BUAA CO⌋ p2 记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
