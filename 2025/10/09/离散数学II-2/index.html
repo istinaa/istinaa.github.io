@@ -20,24 +20,24 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta name="description" content="可能是备用卷难度偏低，赛时的波澜甚至比不上通知延期的时候。虽然挂分，但是省一get。可以爆BUAA的米了。">
+    <meta name="description" content="《离散数学 II》课程第二章笔记。主要内容为集合上的关系。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="⌈蓝桥杯⌋ 2025省赛A组游记&amp;题解">
-<meta property="og:url" content="http://istinaa.github.io/2025/04/28/%E8%93%9D%E6%A1%A5%E6%9D%AF2025%E7%9C%81%E8%B5%9BA%E7%BB%84%E6%B8%B8%E8%AE%B0&%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:title" content="⌈离散数学II⌋ 第二章">
+<meta property="og:url" content="http://istinaa.github.io/2025/10/09/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-2/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="可能是备用卷难度偏低，赛时的波澜甚至比不上通知延期的时候。虽然挂分，但是省一get。可以爆BUAA的米了。">
+<meta property="og:description" content="《离散数学 II》课程第二章笔记。主要内容为集合上的关系。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-28T09:52:19.000Z">
-<meta property="article:modified_time" content="2025-10-13T07:27:04.584Z">
+<meta property="article:published_time" content="2025-10-09T04:55:37.000Z">
+<meta property="article:modified_time" content="2025-11-05T12:14:31.248Z">
 <meta property="article:author" content="istina">
-<meta property="article:tag" content="蓝桥杯">
+<meta property="article:tag" content="离散数学">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>⌈蓝桥杯⌋ 2025省赛A组游记&amp;题解 - Istina&#39;s Blog</title>
+  <title>⌈离散数学II⌋ 第二章 - Istina&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="⌈蓝桥杯⌋ 2025省赛A组游记&amp;题解"></span>
+            <span id="subtitle" data-typed-text="⌈离散数学II⌋ 第二章"></span>
           
         </div>
 
@@ -206,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-28 17:52" pubdate>
-          2025年4月28日 下午
+        <time datetime="2025-10-09 12:55" pubdate>
+          2025年10月9日 下午
         </time>
       </span>
     
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          982 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          16 分钟
+          9 分钟
         
       </span>
     
@@ -275,63 +275,119 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">⌈蓝桥杯⌋ 2025省赛A组游记&amp;题解</h1>
+            <h1 id="seo-header">⌈离散数学II⌋ 第二章</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>说起来这届蓝桥杯参赛过程还挺波折的。原定的时间恰好碰到北京大风（一直呆在室内，没有体验一下大风有多大）推迟后的时间又和你航的数分期中撞了……</p>
-<p>一个周末内前后脚比赛和考试，怎么想都很痛苦吧。此外这周内还塞满了许多琐事，导致根本没有大块的空闲时间进行复习。直到周五晚上十点多排练结束回到寝室才想起来第二天就要比赛了，把一些基础的数据结构和算法过了一遍，心里稍微有了点底。</p>
-<p>众所周知，备用卷总是容易出现难度或区分度方面的问题。这届也是如此，总体上难度偏低，区分度也不足。</p>
-<p>不同于2024年A组真题E&#x2F;F&#x2F;G&#x2F;H有层次的难度设计与全面的知识面考察，这套题在G题之前几乎没有给到任何强度。而G题又是一个显而易见的线段树模板题，于是区分度等于是全部由H题的差分约束提供了（很不幸我被区分了）</p>
-<p>在此写一篇个人向题解，赛时心路历程会穿插其中。</p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><p>**题目大意：**大盒尺寸 $200\times 250\times 240$，小盒尺寸 $30\times 40\times 50$，问大盒里能放几个小盒。</p>
-<p>**标签：**小学数学</p>
-<p>我认为将小学二年级数学题放在大学生竞赛里是不妥的。所以我认真思考了很久哪里有坑。</p>
-<p>但事实上这就是一道小学二年级数学题，无语了家人们。</p>
-<p>注意到有 $30|240$，$40|200$，$50|250$ ，所以答案就是大体积除以小体积。</p>
-<p>哎哎，出题人的苦心。</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><p>**题目大意：**求符合要求的正整数 $n$ 的数量：$n+20255202$ 和 $n+10244201$ 都是完全平方数。</p>
-<p>**标签：**枚举&#x2F;初中数学</p>
-<p>赛时我先考虑了直接枚举 $n$。分别设 $a^2&#x3D;n+20255202$，$b^2&#x3D;n+10244201$。由于 $a^2&gt;b^2$，因此也有 $a^2\geq (b+1)^2$ ，稍加变形可得：$b\leq\frac{a^2-b^2-1}{2}$ ，其中 $a^2-b^2$ 是定值 $10011001$ 。那么 $b$ 的枚举范围就不超过 $5005500$ ，在计算机的承受范围之内。枚举时判断 $b^2+10011001$ 是不是完全平方数即可。</p>
-<p>不过我最终选择的并非此解法。注意到 $(a+b)(a-b)&#x3D;10011001$ ，可以考虑对 $10011001$ 进行因数分解。由于这是个奇数，所以因数一定同为奇数，解出来的 $a$ 和 $b$ 一定是整数。去掉那些 $a^2\leq20255202$ 的情形后，$10011001$ 剩下的因数对的数量便是最终答案。</p>
-<p>比较幽默的是，我枚举因数的时候是从 $2$ 开始的，因此最终答案少了一种，痛失五分。</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>**题目大意：**用循环的字符串填充矩阵的每一行。每一行的字符串是 <code>LANQIAO</code>  循环左移对应次数后形成的串。求矩阵上 <code>A</code> 的个数。 </p>
-<p>**标签：**模拟</p>
-<p>既然数据范围这么小的话，先把矩阵填满，再取数 <code>A</code> 的数量就行了。没什么好讲的。</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><p>**题目大意：**给定AB串，重复执行操作，每次删去一个AB子列直至不能操作。问串最终长度可能的最大值。</p>
-<p>**标签：**贪心，双指针</p>
-<p>显然串最终形态一定形如 <code>BB...BBAAA...A</code>，否则就还能继续操作。我们应尽量删去所有靠左的A，所有靠右的B。</p>
-<p>那么贪心地去做，用一个双指针维护这个过程。每次删去串中第一个 A 和最后一个 B 。直到双指针相遇。</p>
-<p>贪心的正确性是显然的。因为靠左的 B 与靠右的 B 相比，不被删去从而留在最终串中对答案做出贡献的机会更大。</p>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><p>**题目大意：**给定一棵树，每次出发走至多 $k$ 步，步长为 $1$ 或 $2$ ，然后获得路径终点的权值。你可以从 $1$ 号节点出发无数次。问最终获得的权值。</p>
-<p>**标签：**树的遍历</p>
-<p>注意到 $2k$ 以内的所有数字都可以写成不超过 $k$ 个 $1$ 或 $2$ 的和，我们求出所有深度不大于 $2k$ 节点的权值和即可。（初读题的时候还以为只能出发一次，以为是个树形DP类似物，但实际上……）</p>
-<h1 id="F"><a href="#F" class="headerlink" title="F"></a>F</h1><p>**题目大意：**给定 01 串，问有多少对不重叠的子串互为反串（每个对应位置均相反）</p>
-<p>**标签：**计数</p>
-<p>不太记得思路从何而来了，这里直接给出我的做法吧：</p>
-<p>记所给 01 串 $s$ 的长度为 $n$ 。</p>
-<p>枚举两串首间的距离 $j$ ，记 $t_i&#x3D;s_i+s_{i+j}$ $(i+j\leq n)$ ，那么 $t_i&#x3D;1$ 说明： $s_i$ 与 $s_{i+j}$ 相反，$s_i$ 可成为前串的一部分。</p>
-<p>如果 $t_{L…R}$ 都等于 $1$ ，那么我们从这些能成为前串一部分的字符中任取一段 $s_{l…r}\left(L\leq l \leq r\leq R\right)$ ，都会有 $s_i&#x3D;1-s_{i+j}\left(l\leq i\leq r\right)$ 恒成立。  </p>
-<p>也就是说：如果 $t_{L…R}$ 与 $t_{L+j…R+j}$ 没有重叠部分 $(R&lt;L+j)$ ，这一段对答案的贡献就是段内的子串数。对于段内每个字符 $s_i$，以它开头的子串数就是 $R-i+1$，整段的贡献为 $\sum_{i&#x3D;1}^{R-L+1}i.$</p>
-<p>那如果有重叠部分怎么办呢？其实也不难想。不论起点的位置，长度大于 $j$ 的子串一定和后串重叠，不大于 $j$ 的一定合法。所以我们只需对上面的计算方式稍作调整，改为 $\sum_{i&#x3D;1}^{R-L+1}\min(i,j).$ 可以和上式合并。</p>
-<p>计算所有 $j$ 下贡献的和即可。</p>
-<p>时间复杂度 $O(n^2)$，可以通过此题。</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><p>**题目大意：**维护一个支持入栈、出栈、以及查询栈顶前若干数乘积操作的栈。</p>
-<p>**标签：**线段树</p>
-<p>单点修改，区间乘积查询，线段树的暗示已经给得很明显了。</p>
-<p>考虑到栈内的数不超过 $Q$ 个，线段树的容量开到 $4e5$ 级别已经足够。</p>
-<p>入栈操作就是把栈当前容量加一处的数修改为目标数；出栈操作只需让记录栈当前容量的变量自减；查询操作只需调用线段树区间乘积查询函数即可。</p>
-<p>为了让超过 $2^{32}$ 的数输出为 <code>OVERFLOW</code>，我们可以修改区间合并的函数。对每个节点以 $-1$ 值记录乘积超出 $2^{32}$ 的情况。区间合并时分以下情况（按从上往下的优先级判断）：</p>
-<ul>
-<li>左右子区间节点值有 $0$，则父区间节点值为 $0$。</li>
-<li>左右子区间节点值有 $-1$ ，则父区间节点值为 $-1$。</li>
-<li>左右子区间节点值乘积大于等于 $2^{32}$ ，则父区间节点值为 $-1$。</li>
-<li>左右子区间节点值乘积小于 $2^{32}$ ，则父区间节点值为左右子区间节点值乘积。</li>
-</ul>
-<p>剩下就是线段树的常规写法了。算是一道很好调的DS题了。</p>
-<h1 id="H"><a href="#H" class="headerlink" title="H"></a>H</h1><p> **题目大意：**给定序列 $a$ 以及若干约束 $(l,r,p,q)$，求解序列内最大最小差值的可能最小值。约束的意义是：<br>$$<br>\min_{l\leq x\leq r}a_x - \max_{p\leq y\leq q}a_y\geq ans<br>$$<br>**标签：**差分约束</p>
+                <h3 id="二、关系"><a href="#二、关系" class="headerlink" title="二、关系"></a>二、关系</h3><hr>
+<h4 id="2-1-关系及其性质"><a href="#2-1-关系及其性质" class="headerlink" title="2.1 关系及其性质"></a>2.1 关系及其性质</h4><p><strong>关系的定义：</strong> 设 $A_1,A_2,\dots A_n$ 为 $n$ 个集合， $R\subseteq A_1\times A_2\times \dots \times A_n$，则称 $R$ 为这 $n$ 个集合间的 $n$ 元关系。</p>
+<p>用序偶来表示关系。</p>
+<div class="note note-success">
+            <p>比如考虑集合 $A &#x3D; {1,2,3}$ 上的小于关系。我们可以用序偶 $\left \langle  i,j \right \rangle$ 表示 $i&lt;j$ ，令：$R_&lt; &#x3D; {\left \langle 1,2 \right \rangle , \left \langle 1,3 \right \rangle , \left \langle 2,3 \right \rangle}$</p>
+          </div>
 
+<p><strong>两种特殊的关系：</strong></p>
+<ul>
+<li><p>$X$ 上的 <strong>全关系</strong> ：<br>$$<br>U_X &#x3D; {&lt;x_i,x_j&gt;\mid x_i,x_j\in X} &#x3D; X\times X<br>$$</p>
+</li>
+<li><p>$X$ 上的 <strong>恒等关系</strong> ：<br>$$<br>I_X &#x3D; {&lt;x,x&gt;\mid x\in X}<br>$$</p>
+</li>
+</ul>
+<p><strong>关系的定义域和值域</strong>（接下来只讨论二元关系）：</p>
+<p>设 $R\subseteq A\times B$，$R$ 中所有 $\left \langle x,y \right \rangle $ 中 $x$ 组成的集合称为 $R$ 的定义域，记作 $\text{dom}(R)$ 。所有 $y$ 组成的集合称为 $R$ 的值域，记作 $\text{ran}(R)$。</p>
+<p>除了上文所说的序偶表示以外，还可以用关系图（$x,y$ 间连接有向边），关系矩阵（存在 $\left \langle x,y \right \rangle $ 时 $M_{x,y}$ 取 $1$ 否则取 $0$）</p>
+<p><strong>关系的性质</strong>：</p>
+<ul>
+<li><p>自反性：$x\in X$ ，则 $\left \langle x,x \right \rangle\in R$ 。</p>
+</li>
+<li><p>反自反性：$x\in X$ ，则 $\left \langle x,x \right \rangle\notin R$ 。</p>
+</li>
+<li><p>对称性：$\left \langle x,y \right \rangle \in R$ ，则 $\left \langle y,x \right \rangle \in R$。</p>
+</li>
+<li><p>反对称性：$\left \langle x,y \right \rangle \in R$ ，则 $\left \langle y,x \right \rangle \notin R$。</p>
+</li>
+<li><p>传递性：$\left \langle x,y \right \rangle \in R$ 且 $\left \langle y,z \right \rangle \in R$ ，则 $\left \langle x,z \right \rangle \in R$。</p>
+</li>
+</ul>
+<hr>
+<h4 id="2-2-关系的运算"><a href="#2-2-关系的运算" class="headerlink" title="2.2 关系的运算"></a>2.2 关系的运算</h4><p>主要关注在 $\cup$，$\cap$，$-$，$\oplus$，$\sim$ 这五种运算下，是否保持上述五种性质。</p>
+<p><strong>定义：</strong> 设 $R$ 和 $S$ 是从集合 $A$ 到集合 $B$ 的关系，则 $R\cup S$，$R\cap S\cdots$ 仍是 $A$ 到 $B$ 的关系，且有：$x(R\cap S)y &#x3D; \left \langle x,y \right \rangle \in R\cap S$ 。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$R\cap S$</th>
+<th>$R\cup S$</th>
+<th>$R-S$</th>
+<th>$R\oplus S$</th>
+<th>$\sim R$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自反</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>反自反</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>对称</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>反对称</td>
+<td>√</td>
+<td></td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>传递</td>
+<td>√</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>逆关系</strong></p>
+<p>指将关系每个有序偶的第一元、第二元对换所得到的关系。<br>$$<br>R^{-1} &#x3D; {\left \langle x,y \right \rangle\mid\left \langle y,x \right \rangle\in R}<br>$$<br>显然有 $\text{dom}(R^{-1})&#x3D;\text{ran}(R)$，$\text{ran}(R^{-1})&#x3D;\text{dom}(R)$。且可以证明逆运算保持上述的五种关系。</p>
+<p><strong>复合运算</strong></p>
+<p>设 $R$ 是 $X$ 到 $Y$ 的关系，$S$ 是 $Y$ 到 $Z$ 的关系。则 $R\circ S &#x3D; {\left \langle x,y \right \rangle\mid \exists y \in Y, 使得 x R y\wedge y S z}$ 。</p>
+<p>有 $\text{dom}(R\circ S)\subseteq\text{dom}(R)$，$\text{ran}(R\circ S)&#x3D;\text{ran}(S)$。</p>
+<p>复合运算满足结合律，但不满足交换律。</p>
+<p>以此递归定义 <strong>关系的幂次</strong> ：$R^{n+1}&#x3D;R^n \circ R$ ，$R^0&#x3D;I_A$ ，其中 $I_A$ 是 $A$ 上的恒等关系。</p>
+<p><strong>关系复合的矩阵表示：</strong></p>
+<p>记关系矩阵 $M_R&#x3D;(r_{ij})<em>{m\times p}, M_S &#x3D; (S</em>{ij})<em>{p\times n}, M</em>{R\circ S } &#x3D; (t_{ij})_{m\times n}$ 。</p>
+<p>计算 $M_{R\circ S}$ 的方法：$t_{ij} &#x3D;  {\textstyle \bigvee_{k&#x3D;1}^{p}(r_{ik}\wedge s_{kj})}$。</p>
+<p><strong>闭包</strong></p>
+<p>将 $R$ 的自反、对称、传递闭包分别记作 $r(R),s(R),t(R)$。其中 $R$ 自反闭包是指：包含 $R$ 的最小自反关系。其他闭包同理。</p>
+<p><strong>定理：</strong> $R$ 是自反的当且仅当 $r(R)&#x3D;R$，其他闭包同理。</p>
+<p><strong>计算方法：</strong> $r(R) &#x3D; R\cup I_A$，$s(R) &#x3D; R\cup R^{-1}$，$t(R) &#x3D; {\textstyle \bigcup_{n&#x3D;1}^{\infin}R^n}$.</p>
+<p><strong>性质：</strong> $R_1\subseteq R_2$ 可以推得 $r(R_1)\subseteq r(R_2),s(R_1)\subseteq s(R_2),t(R_1)\subseteq t(R_2)$.</p>
+<h4 id="2-3-次序关系"><a href="#2-3-次序关系" class="headerlink" title="2.3 次序关系"></a>2.3 次序关系</h4><p><strong>偏序关系</strong></p>
+<p>当且仅当 $R$ 是自反的、反对称的、传递的，我们称 $R$ 是 $A$ 上的偏序关系（即半序关系）</p>
+<p>如果在此基础上，任选 $x,y\in A$，$x$ 和 $y$ 都可比，则称其为 $A$ 上的全序关系。</p>
+<p>称 $y$ 是 $x$ 的覆盖，当且仅当 $x&lt;y$ 且找不到其他元素 $z$ 使得 $x&lt;z&lt;y$。</p>
+<p><strong>哈斯图</strong></p>
+<p>哈斯图是一种描述偏序结构的无向图。将每个元素画成图中的一个点。</p>
+<p>对于任意 $x,y\in A$ ，若 $x&lt;y$ 则点 $x$ 画在点 $y$ 之下。若 $y$ 覆盖 $x$，则 $x$ 和 $y$ 间连一条无向边。</p>
+<h4 id="2-4-等价关系与划分"><a href="#2-4-等价关系与划分" class="headerlink" title="2.4 等价关系与划分"></a>2.4 等价关系与划分</h4>
                 
               </div>
             
@@ -349,7 +405,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" class="category-chain-item">算法竞赛</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
   
   
 
@@ -364,7 +420,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" class="print-no-link">#蓝桥杯</a>
+        <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" class="print-no-link">#离散数学</a>
       
     </div>
   
@@ -376,8 +432,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>⌈蓝桥杯⌋ 2025省赛A组游记&amp;题解</div>
-      <div>http://istinaa.github.io/2025/04/28/蓝桥杯2025省赛A组游记&amp;题解/</div>
+      <div>⌈离散数学II⌋ 第二章</div>
+      <div>http://istinaa.github.io/2025/10/09/离散数学II-2/</div>
     </div>
     <div class="license-meta">
       
@@ -389,7 +445,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年4月28日</div>
+          <div>2025年10月9日</div>
         </div>
       
       
@@ -421,9 +477,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/06/29/FM23%E5%88%A9%E5%85%B9%E8%81%94%E5%B4%9B%E8%B5%B7%E4%B9%8B%E8%B7%AF/" title="FM23利兹联崛起之路">
+                      <a href="/2025/10/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp0%20%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p0 记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FM23利兹联崛起之路</span>
+                        <span class="hidden-mobile">⌈BUAA CO⌋ p0 记录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -431,8 +487,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/08/%E8%93%9D%E6%A1%A5%E6%9D%AF2024%E7%9C%81%E8%B5%9BA%E7%BB%84%E9%A2%98%E8%A7%A3/" title="⌈蓝桥杯⌋ 2024省赛A组题解">
-                        <span class="hidden-mobile">⌈蓝桥杯⌋ 2024省赛A组题解</span>
+                      <a href="/2025/10/07/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-1/" title="⌈离散数学II⌋ 第一章">
+                        <span class="hidden-mobile">⌈离散数学II⌋ 第一章</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

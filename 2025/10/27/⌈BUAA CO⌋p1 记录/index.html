@@ -28,7 +28,7 @@
 <meta property="og:description" content="记录了10&#x2F;20 P1上机的感受。一处状态转移写错调了好久，差点没做完。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-27T05:13:09.000Z">
-<meta property="article:modified_time" content="2025-10-29T01:43:01.185Z">
+<meta property="article:modified_time" content="2025-11-04T07:10:56.752Z">
 <meta property="article:author" content="istina">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          512 字
+          1k 字
         
       </span>
     
@@ -229,12 +229,21 @@
         
         
         
-          5 分钟
+          9 分钟
         
       </span>
     
 
     
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
     
   </div>
 
@@ -276,7 +285,7 @@
 <h3 id="第一题（异或卷积）"><a href="#第一题（异或卷积）" class="headerlink" title="第一题（异或卷积）"></a>第一题（异或卷积）</h3><blockquote>
 <p><strong>题意</strong>：</p>
 <p>输入 $a[0:35]$ 和 $b[0:8]$， 分别表示 $6\times 6$ 的待卷积矩阵和 $3\times 3$ 的卷积核。输出 $ans[0:15]$ 表示卷积后的 $4\times 4$ 矩阵。</p>
-<p>此处卷积操作可用下列公式表达：<br>$$<br>ans[i][j]&#x3D;\bigoplus_{k&#x3D;0}^{2} \bigoplus_{l&#x3D;0}^{2} a[i+k][j+l] \and b[k][l]<br>$$</p>
+<p>此处卷积操作可用下列公式表达：<br>$$<br>ans[i][j]&#x3D;\bigoplus_{k&#x3D;0}^{2} \bigoplus_{l&#x3D;0}^{2} a[i+k][j+l] \wedge b[k][l]<br>$$</p>
 </blockquote>
 <p>印象里这题没有遇到什么困难，只要注意 Verilog 中 <code>for</code> 循环的写法即可。运行时先枚举卷积部分的左上角坐标，再枚举卷积部分内部的坐标，用一个 <code>reg</code> 变量记录异或的结果即可。</p>
 <hr>
@@ -284,11 +293,25 @@
 <p><strong>题意：</strong></p>
 <p>每当时钟上升沿到达，优先触发同步复位，否则根据 <code>op</code> 信号决定操作。</p>
 <ul>
-<li><code>op = 0</code> 所有已记录的音符往前移 $1$ 位，位置为 $0$ 的音符被丢弃，将 <code>note_in</code></li>
+<li><code>op = 00</code> ：所有已记录的音符往前移 $1$ 位，位置为 $0$ 的音符被丢弃，将 <code>note_in</code>  添加到 $127$ 位置上。输出不变。</li>
+<li><code>op = 01</code> ：将 <code>query</code> 位置的音符输出到 <code>note_out</code>。</li>
+<li><code>op = 10</code> ：无效操作，保持上一周期输出。</li>
+<li><code>op = 11</code> ：统计 $128$ 个音符中，值等于 <code>query</code> 的数量。结果输出到 <code>note_out</code> 上。</li>
 </ul>
 </blockquote>
+<p><code>01</code> 和 <code>11</code> 指令就不多说了，在 <code>switch</code> 对应语句中统计输出即可。我卡住的地方是 <code>Verilog</code> 中怎样去实现这个全部左移。实际上非常简单，直接在 <code>for</code> 循环中用非阻塞赋值更新就行了。</p>
+<p>但我确实走了不少弯路，一开始过分拘泥于状态机的写法。用了 <code>status</code> 和 <code>nextStatus</code> 两个状态来回交换，把自己都整晕了。这就完全是画蛇添足了。</p>
 <hr>
-<h3 id="第三题（）"><a href="#第三题（）" class="headerlink" title="第三题（）"></a>第三题（）</h3><hr>
+<h3 id="第三题（json-序列检验）"><a href="#第三题（json-序列检验）" class="headerlink" title="第三题（json 序列检验）"></a>第三题（json 序列检验）</h3><blockquote>
+<p><strong>题意：</strong></p>
+<p>串行输入形如 <code>&#123;&quot;key1&quot;:&quot;value1&quot;,&quot;key2&quot;:&quot;value2&quot;,&quot;key3&quot;:&quot;value3&quot;&#125; &#123;&quot;key4&quot;:&quot;value4&quot;&#125;&#123;&quot;key5&quot;:&quot;value5&quot;&#125;</code> 的 <code>json</code> 文件。</p>
+<p>其中每对大括号中为一个 <code>json</code> 序列，相邻 <code>json</code> 序列间可能有若干空格。每个 <code>json</code> 序列结束时输出当前序列键值对数量 <code>cur_num</code>，每次 <code>cur_num</code> 更新时同步更新 <code>max_num</code>。</p>
+<p>输入保证非法序列只有一种：存在某个字符串为空串。非法序列的 <code>cur_num</code> 计为 $0$。</p>
+</blockquote>
+<p>我的做法是设了很多状态（匹配了 <code>&#123;</code>，<code>&#123;&quot;</code>，<code>&#123;&quot;**&quot;</code> ……&#x2F; 非法状态）然后根据读入的字符做状态转移。其中在一处非法状态转移的地方写错了，肉眼盯了半天无果，只能提前排队等待助教拷问。（下文会讲述详细问答过程）</p>
+<p>没想到问答结束后不久，忽然意识到自己的错误，修正完就过了。</p>
+<p>考后交流发现只有我老老实实写了这么多状态转移。大家都利用题目中“保证非法序列只有一种”这一条件，大大简化了状态构成，直接数冒号个数。那我的写法就显得很愚蠢了，好在也是通过了。</p>
+<hr>
 <h3 id="助教问答"><a href="#助教问答" class="headerlink" title="助教问答"></a>助教问答</h3><p>这场上机被分配在三号实验室，一进门就看到监考的助教有向巨。</p>
 <p>2h结束的时候第三题还没调出来错误在哪，只能提前举手等待助教前来拷打。果不其然一只企鹅朝我飞奔而来。检查完我的 Testbench 后，展开了下面的对话：</p>
 <p><strong>Q：</strong> <code>$finish</code> 是用来干嘛的？</p>
@@ -468,6 +491,14 @@
 
 
 
+<script src="https://utteranc.es/client.js"
+        repo="istinaa/istinaa.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
     
 
     
