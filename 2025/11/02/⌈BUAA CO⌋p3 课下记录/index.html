@@ -43,7 +43,7 @@
 <meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/CTRL_cover.png">
 <meta property="og:image" content="http://istinaa.github.io/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/CTRL.png">
 <meta property="article:published_time" content="2025-11-02T07:41:19.000Z">
-<meta property="article:modified_time" content="2025-11-05T12:25:36.821Z">
+<meta property="article:modified_time" content="2025-11-05T13:39:55.060Z">
 <meta property="article:author" content="istina">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
@@ -354,7 +354,7 @@
 <li><p>可以看到 <code>ROM</code> 读入的是 $2\sim13$ 位，而非 $0\sim 11$ 位。这是因为 <code>PC</code> 和 <code>ROM</code> 计算地址的方式不一样。前者认为每 $+4$ 是下个指令，后者则认为每 $+1$ 是下个指令。为了使二者的操作能对上，需要将 <code>PC</code> 除以 $4$，也就是舍弃了最后两位。</p>
 </li>
 </ul>
-<h3 id="NPC-此地址计算单元"><a href="#NPC-此地址计算单元" class="headerlink" title="NPC: 此地址计算单元"></a>NPC: 此地址计算单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/NPC_cover.png" srcset="/img/loading.gif" lazyload alt="NPC外观"></p>
+<h3 id="NPC-次地址计算单元"><a href="#NPC-次地址计算单元" class="headerlink" title="NPC: 次地址计算单元"></a>NPC: 次地址计算单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/NPC_cover.png" srcset="/img/loading.gif" lazyload alt="NPC外观"></p>
 <p>NPC 的接口如下：</p>
 <table>
 <thead>
@@ -844,7 +844,7 @@
       Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
       Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
         var options = Object.assign(
-          {"serverURL":"https://waline-test-vert-three.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {"serverURL":"https://waline-test-1cgv5f14t-zja2524926597s-projects.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
           {
             el: '#waline',
             path: window.location.pathname
