@@ -28,7 +28,7 @@
 <meta property="og:description" content="《离散数学 II》课程第二章笔记。主要内容为集合上的关系。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-09T04:55:37.000Z">
-<meta property="article:modified_time" content="2025-11-05T12:14:31.248Z">
+<meta property="article:modified_time" content="2025-11-05T12:29:45.965Z">
 <meta property="article:author" content="istina">
 <meta property="article:tag" content="离散数学">
 <meta name="twitter:card" content="summary_large_image">
@@ -373,12 +373,12 @@
 <p>复合运算满足结合律，但不满足交换律。</p>
 <p>以此递归定义 <strong>关系的幂次</strong> ：$R^{n+1}&#x3D;R^n \circ R$ ，$R^0&#x3D;I_A$ ，其中 $I_A$ 是 $A$ 上的恒等关系。</p>
 <p><strong>关系复合的矩阵表示：</strong></p>
-<p>记关系矩阵 $M_R&#x3D;(r_{ij})<em>{m\times p}, M_S &#x3D; (S</em>{ij})<em>{p\times n}, M</em>{R\circ S } &#x3D; (t_{ij})_{m\times n}$ 。</p>
+<p>记关系矩阵 $M_R&#x3D;(r_{ij})<em>{m\times p}$， $M_S &#x3D; (s</em>{ij})<em>{p\times n}$， $M</em>{R\circ S } &#x3D; (t_{ij})_{m\times n}$ 。</p>
 <p>计算 $M_{R\circ S}$ 的方法：$t_{ij} &#x3D;  {\textstyle \bigvee_{k&#x3D;1}^{p}(r_{ik}\wedge s_{kj})}$。</p>
 <p><strong>闭包</strong></p>
 <p>将 $R$ 的自反、对称、传递闭包分别记作 $r(R),s(R),t(R)$。其中 $R$ 自反闭包是指：包含 $R$ 的最小自反关系。其他闭包同理。</p>
 <p><strong>定理：</strong> $R$ 是自反的当且仅当 $r(R)&#x3D;R$，其他闭包同理。</p>
-<p><strong>计算方法：</strong> $r(R) &#x3D; R\cup I_A$，$s(R) &#x3D; R\cup R^{-1}$，$t(R) &#x3D; {\textstyle \bigcup_{n&#x3D;1}^{\infin}R^n}$.</p>
+<p><strong>计算方法：</strong> $r(R) &#x3D; R\cup I_A$，$s(R) &#x3D; R\cup R^{-1}$，$t(R) &#x3D; {\textstyle \bigcup_{n&#x3D;1}^{\infty}R^n}$.</p>
 <p><strong>性质：</strong> $R_1\subseteq R_2$ 可以推得 $r(R_1)\subseteq r(R_2),s(R_1)\subseteq s(R_2),t(R_1)\subseteq t(R_2)$.</p>
 <h4 id="2-3-次序关系"><a href="#2-3-次序关系" class="headerlink" title="2.3 次序关系"></a>2.3 次序关系</h4><p><strong>偏序关系</strong></p>
 <p>当且仅当 $R$ 是自反的、反对称的、传递的，我们称 $R$ 是 $A$ 上的偏序关系（即半序关系）</p>
@@ -558,14 +558,16 @@
 
 
 
-<script src="https://utteranc.es/client.js"
-        repo="istinaa/istinaa.github.io"
-        issue-term="pathname"
-        label="Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
+<div class="utterances-container">
+  <script src="https://utteranc.es/client.js"
+          repo="istinaa/istinaa.github.io"
+          issue-term="pathname"
+          label="Comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
     
 
     

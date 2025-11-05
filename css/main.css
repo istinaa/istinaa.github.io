@@ -1604,6 +1604,17 @@ mjx-container svg:focus,
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.utterances-container {
+  transform: scale(1.4);
+  transform-origin: top left;
+  width: 100%; /* 根据放大倍数手动修正宽度 */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.utterances-container iframe {
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  border-radius: 8px;
+}
 @-moz-keyframes post-prev-anim {
   0% {
     -webkit-transform: translateX(0);
