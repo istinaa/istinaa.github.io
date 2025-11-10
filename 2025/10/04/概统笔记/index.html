@@ -20,28 +20,27 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
+    <meta name="description" content="《概率与数理模型》课程笔记。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="⌈BUAA CO⌋ pre 记录">
-<meta property="og:url" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="概统笔记">
+<meta property="og:url" content="http://istinaa.github.io/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
+<meta property="og:description" content="《概率与数理模型》课程笔记。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
-<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png">
-<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png">
-<meta property="article:published_time" content="2025-09-30T02:19:03.000Z">
-<meta property="article:modified_time" content="2025-11-10T13:52:10.263Z">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%A6%82%E5%9E%8B.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/Normal.png">
+<meta property="article:published_time" content="2025-10-04T07:31:15.000Z">
+<meta property="article:modified_time" content="2025-11-10T12:10:14.550Z">
 <meta property="article:author" content="istina">
-<meta property="article:tag" content="CO">
+<meta property="article:tag" content="概统">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
+<meta name="twitter:image" content="http://istinaa.github.io/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%A6%82%E5%9E%8B.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>⌈BUAA CO⌋ pre 记录 - Istina&#39;s Blog</title>
+  <title>概统笔记 - Istina&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ pre 记录"></span>
+            <span id="subtitle" data-typed-text="概统笔记"></span>
           
         </div>
 
@@ -210,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-09-30 10:19" pubdate>
-          2025年9月30日 上午
+        <time datetime="2025-10-04 15:31" pubdate>
+          2025年10月4日 下午
         </time>
       </span>
     
@@ -222,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          916 字
+          1.4k 字
         
       </span>
     
@@ -233,7 +232,7 @@
         
         
         
-          8 分钟
+          12 分钟
         
       </span>
     
@@ -279,57 +278,95 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">⌈BUAA CO⌋ pre 记录</h1>
+            <h1 id="seo-header">概统笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="翻涌数字-Pre-roll"><a href="#翻涌数字-Pre-roll" class="headerlink" title="翻涌数字 Pre_roll"></a>翻涌数字 Pre_roll</h3><hr>
-<blockquote>
-<p><strong>题意</strong>：</p>
-<p>给定位宽 $32$ 的输入 $a$，代表 $8$ 个位宽为 $4$ 的数据 $a_0,a_1\cdots, a_7$。同时令每一个 $a_i&#x3D;\sum_{j&#x3D;0}^{i}a_j$ ，对 <code>4&#39;d16</code> 取模后，按原顺序拼接输出。</p>
+                <h3 id="一、概率论"><a href="#一、概率论" class="headerlink" title="一、概率论"></a>一、概率论</h3><hr>
+<h4 id="1-1-概率论的基本概念"><a href="#1-1-概率论的基本概念" class="headerlink" title="1.1 概率论的基本概念"></a>1.1 概率论的基本概念</h4><blockquote>
+<p><strong>引入：</strong> </p>
+<p>女士声称能分辨 茶加奶 和 奶加茶。如何确认她是否真的有这一能力？</p>
+<p>一种可行的办法是分别把两者分成五杯后打乱，让她分辨，统计正确率。</p>
+<p>这也是一本科普著作的标题来源：《女士品茶》—— 统计学如何变革科学与生活。</p>
 </blockquote>
-<p>考场上先开的这个题。只需要先设置 $8$ 个 <code>wire</code> 型数据 $a_0,a_1\cdots,a_7$ 拆分 <code>input</code>  中的数据，再对 ${a_n}$ 做前缀和，最后拼接输出即可。然而由于对 <code>Verilog</code>  语法的不熟悉，写的过程非常不顺利。以下是一些需要记住的语法规则：</p>
+<p>事件可分为 <strong>确定事件</strong> 和 <strong>不确定事件（包含随机事件）</strong>。</p>
+<p><strong>随机试验：</strong> 可用 $E$ 表示，有以下特点：</p>
 <ul>
-<li><p><code>assign</code> 的作用对象为 <code>wire</code> 型，称为连续赋值，属于结构描述。不能放在 <code>always</code> 和 <code>initial</code> 块里面；</p>
-<p>而过程赋值的作用对象为 <code>reg</code> 型，必须放在 <code>always</code> 和 <code>initial</code> 块里面。</p>
-</li>
-<li><p>阻塞赋值（<code>=</code>）与 <code>c++</code> 中的赋值语句类似，更新完被赋值数的值才会执行接下来的操作。而非阻塞赋值（<code>&lt;=</code>）操作会等到全部语句计算完后统一更新。</p>
-</li>
-<li><p><code>Verilog</code> 中位选择 <code>[msb:lsb]</code> 必须是常量表达式。因此 <code>a[i*4 + 3 : i*4]</code> 这种写法是非法的。然而我们可以写 <code>a[i*4 + 3 -: 4]</code> 或者 <code>a[i*4 +: 4]</code>。</p>
-</li>
+<li>可在相同的条件下重复；</li>
+<li>知道所有可能结果，但不确定某次试验中出现哪一结果。</li>
 </ul>
-<h3 id="MIPS-Submatrix"><a href="#MIPS-Submatrix" class="headerlink" title="MIPS_Submatrix"></a>MIPS_Submatrix</h3><hr>
-<blockquote>
-<p><strong>题意：</strong></p>
-<p>读入 $16$ 个整数代表一个 $4\times 4$ 的矩阵 $A_{0}\sim A_{15}$ .再读入子矩阵的左上坐标以及长宽数据。输出子矩阵内的值。如果超出边界，改为输出 <code>Out of bounds</code>。</p>
-</blockquote>
-<p>主要考察的其实还是 MIPS 的基本语法。除了需要对基础的语法更加熟悉之外，还要尽量提升自己代码的可读性。</p>
-<ul>
-<li><p>一些与赋值有关，容易混淆的命令：</p>
-<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png" srcset="/img/loading.gif" lazyload alt="常用命令"></p>
-</li>
-<li><p>关于数组的存取操作。一般我们可以写一个宏定义来快速计算某下标对应的偏移量。比如图中的宏可以用来计算列数为 <code>%len</code> 的二维数组中指定坐标的偏移量，进而进行存储和载入的操作。</p>
-<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png" srcset="/img/loading.gif" lazyload alt="数组存取"></p>
-<p>这里出现了乘法的写法。涉及 <code>mult</code> 和 <code>mflo</code> 两个命令，需要特殊记忆。</p>
-</li>
-</ul>
-<h3 id="Logisim-Sokoban"><a href="#Logisim-Sokoban" class="headerlink" title="Logisim_Sokoban"></a>Logisim_Sokoban</h3><hr>
-<blockquote>
-<p><strong>题意：</strong> </p>
-<p>初始时玩家在 $6\times 6$ 地图上的 $(0,0)$ 处。地图上有若干障碍。除了 <code>clk</code> 和 <code>reset</code> 信号（异步复位）外，每时刻还会收到 <code>dx</code> 和 <code>dy</code> 信号。</p>
-<p>假设玩家在 $(x,y)$ 位置，收到信号时，会尝试移动到 $(x+dx,y+dy)$ 位置。若目标位置超出地图或为障碍，则留在原位置，将 <code>flag</code> 置高 $1$ 个周期。当前位置为 $(5,5)$ 时，<code>out</code> 输出为 $1$，否则为 $0$。</p>
-</blockquote>
-<p>考场上没有成功搭出来这道题。是课下补题时做的。</p>
-<p>根据经典的 <code>Moore</code> 状态机的框架来搭就可以。如下图所示：</p>
-<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png" srcset="/img/loading.gif" lazyload alt="Moore 状态机框架"></p>
-<p>状态转移是电路的核心部分。此处我用一个八位二进制数表示此状态下的 $x,y$ 坐标。将它的各位和 <code>dx</code>，<code>dy</code> 一起作为状态转移电路的输入。</p>
-<p>转移电路中先用一个四位加法器计算出 <code>x + dx</code> 和 <code>y + dy</code> （注意要先用 <code>Bit Extender</code> 将 <code>dx</code> 和 <code>dy</code> 同样扩展为 $4$ 位），检查 $(x + dx,y+dy)$ 是否为合法位置。</p>
-<p>是否为合法位置，用若干个比较器即可完成。（需要注意到是，如果选用六位二进制数表示状态，则须将比较器的属性设为 <code>Unsigned</code>，否则最高位会被识别为符号位）</p>
-<p>如果是合法位置，将 <code>x + dx</code> 和 <code>y + dy</code> 拼接成八位二进制数输出，<code>flag</code> 置 <code>0</code> ；否则将输入的数再输出，<code>flag</code> 置 <code>1</code>。</p>
-<p>于是就完成了。其实都算不上一个难题，只能怪自己没好好学。</p>
+<p>**样本空间：**记为 $S$，表示随机试验 $E$ 所有可能结果组成的集合。</p>
+<p>**随机事件：**样本空间 $S$ 的子集，记为 $A$。子集中一个样本点发生，则称这一事件发生。</p>
+<p>**必然事件：**所有样本点组成的事件，$A &#x3D; S$。</p>
+<p><strong>不可能事件：</strong>$A &#x3D; \varnothing$。</p>
 <hr>
-<h3 id="最后，P0上机顺利-！"><a href="#最后，P0上机顺利-！" class="headerlink" title="最后，P0上机顺利 -(^_^)-！"></a>最后，P0上机顺利 -(^_^)-！</h3>
+<p><strong>事件的运算：</strong></p>
+<ul>
+<li>$A+B$：表示 $A$ 和 $B$ 中有至少一件发生。</li>
+<li>$A-B$：表示 $A$ 发生， $B$ 不发生。</li>
+<li>$A\cap B$ ：表示 $A$ 和 $B$ 都发生。</li>
+</ul>
+<p><strong>频率的性质：</strong></p>
+<ul>
+<li>$0\leq f_n(A)\leq1$</li>
+<li>$f_n(S) &#x3D; 1$</li>
+<li>$f_n(A\cup B) &#x3D; f_n(A)+f_n(B)$</li>
+</ul>
+<p>**概率：**函数 $P(A)$ 具有类似的性质：</p>
+<ul>
+<li><strong>非负性</strong>：$0\leq P(A)\leq1$</li>
+<li><strong>规范性</strong>：$P(S) &#x3D; 1$</li>
+<li><strong>可列可加性</strong>：$P\left(\bigcup_{n &#x3D; 1}^{\infin} A_n\right) &#x3D; \sum_{n &#x3D; 1}^{\infin}P(A_n)$.</li>
+</ul>
+<hr>
+<p>**古典概型：**事件数量有限，且每一事件等概率。</p>
+<blockquote>
+<p>**例：**从 $1$ 至 $9$ 中随机取 $4$ 个号码，求和为奇数的概率。</p>
+<p><strong>解</strong>：和为奇数样本数：${1\choose 5} \times {3\choose 4}+{3\choose 5} \times {1\choose 4} &#x3D; 60$，总样本数：${4\choose 9} &#x3D; 126$。因此总概率为：$P &#x3D; \frac {10}{21}$</p>
+</blockquote>
+<p>**几何概型：**向区域内投质点，落到对应事件范围内的概率和事件发生概率相等。</p>
+<blockquote>
+<p><strong>例</strong>：两人约定 $8-9$ 点内随机时间到指定地点，等候 $20$ 分钟若对方没有到来则离去。问两人成功会面的概率。</p>
+<p>**解：**在坐标系中画出 $|x - y|\leq 20$ 的图像。计算阴影部分占总面积的比例。求得概率为 $\frac 4 9$。</p>
+</blockquote>
+<p><img src="/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/%E5%87%A0%E4%BD%95%E6%A6%82%E5%9E%8B.png" srcset="/img/loading.gif" lazyload alt="几何概型"></p>
+<blockquote>
+<p><strong>例</strong>：袋中 $a$ 只白球，$b$ 只红球，$k$ 个人依次从袋中取一个球（不放回）。求第 $i$ 个人取到白球的概率。</p>
+<p><strong>解</strong>：不放回的抽取可以直接看成排好顺序后，将随机排列的球分给他们。因此显然取到白球的概率与位置无关，即 $\frac{a}{a+b}$。</p>
+<p>也可以这样计算：若确定第 $i$ 个人取到了白球，则概率可以写成 $\frac{C_{a+b - 1}^{k - 1}}{C_{a+b}^{k}} &#x3D; \frac{a}{a +b}$。答案也是一样的。</p>
+</blockquote>
+<hr>
+<p><strong>条件概率</strong></p>
+<p>记 $P(B\mid A)$ 为发生 $B$ 的前提下，发生 $B$ 的概率。</p>
+<p>$P(A)\ne 0$ 时，有 $P(B\mid A) &#x3D; \frac{P(AB)}{P(A)}$.</p>
+<p>可拓展至多个事件发生的情况：<br>$$<br>P(ABC) &#x3D; P(C\mid AB)\cdot P(B\mid A)\cdot P(A)<br>$$<br><strong>全概率公式</strong><br>$$<br>P(A) &#x3D; \sum_{i &#x3D; 1}^n P(AB_i) &#x3D; \sum_{i &#x3D; 1}^n P(B_i)P(A\mid B_i)<br>$$</p>
+<h4 id="1-2-离散型随机变量"><a href="#1-2-离散型随机变量" class="headerlink" title="1.2 离散型随机变量"></a>1.2 离散型随机变量</h4><h4 id="1-3-连续型随机变量"><a href="#1-3-连续型随机变量" class="headerlink" title="1.3 连续型随机变量"></a>1.3 连续型随机变量</h4><p><strong>定义</strong></p>
+<p>设 $X$ 是随机变量，若能找到非负可积函数 $f(x)$，使得：<br>$$<br>F(X) &#x3D; \int_{-\infty}^{X}f(t)dt<br>$$<br>其中 $F(x)$ 是 <strong>分布函数</strong>。则 $X$ 是连续型随机变量。$f(x)$ 是它的 <strong>概率密度函数</strong>，具有以下性质：</p>
+<ul>
+<li>$\int_{-\infty}^{+\infty} f(x)dx&#x3D;1$</li>
+<li>对于任意 $x_1\leq x_2$，$P{x_1&lt;X\leq x_2} &#x3D; F(x_2) - F(x_1) &#x3D; \int_{x_1}^{x_2} f(x)dx$.</li>
+</ul>
+<p><strong>几种特殊分布</strong></p>
+<ul>
+<li><p>$X$ 服从区间 $(a, b)$ 上的 <strong>均匀分布</strong>，记作 $X\sim U(a, b)$</p>
+</li>
+<li><p>参数为 $\lambda$ 的 <strong>指数分布</strong> 的分布函数：<br>$$<br>F(x)&#x3D;<br>\left{\begin{matrix}<br>1 - e^{-\lambda x} &amp;, x\geq 0 \<br>0 &amp;, x&lt; 0<br>\end{matrix}\right.<br>$$<br>存在 **无记忆性**，即：<br>$$<br>P(X&gt;s+t\mid X&gt;s) &#x3D; P(X&gt;t)<br>$$</p>
+</li>
+<li><p><strong>正态分布</strong>（或称 高斯分布）</p>
+<p>参数为 $\mu,\sigma^2$ 的正态分布的概率密度函数：<br>$$<br>f(x) &#x3D; \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x - \mu)^2}{2\sigma^2}}<br>$$<br>这个式子来自：</p>
+<p><img src="/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/Normal.png" srcset="/img/loading.gif" lazyload alt="正态分布推导"></p>
+<p><strong>标准正态分布</strong> $N(0, 1)$ ：$\varphi(x) &#x3D; \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$，其分布函数 $\Phi(x) &#x3D; \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x} e^{-\frac{t^2}{2}}$ 有表可查。</p>
+<p>而对于一般的正态分布 $X\sim N(\mu, \sigma^2)$：<br>$$<br>F(X) &#x3D; \frac{1}{\sqrt{2\pi}\sigma}\int^{x}<em>{-\infty}e^{-\frac{(t - \mu)^2}{2\sigma^2}}dt<br>$$<br>用 $y &#x3D; \frac{t - \mu}{\sigma}$ 代换得：<br>$$<br>F(X) &#x3D;\frac{1}{\sqrt{2\pi}}\int^{\frac{x - \mu}{\sigma}}</em>{-\infty}e^{-\frac{y^2}{2}} dy &#x3D; \Phi(\frac{x - \mu}{\sigma})<br>$$<br>因此也有：<br>$$<br>P(a&lt;X&lt;b) &#x3D; \Phi(\frac{b - \mu}{\sigma}) - \Phi(\frac{a - \mu}{\sigma})<br>$$</p>
+</li>
+</ul>
+<p><strong>随机变量函数</strong></p>
+<p>如果函数 $g(x)$ 处处可导且 $g’(x)$ 正负性恒定，则：<br>$$<br>f_Y(y) &#x3D;\left{\begin{matrix}<br>f_X\left [h(y)\right]|h’(y)| &amp;, \alpha\leq x\leq \beta \<br>0 &amp;, 其他<br>\end{matrix}\right.<br>$$<br>其中 $h(y)$ 是 $g(x)$ 的反函数。</p>
+<h4 id="1-4-多维随机变量及其分布"><a href="#1-4-多维随机变量及其分布" class="headerlink" title="1.4 多维随机变量及其分布"></a>1.4 多维随机变量及其分布</h4><p>二维随机变量 $(X, Y)$ 的 <strong>分布函数</strong> $F(x, y) &#x3D; P(X\leq x, Y\leq y)$。</p>
+<p>类似于二维前缀和的式子，有：<br>$$<br>\begin{align*}<br>&amp;P(a&lt;X\leq b, c&lt;Y\leq d) \ &amp;&#x3D; F(b, d) - F(a, d) - F(b, c)+F(a, c)<br>\&amp; \geq 0<br>\end{align*}<br>$$<br>另外有：$F(+\infty, +\infty) &#x3D; 1$ ，$F(-\infty, y) &#x3D; F(x, -\infty) &#x3D; 0$。</p>
+<p>离散型变量可以列 <strong>联合分布律</strong>。</p>
+<p>连续型变量可类似于一维随机变量定义 <strong>联合密度函数</strong> $f(x, y).$</p>
+
                 
               </div>
             
@@ -347,7 +384,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/" class="category-chain-item">上机记录</a>
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
   
   
 
@@ -362,7 +399,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/CO/" class="print-no-link">#CO</a>
+        <a href="/tags/%E6%A6%82%E7%BB%9F/" class="print-no-link">#概统</a>
       
     </div>
   
@@ -374,8 +411,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>⌈BUAA CO⌋ pre 记录</div>
-      <div>http://istinaa.github.io/2025/09/30/⌈BUAA CO⌋pre 记录/</div>
+      <div>概统笔记</div>
+      <div>http://istinaa.github.io/2025/10/04/概统笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -387,7 +424,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年9月30日</div>
+          <div>2025年10月4日</div>
         </div>
       
       
@@ -419,9 +456,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/" title="概统笔记">
+                      <a href="/2025/10/05/Hexo%20%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95/" title="⌈Hexo⌋ 建站记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">概统笔记</span>
+                        <span class="hidden-mobile">⌈Hexo⌋ 建站记录</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -429,8 +466,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/09/03/%E4%B9%9D%E6%9C%88%E5%90%88%E9%9B%86/" title="⌈Codeforces⌋ 九月合集">
-                        <span class="hidden-mobile">⌈Codeforces⌋ 九月合集</span>
+                      <a href="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ pre 记录">
+                        <span class="hidden-mobile">⌈BUAA CO⌋ pre 记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -20,28 +20,24 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
+    <meta name="description" content="记录了11&#x2F;03 P3上机的感受。在两小时的时间节点压线过了第二题，而在补时的半小时内碌碌无为。相当惊险的经历。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="⌈BUAA CO⌋ pre 记录">
-<meta property="og:url" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="⌈BUAA CO⌋ p3 记录">
+<meta property="og:url" content="http://istinaa.github.io/2025/11/04/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8A%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
-<meta property="og:description" content="记录了9&#x2F;29 Pre上机的感受。暑假没学COpre，几乎全靠考前两天自学，不幸倒在了Logisim身下。">
+<meta property="og:description" content="记录了11&#x2F;03 P3上机的感受。在两小时的时间节点压线过了第二题，而在补时的半小时内碌碌无为。相当惊险的经历。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
-<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png">
-<meta property="og:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png">
-<meta property="article:published_time" content="2025-09-30T02:19:03.000Z">
-<meta property="article:modified_time" content="2025-11-10T13:52:10.263Z">
+<meta property="article:published_time" content="2025-11-04T04:44:27.000Z">
+<meta property="article:modified_time" content="2025-11-10T12:55:02.198Z">
 <meta property="article:author" content="istina">
 <meta property="article:tag" content="CO">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://istinaa.github.io/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>⌈BUAA CO⌋ pre 记录 - Istina&#39;s Blog</title>
+  <title>⌈BUAA CO⌋ p3 记录 - Istina&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ pre 记录"></span>
+            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ p3 记录"></span>
           
         </div>
 
@@ -210,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-09-30 10:19" pubdate>
-          2025年9月30日 上午
+        <time datetime="2025-11-04 12:44" pubdate>
+          2025年11月4日 下午
         </time>
       </span>
     
@@ -222,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          916 字
+          277 字
         
       </span>
     
@@ -233,7 +229,7 @@
         
         
         
-          8 分钟
+          3 分钟
         
       </span>
     
@@ -279,57 +275,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">⌈BUAA CO⌋ pre 记录</h1>
+            <h1 id="seo-header">⌈BUAA CO⌋ p3 记录</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="翻涌数字-Pre-roll"><a href="#翻涌数字-Pre-roll" class="headerlink" title="翻涌数字 Pre_roll"></a>翻涌数字 Pre_roll</h3><hr>
-<blockquote>
-<p><strong>题意</strong>：</p>
-<p>给定位宽 $32$ 的输入 $a$，代表 $8$ 个位宽为 $4$ 的数据 $a_0,a_1\cdots, a_7$。同时令每一个 $a_i&#x3D;\sum_{j&#x3D;0}^{i}a_j$ ，对 <code>4&#39;d16</code> 取模后，按原顺序拼接输出。</p>
-</blockquote>
-<p>考场上先开的这个题。只需要先设置 $8$ 个 <code>wire</code> 型数据 $a_0,a_1\cdots,a_7$ 拆分 <code>input</code>  中的数据，再对 ${a_n}$ 做前缀和，最后拼接输出即可。然而由于对 <code>Verilog</code>  语法的不熟悉，写的过程非常不顺利。以下是一些需要记住的语法规则：</p>
-<ul>
-<li><p><code>assign</code> 的作用对象为 <code>wire</code> 型，称为连续赋值，属于结构描述。不能放在 <code>always</code> 和 <code>initial</code> 块里面；</p>
-<p>而过程赋值的作用对象为 <code>reg</code> 型，必须放在 <code>always</code> 和 <code>initial</code> 块里面。</p>
-</li>
-<li><p>阻塞赋值（<code>=</code>）与 <code>c++</code> 中的赋值语句类似，更新完被赋值数的值才会执行接下来的操作。而非阻塞赋值（<code>&lt;=</code>）操作会等到全部语句计算完后统一更新。</p>
-</li>
-<li><p><code>Verilog</code> 中位选择 <code>[msb:lsb]</code> 必须是常量表达式。因此 <code>a[i*4 + 3 : i*4]</code> 这种写法是非法的。然而我们可以写 <code>a[i*4 + 3 -: 4]</code> 或者 <code>a[i*4 +: 4]</code>。</p>
-</li>
-</ul>
-<h3 id="MIPS-Submatrix"><a href="#MIPS-Submatrix" class="headerlink" title="MIPS_Submatrix"></a>MIPS_Submatrix</h3><hr>
-<blockquote>
-<p><strong>题意：</strong></p>
-<p>读入 $16$ 个整数代表一个 $4\times 4$ 的矩阵 $A_{0}\sim A_{15}$ .再读入子矩阵的左上坐标以及长宽数据。输出子矩阵内的值。如果超出边界，改为输出 <code>Out of bounds</code>。</p>
-</blockquote>
-<p>主要考察的其实还是 MIPS 的基本语法。除了需要对基础的语法更加熟悉之外，还要尽量提升自己代码的可读性。</p>
-<ul>
-<li><p>一些与赋值有关，容易混淆的命令：</p>
-<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/MIPS.png" srcset="/img/loading.gif" lazyload alt="常用命令"></p>
-</li>
-<li><p>关于数组的存取操作。一般我们可以写一个宏定义来快速计算某下标对应的偏移量。比如图中的宏可以用来计算列数为 <code>%len</code> 的二维数组中指定坐标的偏移量，进而进行存储和载入的操作。</p>
-<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/macro.png" srcset="/img/loading.gif" lazyload alt="数组存取"></p>
-<p>这里出现了乘法的写法。涉及 <code>mult</code> 和 <code>mflo</code> 两个命令，需要特殊记忆。</p>
-</li>
-</ul>
-<h3 id="Logisim-Sokoban"><a href="#Logisim-Sokoban" class="headerlink" title="Logisim_Sokoban"></a>Logisim_Sokoban</h3><hr>
-<blockquote>
-<p><strong>题意：</strong> </p>
-<p>初始时玩家在 $6\times 6$ 地图上的 $(0,0)$ 处。地图上有若干障碍。除了 <code>clk</code> 和 <code>reset</code> 信号（异步复位）外，每时刻还会收到 <code>dx</code> 和 <code>dy</code> 信号。</p>
-<p>假设玩家在 $(x,y)$ 位置，收到信号时，会尝试移动到 $(x+dx,y+dy)$ 位置。若目标位置超出地图或为障碍，则留在原位置，将 <code>flag</code> 置高 $1$ 个周期。当前位置为 $(5,5)$ 时，<code>out</code> 输出为 $1$，否则为 $0$。</p>
-</blockquote>
-<p>考场上没有成功搭出来这道题。是课下补题时做的。</p>
-<p>根据经典的 <code>Moore</code> 状态机的框架来搭就可以。如下图所示：</p>
-<p><img src="/2025/09/30/%E2%8C%88BUAA%20CO%E2%8C%8Bpre%20%E8%AE%B0%E5%BD%95/Moore.png" srcset="/img/loading.gif" lazyload alt="Moore 状态机框架"></p>
-<p>状态转移是电路的核心部分。此处我用一个八位二进制数表示此状态下的 $x,y$ 坐标。将它的各位和 <code>dx</code>，<code>dy</code> 一起作为状态转移电路的输入。</p>
-<p>转移电路中先用一个四位加法器计算出 <code>x + dx</code> 和 <code>y + dy</code> （注意要先用 <code>Bit Extender</code> 将 <code>dx</code> 和 <code>dy</code> 同样扩展为 $4$ 位），检查 $(x + dx,y+dy)$ 是否为合法位置。</p>
-<p>是否为合法位置，用若干个比较器即可完成。（需要注意到是，如果选用六位二进制数表示状态，则须将比较器的属性设为 <code>Unsigned</code>，否则最高位会被识别为符号位）</p>
-<p>如果是合法位置，将 <code>x + dx</code> 和 <code>y + dy</code> 拼接成八位二进制数输出，<code>flag</code> 置 <code>0</code> ；否则将输入的数再输出，<code>flag</code> 置 <code>1</code>。</p>
-<p>于是就完成了。其实都算不上一个难题，只能怪自己没好好学。</p>
-<hr>
-<h3 id="最后，P0上机顺利-！"><a href="#最后，P0上机顺利-！" class="headerlink" title="最后，P0上机顺利 -(^_^)-！"></a>最后，P0上机顺利 -(^_^)-！</h3>
+                <p>两天内建立起的对单周期 <code>cpu</code> 的粗浅认知马上就受到了挑战。赛前看了眼去年的题，似乎能朦胧地说出怎么改，但具体到信号通路又不是很清楚了。因此进入考场前其实信心并不是很足。</p>
+<h3 id="助教问答"><a href="#助教问答" class="headerlink" title="助教问答"></a>助教问答</h3><p>本次上机出现了一个小插曲：我没有及时下载现场提供的专用版 <code>MARS</code>，导致完全无法进行本地测试。</p>
+<p>补时还有二十分钟的时候我意识到没有本地测试会严重影响成绩，于是向助教求助。他听到之后让我赶紧做第三题，他去向课程组反馈。但反馈了半天也没结果。</p>
+<p>最终我问答的时候依然未作测试，不知成绩是否被严重影响。</p>
+<p>负责问答的助教是个学姐。问的问题我已经记不清了，但应该都蛮简单的，什么 <code>beq</code> 指令的数据通路之类的。然后就是把第一题的思路复述了一遍，还是比较宽松的。</p>
+
                 
               </div>
             
@@ -374,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>⌈BUAA CO⌋ pre 记录</div>
-      <div>http://istinaa.github.io/2025/09/30/⌈BUAA CO⌋pre 记录/</div>
+      <div>⌈BUAA CO⌋ p3 记录</div>
+      <div>http://istinaa.github.io/2025/11/04/⌈BUAA CO⌋p3 课上记录/</div>
     </div>
     <div class="license-meta">
       
@@ -387,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年9月30日</div>
+          <div>2025年11月4日</div>
         </div>
       
       
@@ -419,18 +375,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/10/04/%E6%A6%82%E7%BB%9F%E7%AC%94%E8%AE%B0/" title="概统笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">概统笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/09/03/%E4%B9%9D%E6%9C%88%E5%90%88%E9%9B%86/" title="⌈Codeforces⌋ 九月合集">
-                        <span class="hidden-mobile">⌈Codeforces⌋ 九月合集</span>
+                      <a href="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p3 课下记录">
+                        <span class="hidden-mobile">⌈BUAA CO⌋ p3 课下记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
