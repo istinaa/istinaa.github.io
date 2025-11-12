@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          6.1k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          19 分钟
+          51 分钟
         
       </span>
     
@@ -296,65 +296,877 @@
             
               <div class="markdown-body">
                 
-                <p> 各种事情一拖再拖，留给p3课下的时间非常紧张了。四处翻前辈的博客，终于是集百家之所短完成了本 CPU 的设计。笔者翘了合唱团的排练写下这篇设计文档。</p>
-<h3 id="CPU-设计概述"><a href="#CPU-设计概述" class="headerlink" title="CPU 设计概述"></a>CPU 设计概述</h3><p>本次的设计的 <code>Logisim</code> cpu 在作业的要求（<code>add</code>，<code>sub</code>，<code>ori</code>，<code>lw</code>，<code>sw</code>，<code>beq</code>，<code>lui</code>，<code>nop</code>）外，并不支持其他的指令。那可拓展空间很大了。</p>
+                <p>各种事情一拖再拖，留给p3课下的时间非常紧张了。四处翻前辈的博客，终于是集百家之所短完成了本 CPU 的设计。笔者翘了合唱团的排练写下这篇设计文档。</p>
+<h3 id="CPU-设计概述">CPU 设计概述</h3>
+<p>本次的设计的 <code>Logisim</code> cpu 在作业的要求（<code>add</code>，<code>sub</code>，<code>ori</code>，<code>lw</code>，<code>sw</code>，<code>beq</code>，<code>lui</code>，<code>nop</code>）外，并不支持其他的指令。那可拓展空间很大了。</p>
 <p>总体采用模块化设计。由于我偏爱 <code>Tunnel</code>，各个模块之间并不像其他人的设计一样复杂交错，而是相当分立。从顶层看说这是个 CPU 都不是很让人信服。</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/main.png" srcset="/img/loading.gif" lazyload alt="CPU顶层示意图"></p>
+<p><img src="main.png" srcset="/img/loading.gif" lazyload alt="CPU顶层示意图"></p>
 <p>下面我将分模块讲一讲各模块的作用，和一些搭建时的注意点。</p>
-<h3 id="IFU-指令单元"><a href="#IFU-指令单元" class="headerlink" title="IFU: 指令单元"></a>IFU: 指令单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/IFU_cover.png" srcset="/img/loading.gif" lazyload alt="IFU外观"></p>
+<h3 id="IFU-指令单元">IFU: 指令单元</h3>
+<p><img src="IFU_cover.png" srcset="/img/loading.gif" lazyload alt="IFU外观"></p>
 <p>IFU的接口如下：</p>
 <table>
 <thead>
 <tr>
-<th align="left">信号名</th>
-<th align="left">位宽</th>
-<th align="left">方向</th>
-<th align="left">备注</th>
+<th style="text-align:left">信号名</th>
+<th style="text-align:left">位宽</th>
+<th style="text-align:left">方向</th>
+<th style="text-align:left">备注</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>clk</code></td>
-<td align="left">1</td>
-<td align="left">I</td>
-<td align="left"></td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>clk</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">I</td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>reset</code></td>
-<td align="left">1</td>
-<td align="left">I</td>
-<td align="left"></td>
+<td style="text-align:left"><code>reset</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">I</td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><code>PC_next</code></td>
-<td align="left">32</td>
-<td align="left">I</td>
-<td align="left">下一条执行指令的地址</td>
+<td style="text-align:left"><code>PC_next</code></td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">I</td>
+<td style="text-align:left">下一条执行指令的地址</td>
 </tr>
 <tr>
-<td align="left"><code>Instr</code></td>
-<td align="left">32</td>
-<td align="left">O</td>
-<td align="left">当前执行的指令</td>
+<td style="text-align:left"><code>Instr</code></td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">当前执行的指令</td>
 </tr>
 <tr>
-<td align="left"><code>PC</code></td>
-<td align="left">32</td>
-<td align="left">O</td>
-<td align="left">当前执行指令的地址</td>
+<td style="text-align:left"><code>PC</code></td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">当前执行指令的地址</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>其实是将 <strong>PC</strong>（程序计数器）和 <strong>IM</strong>（指令存储器）拼接构成。其中 PC 用寄存器实现，IM 通过 <code>ROM</code> 实现。具体连线如下：</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/IFU.png" srcset="/img/loading.gif" lazyload alt="IFU结构"></p>
+<p><img src="IFU.png" srcset="/img/loading.gif" lazyload alt="IFU结构"></p>
 <p>这一部分的逻辑可能会让人想起 P0 时搭的有限状态机。寄存器输出的 <code>PC</code> 经过一系列状态转移后得到 <code>PC_next</code> ，然后再重新作用于寄存器。</p>
 <p>值得注意的地方有两点：</p>
 <ul>
-<li><p>根据题目要求：<code>PC</code> 的初始值是 <code>0x00003000</code>，对应的指令存在 <code>ROM</code> 的 <code>0x00000000</code> 位置。因此 <code>PC</code> 需要用一个多路选择器实现等效初始化，而 <code>ROM</code> 读入的地址应为 <code>PC-0x00003000</code>。</p>
+<li>
+<p>根据题目要求：<code>PC</code> 的初始值是 <code>0x00003000</code>，对应的指令存在 <code>ROM</code> 的 <code>0x00000000</code> 位置。因此 <code>PC</code> 需要用一个多路选择器实现等效初始化，而 <code>ROM</code> 读入的地址应为 <code>PC-0x00003000</code>。</p>
 <p>还有一种写法是内部实现不管题目“初值为 <code>0x00003000</code>” 的要求，直接一一对应。而在顶层面向评测机的输出时加上 <code>0x00003000</code>（zhp的写法）应该都可以？</p>
 </li>
-<li><p>可以看到 <code>ROM</code> 读入的是 $2\sim13$ 位，而非 $0\sim 11$ 位。这是因为 <code>PC</code> 和 <code>ROM</code> 计算地址的方式不一样。前者认为每 $+4$ 是下个指令，后者则认为每 $+1$ 是下个指令。为了使二者的操作能对上，需要将 <code>PC</code> 除以 $4$，也就是舍弃了最后两位。</p>
+<li>
+<p>可以看到 <code>ROM</code> 读入的是 
+    <span id="mjx-cda0131">
+      <style>
+      #mjx-cda0131{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="6.411ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 2833.6 688" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="mo" transform="translate(777.8,0)"><path data-c="223C" d="M55 166Q55 241 101 304T222 367Q260 367 296 349T362 304T421 252T484 208T554 189Q616 189 655 236T694 338Q694 350 698 358T708 367Q722 367 722 334Q722 260 677 197T562 134H554Q517 134 481 152T414 196T355 248T292 293T223 311Q179 311 145 286Q109 257 96 218T80 156T69 133Q55 133 55 166Z"></path></g><g data-mml-node="mn" transform="translate(1833.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z" transform="translate(500,0)"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mo>∼</mo><mn>13</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+   位，而非 
+    <span id="mjx-a761f9f">
+      <style>
+      #mjx-a761f9f{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="6.411ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 2833.6 688" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(777.8,0)"><path data-c="223C" d="M55 166Q55 241 101 304T222 367Q260 367 296 349T362 304T421 252T484 208T554 189Q616 189 655 236T694 338Q694 350 698 358T708 367Q722 367 722 334Q722 260 677 197T562 134H554Q517 134 481 152T414 196T355 248T292 293T223 311Q179 311 145 286Q109 257 96 218T80 156T69 133Q55 133 55 166Z"></path></g><g data-mml-node="mn" transform="translate(1833.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn><mo>∼</mo><mn>11</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+   位。这是因为 <code>PC</code> 和 <code>ROM</code> 计算地址的方式不一样。前者认为每 
+    <span id="mjx-be23663">
+      <style>
+      #mjx-be23663{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="2.891ex" height="1.717ex" role="img" focusable="false" viewBox="0 -677 1278 759" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>+</mo><mn>4</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+   是下个指令，后者则认为每 
+    <span id="mjx-139db62">
+      <style>
+      #mjx-139db62{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="2.891ex" height="1.692ex" role="img" focusable="false" viewBox="0 -666 1278 748" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(778,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>+</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+   是下个指令。为了使二者的操作能对上，需要将 <code>PC</code> 除以 
+    <span id="mjx-3684144">
+      <style>
+      #mjx-3684144{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.532ex" role="img" focusable="false" viewBox="0 -677 500 677" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>4</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+  ，也就是舍弃了最后两位。</p>
 </li>
 </ul>
-<h3 id="NPC-次地址计算单元"><a href="#NPC-次地址计算单元" class="headerlink" title="NPC: 次地址计算单元"></a>NPC: 次地址计算单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/NPC_cover.png" srcset="/img/loading.gif" lazyload alt="NPC外观"></p>
+<h3 id="NPC-次地址计算单元">NPC: 次地址计算单元</h3>
+<p><img src="NPC_cover.png" srcset="/img/loading.gif" lazyload alt="NPC外观"></p>
 <p>NPC 的接口如下：</p>
 <table>
 <thead>
@@ -365,7 +1177,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>PC</td>
 <td>32</td>
 <td>I</td>
@@ -384,7 +1197,7 @@
 <td>当前指令是否为 <code>Beq</code></td>
 </tr>
 <tr>
-<td>ALU&#x3D;0?</td>
+<td>ALU=0?</td>
 <td>1</td>
 <td>I</td>
 <td>ALU 计算结果是否为 0</td>
@@ -395,78 +1208,407 @@
 <td>O</td>
 <td>下条指令的地址</td>
 </tr>
-</tbody></table>
-<p>具体的连线是下面这样。唯一需要注意的地方可能就是 <code>Beq</code> 指令跳转除了加立即数外还要加 $4$。不过这部分在加入 <code>J</code> 类型指令后需要大改。</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/NPC.png" srcset="/img/loading.gif" lazyload alt="NPC结构"></p>
-<h3 id="ALU-计算单元"><a href="#ALU-计算单元" class="headerlink" title="ALU: 计算单元"></a>ALU: 计算单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/ALU_cover.png" srcset="/img/loading.gif" lazyload alt="ALU外观"></p>
+</tbody>
+</table>
+<p>具体的连线是下面这样。唯一需要注意的地方可能就是 <code>Beq</code> 指令跳转除了加立即数外还要加 
+    <span id="mjx-8fb12ed">
+      <style>
+      #mjx-8fb12ed{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.532ex" role="img" focusable="false" viewBox="0 -677 500 677" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>4</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+  。不过这部分在加入 <code>J</code> 类型指令后需要大改。</p>
+<p><img src="NPC.png" srcset="/img/loading.gif" lazyload alt="NPC结构"></p>
+<h3 id="ALU-计算单元">ALU: 计算单元</h3>
+<p><img src="ALU_cover.png" srcset="/img/loading.gif" lazyload alt="ALU外观"></p>
 <p>ALU 的接口如下：</p>
 <table>
 <thead>
 <tr>
-<th align="left">信号名</th>
-<th align="left">位宽</th>
-<th align="left">方向</th>
-<th align="left">备注</th>
+<th style="text-align:left">信号名</th>
+<th style="text-align:left">位宽</th>
+<th style="text-align:left">方向</th>
+<th style="text-align:left">备注</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">inA</td>
-<td align="left">32</td>
-<td align="left">I</td>
-<td align="left"></td>
+<tbody>
+<tr>
+<td style="text-align:left">inA</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">I</td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left">inB</td>
-<td align="left">32</td>
-<td align="left">I</td>
-<td align="left"></td>
+<td style="text-align:left">inB</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">I</td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left">op</td>
-<td align="left">2</td>
-<td align="left">I</td>
-<td align="left">运算种类，详情见下表。</td>
+<td style="text-align:left">op</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">I</td>
+<td style="text-align:left">运算种类，详情见下表。</td>
 </tr>
 <tr>
-<td align="left">res</td>
-<td align="left">32</td>
-<td align="left">O</td>
-<td align="left">ALU 运算结果</td>
+<td style="text-align:left">res</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">ALU 运算结果</td>
 </tr>
 <tr>
-<td align="left">isZero?</td>
-<td align="left">1</td>
-<td align="left">O</td>
-<td align="left">判断结果是否为 $0$，用于 <code>NPC</code> 模块中的 <code>beq</code> 判等。</td>
+<td style="text-align:left">isZero?</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">判断结果是否为 
+    <span id="mjx-9b3f66">
+      <style>
+      #mjx-9b3f66{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 500 688" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+  ，用于 <code>NPC</code> 模块中的 <code>beq</code> 判等。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
-<th align="left">OP</th>
-<th align="left">操作类型</th>
+<th style="text-align:left">OP</th>
+<th style="text-align:left">操作类型</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">00</td>
-<td align="left">A+B</td>
+<tbody>
+<tr>
+<td style="text-align:left">00</td>
+<td style="text-align:left">A+B</td>
 </tr>
 <tr>
-<td align="left">01</td>
-<td align="left">A-B</td>
+<td style="text-align:left">01</td>
+<td style="text-align:left">A-B</td>
 </tr>
 <tr>
-<td align="left">10</td>
-<td align="left">A or B</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">A or B</td>
 </tr>
 <tr>
-<td align="left">11</td>
-<td align="left">B &lt;&lt; 16</td>
+<td style="text-align:left">11</td>
+<td style="text-align:left">B &lt;&lt; 16</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>这些肯定是不够的。感觉最好要预留出两位操作指令的空间。</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/ALU.png" srcset="/img/loading.gif" lazyload alt="ALU结构"></p>
-<h3 id="GRF-寄存器堆"><a href="#GRF-寄存器堆" class="headerlink" title="GRF: 寄存器堆"></a>GRF: 寄存器堆</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/GRF_cover.png" srcset="/img/loading.gif" lazyload alt="GRF外观"></p>
+<p><img src="ALU.png" srcset="/img/loading.gif" lazyload alt="ALU结构"></p>
+<h3 id="GRF-寄存器堆">GRF: 寄存器堆</h3>
+<p><img src="GRF_cover.png" srcset="/img/loading.gif" lazyload alt="GRF外观"></p>
 <p>GRF的接口如下：</p>
 <table>
 <thead>
@@ -477,7 +1619,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>A1</td>
 <td>5</td>
 <td>I</td>
@@ -531,10 +1674,12 @@
 <td>O</td>
 <td><code>A2</code> 对应的数据</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>实现这边直接复用了P0课下搭的。连线很繁琐，但总得来说没什么好说。</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/GRF.png" srcset="/img/loading.gif" lazyload alt="GRF结构"></p>
-<h3 id="DM-内存组"><a href="#DM-内存组" class="headerlink" title="DM: 内存组"></a>DM: 内存组</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/DM_cover.png" srcset="/img/loading.gif" lazyload alt="DM外观"></p>
+<p><img src="GRF.png" srcset="/img/loading.gif" lazyload alt="GRF结构"></p>
+<h3 id="DM-内存组">DM: 内存组</h3>
+<p><img src="DM_cover.png" srcset="/img/loading.gif" lazyload alt="DM外观"></p>
 <p>DM 的接口如下：</p>
 <table>
 <thead>
@@ -545,7 +1690,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Address</td>
 <td>32</td>
 <td>I</td>
@@ -581,11 +1727,335 @@
 <td>O</td>
 <td>读出内存的数据</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>其实就是一个 <code>ROM</code> 。如果加入半字和字节的读写就麻烦了，此处不涉及。</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/DM.png" srcset="/img/loading.gif" lazyload alt="DM结构"></p>
-<h3 id="EXT-扩展单元"><a href="#EXT-扩展单元" class="headerlink" title="EXT: 扩展单元"></a>EXT: 扩展单元</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/EXT_cover.png" srcset="/img/loading.gif" lazyload alt="EXT外观"></p>
-<p>用于将 $16$ 位的立即数扩展为 $32$ 位。接口如下：</p>
+<p><img src="DM.png" srcset="/img/loading.gif" lazyload alt="DM结构"></p>
+<h3 id="EXT-扩展单元">EXT: 扩展单元</h3>
+<p><img src="EXT_cover.png" srcset="/img/loading.gif" lazyload alt="EXT外观"></p>
+<p>用于将 
+    <span id="mjx-0976af9">
+      <style>
+      #mjx-0976af9{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>16</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+   位的立即数扩展为 
+    <span id="mjx-fbebf01">
+      <style>
+      #mjx-fbebf01{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>32</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+   位。接口如下：</p>
 <table>
 <thead>
 <tr>
@@ -595,7 +2065,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>in</td>
 <td>16</td>
 <td>I</td>
@@ -613,10 +2084,12 @@
 <td>O</td>
 <td>扩展后的立即数</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>大概是最简单的一个部件了。布线如下：</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/EXT.png" srcset="/img/loading.gif" lazyload alt="EXT结构"></p>
-<h3 id="CTRL-控制器"><a href="#CTRL-控制器" class="headerlink" title="CTRL: 控制器"></a>CTRL: 控制器</h3><p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/CTRL_cover.png" srcset="/img/loading.gif" lazyload alt="CTRL外观"></p>
+<p><img src="EXT.png" srcset="/img/loading.gif" lazyload alt="EXT结构"></p>
+<h3 id="CTRL-控制器">CTRL: 控制器</h3>
+<p><img src="CTRL_cover.png" srcset="/img/loading.gif" lazyload alt="CTRL外观"></p>
 <p>控制器接口如下：</p>
 <table>
 <thead>
@@ -627,7 +2100,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Opcode[5:0]</td>
 <td>6</td>
 <td>I</td>
@@ -687,42 +2161,221 @@
 <td>O</td>
 <td>ALU 控制信号</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>控制器可以说是整个CPU的大脑。与逻辑部分确保只有对应指令为通，而或逻辑部分相当于完成了译码的任务，将各指令触发的信号点亮。</p>
 <p>连线的时候需要先考虑对应指令需要用到哪些信号，列出真值表，再仔细地完成连接。排线方法参考了先人的博客，总体还算美观。</p>
-<p><img src="/2025/11/02/%E2%8C%88BUAA%20CO%E2%8C%8Bp3%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/CTRL.png" srcset="/img/loading.gif" lazyload alt="CTRL结构"></p>
+<p><img src="CTRL.png" srcset="/img/loading.gif" lazyload alt="CTRL结构"></p>
 <p>一个避免连错线的小技巧是先把 <code>Op</code> 和 <code>func</code> 点成指令的样子，然后无脑连亮线就行了。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>基本上是照着几篇博客依葫芦画瓢搭出来的，截止日才堪堪做完。计算机组成原理，太困难。</p>
+<h3 id="小结">小结</h3>
+<p>基本上是照着几篇博客依葫芦画瓢搭出来的，截止日才堪堪做完。计算机组成原理，太困难。</p>
 <p>一个小插曲是我第一次提交交错了 <code>.circ</code> 文件的版本，但我没有发现。而是用眼睛盯了很久运行样例时 <code>Logisim</code> 和 <code>MARS</code> 中的情况是否有差别。一小时后我确认没差别，就又交了一发。结果直接过了。</p>
 <p>如何提高电路的可维护性、可扩展性，以便上机时提交代码，还需学习。</p>
-<h3 id="测试方案"><a href="#测试方案" class="headerlink" title="测试方案"></a>测试方案</h3><p>我也尝试着折腾了一下学长们留下的自动化评测脚本，但是始终没有运行成功。最后还是采用了最原始的瞪眼调试法，希望不要出 BUG。</p>
+<h3 id="测试方案">测试方案</h3>
+<p>我也尝试着折腾了一下学长们留下的自动化评测脚本，但是始终没有运行成功。最后还是采用了最原始的瞪眼调试法，希望不要出 BUG。</p>
 <p>测试流程大概就是：</p>
 <ul>
-<li><p>在 <code>MARS</code> 里编写 <code>MIPS</code> 测试程序。我这边使用的程序只是在官方提供的样例基础上做了一定的修改。下面贴出：</p>
+<li>
+<p>在 <code>MARS</code> 里编写 <code>MIPS</code> 测试程序。我这边使用的程序只是在官方提供的样例基础上做了一定的修改。下面贴出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs assembly">ori $a0, $0, 123<br>ori $a1, $a0, 456<br>lui $a2, 123         <br>lui $a3, 0xffff       <br>ori $a3, $a3, 0xffff    <br>add $s0, $a0, $a2   <br>add $s1, $a0, $a3   <br>add $s2, $a3, $a3    <br>sub $s0, $a0, $a2    <br>sub $s1, $a0, $a3   <br>sub $s2, $a3, $a3    <br>ori $t0, $0, 0x0000<br>sw $a0, 0($t0)<br>sw $a1, 4($t0)<br>sw $a2, 8($t0)<br>sw $a3, 12($t0)<br>sw $s0, 16($t0)<br>sw $s1, 20($t0)<br>sw $s2, 24($t0)<br>lw $a0, 0($t0)<br>lw $a1, 12($t0)<br>sw $a0, 28($t0)<br>sw $a1, 32($t0)<br>ori $t0, $0, 0x0020<br>sw $a0, 0($t0)<br>sw $a1, -4($t0)<br>sw $a2, -8($t0)<br>sw $a3, -12($t0)<br>lw $a0, 0($t0)<br>lw $a1, -12($t0)<br>ori $a0, $0, 1<br>ori $a1, $0, 2<br>ori $a2, $0, 1<br>beq $a0, $a1, loop1    <br>beq $a0, $a2, loop2    <br>loop1:sw $a0, 36($t0)<br>loop2:sw $a1, 40($t0)<br>sub $a1, $a1, $a0<br>nop<br>beq $a1, $a2, loop2  <br>nop<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>将 <code>.asm</code> 文件导出为 $16$ 进制码。然后在 <code>IFU</code> 模块的 <code>ROM</code> 中导入。</p>
+<li>
+<p>将 <code>.asm</code> 文件导出为 
+    <span id="mjx-c792863">
+      <style>
+      #mjx-c792863{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>16</mn></math></mjx-assistive-mml></mjx-container>
+    </span>
+   进制码。然后在 <code>IFU</code> 模块的 <code>ROM</code> 中导入。</p>
 </li>
-<li><p>一边单步执行 <code>MARS</code>，一边双击 <code>Logisim</code> 的时钟。观察寄存器、内存的变化和 <code>Logisim</code> 所示是否一致。</p>
+<li>
+<p>一边单步执行 <code>MARS</code>，一边双击 <code>Logisim</code> 的时钟。观察寄存器、内存的变化和 <code>Logisim</code> 所示是否一致。</p>
 </li>
 </ul>
-<h3 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h3><p>1. </p>
-<p>   <strong>Q：</strong> 上面我们介绍了通过 FSM 理解单周期 CPU 的基本方法。请大家指出单周期 CPU 所用到的模块中，哪些发挥状态存储功能，哪些发挥状态转移功能。</p>
-<p>   <strong>A：</strong> 状态存储：PC、GRF、DM 状态转移：NPC、ALU、CTRL</p>
-<p>2. </p>
-<p>   <strong>Q：</strong> 现在我们的模块中 IM 使用 ROM， DM 使用 RAM， GRF 使用 Register，这种做法合理吗？ 请给出分析，若有改进意见也请一并给出。</p>
-<p>   <strong>A：</strong> 还算合理。ROM是只读存储器，数据保有性好，可以用来存储指令；RAM可读可写，满足DM的需求；GRF是寄存器堆，对读写速度要求较高，适合用寄存器实现。</p>
-<p>   但用ROM存储指令使得CPU变成一次性的了，难以扩展。</p>
-<p>3. </p>
-<p>   <strong>Q：</strong> 在上述提示的模块之外，你是否在实际实现时设计了其他的模块？如果是的话，请给出介绍和设计的思路。</p>
-<p>   <strong>A：</strong> 暂时没有，但有一些在顶层看不够简洁美观的线路（如 <code>Splitter</code>、寄存器选择电路等）也可以被封装一下。</p>
-<p>4. </p>
-<p>   <strong>Q：</strong> 事实上，实现 nop 空指令，我们并不需要将它加入控制信号真值表，为什么？请给出你的理由。</p>
-<p>   <strong>A：</strong> nop的机器码相当于执行 <code>sll $0, $0, 0</code>，执行后没有任何影响。</p>
-<p>5. </p>
-<p>   <strong>Q：</strong> 阅读 Pre 的 <a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/tutorial/mips/mips-6/mips6-1/">“MIPS 指令集及汇编语言”</a> 一节中给出的测试样例，评价其强度（可从各个指令的覆盖情况，单一指令各种行为的覆盖情况等方面分析），并指出具体的不足之处。</p>
-<p>   <strong>A：</strong> 还算全面，但没有测试 <code>offset</code> 为负数的情况。此外，没有测试 <code>nop</code> 指令。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ol>
+<h3 id="思考题">思考题</h3>
+<ol>
+<li></li>
+</ol>
+<p><strong>Q：</strong> 上面我们介绍了通过 FSM 理解单周期 CPU 的基本方法。请大家指出单周期 CPU 所用到的模块中，哪些发挥状态存储功能，哪些发挥状态转移功能。</p>
+<p><strong>A：</strong> 状态存储：PC、GRF、DM 状态转移：NPC、ALU、CTRL</p>
+<ol start="2">
+<li></li>
+</ol>
+<p><strong>Q：</strong> 现在我们的模块中 IM 使用 ROM， DM 使用 RAM， GRF 使用 Register，这种做法合理吗？ 请给出分析，若有改进意见也请一并给出。</p>
+<p><strong>A：</strong> 还算合理。ROM是只读存储器，数据保有性好，可以用来存储指令；RAM可读可写，满足DM的需求；GRF是寄存器堆，对读写速度要求较高，适合用寄存器实现。</p>
+<p>但用ROM存储指令使得CPU变成一次性的了，难以扩展。</p>
+<ol start="3">
+<li></li>
+</ol>
+<p><strong>Q：</strong> 在上述提示的模块之外，你是否在实际实现时设计了其他的模块？如果是的话，请给出介绍和设计的思路。</p>
+<p><strong>A：</strong> 暂时没有，但有一些在顶层看不够简洁美观的线路（如 <code>Splitter</code>、寄存器选择电路等）也可以被封装一下。</p>
+<ol start="4">
+<li></li>
+</ol>
+<p><strong>Q：</strong> 事实上，实现 nop 空指令，我们并不需要将它加入控制信号真值表，为什么？请给出你的理由。</p>
+<p><strong>A：</strong> nop的机器码相当于执行 <code>sll $0, $0, 0</code>，执行后没有任何影响。</p>
+<ol start="5">
+<li></li>
+</ol>
+<p><strong>Q：</strong> 阅读 Pre 的 <a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/tutorial/mips/mips-6/mips6-1/">“MIPS 指令集及汇编语言”</a> 一节中给出的测试样例，评价其强度（可从各个指令的覆盖情况，单一指令各种行为的覆盖情况等方面分析），并指出具体的不足之处。</p>
+<p><strong>A：</strong> 还算全面，但没有测试 <code>offset</code> 为负数的情况。此外，没有测试 <code>nop</code> 指令。</p>
+<h3 id="参考文献">参考文献</h3>
+<ol>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/i_want_ak_noip/article/details/134204098">2023北航计组p3课下部分_北航机组单周期logisim-CSDN博客</a></li>
 <li><a target="_blank" rel="noopener" href="https://mercuryrecords.github.io/p/co-p3-doc/">CO | P3 - Logisim 单周期 CPU 设计文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhhangbian.github.io/2024/01/10/%E8%AE%A1%E7%BB%84-%E5%AE%9E%E9%AA%8C-P3/">计组-实验-P3 | 浮泛之舟</a></li>
