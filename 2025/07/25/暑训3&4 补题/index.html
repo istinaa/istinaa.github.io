@@ -172,6 +172,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -319,9 +331,9 @@
 <p>证明很显然。记原串形如 <code>...A[...]A..</code> ，<code>[...]</code> 是最大极长子串，不包含的字母是 <code>A</code>。</p>
 <p>使用反证法，假设该子串字符集大小不为原串字符集大小减一，说明一定存在某不为 <code>A</code> 的字母不在该子串中，记为 <code>B</code>。无论原串的形式为 <code>..B...A[...]A..</code> 还是 <code>..B..A[...]A..B..</code> ，不含 <code>B</code> 的极大子串一定比不含 <code>A</code> 的极大子串更长，这与 <code>[...]</code> 是最大极长子串相矛盾。因此假设不成立，证明完成。</p>
 <p>由于至少需要删去一种字符，最终的答案一定不长于最大极长子串，此处设该最大极长子串长度为 
-    <span id="mjx-56dc704">
+    <span id="mjx-31bdd2d">
       <style>
-      #mjx-56dc704{
+      #mjx-31bdd2d{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -483,9 +495,9 @@ g[data-mml-node="xypic"] path {
 <ul>
 <li>
 <p>如果最大极长子串串长为奇数，直接取，答案就是 
-    <span id="mjx-7b72db8">
+    <span id="mjx-223cb54">
       <style>
-      #mjx-7b72db8{
+      #mjx-223cb54{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -650,9 +662,9 @@ g[data-mml-node="xypic"] path {
 <ul>
 <li>
 <p>如果子串首或尾字母在串内出现了超过一次，那么删去它不改变字符集大小，但让串长变为奇数，符合了要求。答案是 
-    <span id="mjx-14a2d41">
+    <span id="mjx-c29548a">
       <style>
-      #mjx-14a2d41{
+      #mjx-c29548a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -818,9 +830,9 @@ g[data-mml-node="xypic"] path {
 <p>我们考虑 <code>...A(abc X ... Y uvw A)...</code> 括号内的串，初始字符集大小为偶数，串长为奇数。</p>
 <p>试着往右侧移动括号范围。括号内最左侧仍为单次出现的字母时，括号内子串奇偶性质保持不变。</p>
 <p>当最左侧为多次出现字母时（如 <code>...A abc (X ... Y uvw A abc)...</code> 所示）我们直接删去最左侧的 <code>X</code> 和最右侧的 <code>c</code>，剩下的串长和字符集大小都为奇数。这个奇数是不大于最大极长子串长度的最大奇数，是最优值。向左侧移动同理。只要有一侧能移到，答案就是 
-    <span id="mjx-30fb9e4">
+    <span id="mjx-bee2871">
       <style>
-      #mjx-30fb9e4{
+      #mjx-bee2871{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -979,9 +991,9 @@ g[data-mml-node="xypic"] path {
       <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="5.438ex" height="1.731ex" role="img" focusable="false" viewBox="0 -683 2403.4 765" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="mo" transform="translate(903.2,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(1903.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>L</mi><mo>−</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container>
     </span>
   。这个过程中移动不超过 
-    <span id="mjx-a8eaebe">
+    <span id="mjx-622284c">
       <style>
-      #mjx-a8eaebe{
+      #mjx-622284c{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1149,9 +1161,9 @@ g[data-mml-node="xypic"] path {
 </ul>
 <p>可以看见，解决问题的关键就是维护当前最大极长子串。</p>
 <p>我们开 
-    <span id="mjx-678c67d">
+    <span id="mjx-331050b">
       <style>
-      #mjx-678c67d{
+      #mjx-331050b{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1310,9 +1322,9 @@ g[data-mml-node="xypic"] path {
       <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 1000 688" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>26</mn></math></mjx-assistive-mml></mjx-container>
     </span>
    个线段树，维护各字母对应的极长子串。将当前字母视为 
-    <span id="mjx-275760e">
+    <span id="mjx-a1ab06a">
       <style>
-      #mjx-275760e{
+      #mjx-a1ab06a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1471,9 +1483,9 @@ g[data-mml-node="xypic"] path {
       <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.507ex" role="img" focusable="false" viewBox="0 -666 500 666" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn></math></mjx-assistive-mml></mjx-container>
     </span>
   ，其他字母视为 
-    <span id="mjx-69da856">
+    <span id="mjx-d33fe19">
       <style>
-      #mjx-69da856{
+      #mjx-d33fe19{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1728,9 +1740,9 @@ g[data-mml-node="xypic"] path {
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/01/%E5%85%AB%E6%9C%88%E5%90%88%E9%9B%86/" title="⌈Codeforces⌋ 八月合集">
+                      <a href="/2025/07/25/%E6%9A%91%E8%AE%AD5&amp;6%20%E8%A1%A5%E9%A2%98/" title="⌈25暑训⌋ 第5&amp;6场补题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">⌈Codeforces⌋ 八月合集</span>
+                        <span class="hidden-mobile">⌈25暑训⌋ 第5&amp;6场补题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1738,8 +1750,8 @@ g[data-mml-node="xypic"] path {
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/07/25/%E6%9A%91%E8%AE%AD5&amp;6%20%E8%A1%A5%E9%A2%98/" title="⌈25暑训⌋ 第5&amp;6场补题">
-                        <span class="hidden-mobile">⌈25暑训⌋ 第5&amp;6场补题</span>
+                      <a href="/2025/07/16/%E6%9A%91%E8%AE%AD1&amp;2%20%E8%A1%A5%E9%A2%98/" title="⌈25暑训⌋ 第1&amp;2场补题">
+                        <span class="hidden-mobile">⌈25暑训⌋ 第1&amp;2场补题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
