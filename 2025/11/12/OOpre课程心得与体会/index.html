@@ -20,15 +20,20 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
+    <meta name="description" content="记录了《面向对象程序先导》课程学习过程中的心得与体会。包括作业最终的架构设计、JUnit使用心得等。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="OOpre课程心得与体会">
 <meta property="og:url" content="http://istinaa.github.io/2025/11/12/OOpre%E8%AF%BE%E7%A8%8B%E5%BF%83%E5%BE%97%E4%B8%8E%E4%BD%93%E4%BC%9A/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
+<meta property="og:description" content="记录了《面向对象程序先导》课程学习过程中的心得与体会。包括作业最终的架构设计、JUnit使用心得等。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/12/OOpre%E8%AF%BE%E7%A8%8B%E5%BF%83%E5%BE%97%E4%B8%8E%E4%BD%93%E4%BC%9A/%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
 <meta property="article:published_time" content="2025-11-12T02:21:47.000Z">
-<meta property="article:modified_time" content="2025-11-12T02:22:45.572Z">
+<meta property="article:modified_time" content="2025-11-12T15:40:06.904Z">
 <meta property="article:author" content="istina">
+<meta property="article:tag" content="OO">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://istinaa.github.io/2025/11/12/OOpre%E8%AF%BE%E7%A8%8B%E5%BF%83%E5%BE%97%E4%B8%8E%E4%BD%93%E4%BC%9A/%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -215,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.2k 字
         
       </span>
     
@@ -226,7 +231,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -277,7 +282,63 @@
             
               <div class="markdown-body">
                 
-                
+                <p>本学期在 OOpre 这门课中的收获还是蛮多的。从零开始，每周一次的开发作业让我逐步了解了如何利用 <code>Git</code> 进行项目的迭代开发，也初步形成了面向对象的设计思想。</p>
+<h3 id="最终架构设计">最终架构设计</h3>
+<p>最终的整体架构如下图所示：</p>
+<p><img src="%E6%9E%B6%E6%9E%84%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="整体架构图示"></p>
+<p>图中的拐角箭头表示 <strong>继承</strong> 关系，曲线箭头表示存在调用/依赖的关系。</p>
+<p>虚线框内的类代表抽象类，彩色框内的类代表工具类/工厂类。</p>
+<p>总体围绕着核心对象 <code>Adventurer</code> 展开。</p>
+<hr>
+<p>系统包含以下部分：</p>
+<ul>
+<li><code>MainProcess</code> 是主控系统，参与外部输入交互。</li>
+<li><code>Factory</code> 将输入解析为对象，降低主控的逻辑复杂度。</li>
+<li><code>FightingSystem</code> 和 <code>HiringSystem</code> 用于管理 <code>Adventurer</code> 对象。前者管理战斗进程，后者维护角色之间的雇佣关系。</li>
+<li>其他类为系统提供方法，通过对象引用通信，不会直接依赖。</li>
+</ul>
+<p>至于第七次作业的输入解析模块，我认为和其余部分关联不大，更适合独立说明，因此就不再赘述了。</p>
+<hr>
+<h3 id="项目迭代过程">项目迭代过程</h3>
+<p><strong>第三次作业</strong></p>
+<ul>
+<li>提取 <code>Adventurer</code> ， <code>Bottle</code> ， <code>Spell</code> 和 <code>Equipment</code>  的共性，设计了父类 <code>Item</code> 以及用于管理 <code>Item</code> 类的 <code>ItemSet</code> 类。</li>
+</ul>
+<p><strong>第五次作业</strong></p>
+<ul>
+<li>由于不同药水、咒语、装备的独有功能开始显现，本次迭代将每个父类写成抽象类的形式，为子类提供待实现的接口。并设计工厂类，规范对象的生成过程。</li>
+<li><code>Bag</code> 与 <code>possession</code> 在功能上进一步分化，因此将 <code>Bag</code> 单独拉出来作为一个类，方便维护携带时的种种限制。</li>
+<li>引入工具类 <code>FightingSystem</code> 实现冒险者之间的战斗行为。</li>
+<li>进行大面积重构，将 <code>MainProcess</code> 的部分行为拆分为各类的方法。</li>
+</ul>
+<p><strong>第六次作业</strong></p>
+<ul>
+<li>引入工具类 <code>HiringSystem</code> ，完善 <code>Adventurer</code> 类的部分实现，以维护冒险者之间的雇佣关系。</li>
+</ul>
+<p><strong>第七次作业</strong></p>
+<ul>
+<li>引入文法解析类 <code>Lexer</code> 以递归处理 <code>lr</code> 指令。</li>
+</ul>
+<hr>
+<h3 id="JUnit-的使用心得">JUnit 的使用心得</h3>
+<p>需要明确的一点是，编写 JUnit 单元测试的目的是保障代码的正确性。因此测试单元不应死板、孤立地进行，而应该面向具体场景来编写。</p>
+<p>大模型提供的 JUnit 往往是前者，针对类中的每个方法都不厌其烦地测试一些基础功能，如简单的构造、比较等。而这样的测试是极其低效的。事实上，我们先构造一个较全面的样例，即可顺带测试绝大部分基础功能，接下来再依据未覆盖的情景设计 Corner Case ，就会更具针对性。</p>
+<hr>
+<h3 id="课程心得体会">课程心得体会</h3>
+<p>这门课最大的意义应该是让我们从面向过程的惯性思维中抽离，初步形成面向对象开发思想。在我的理解中，二者没有绝对的优劣高下，只是适用于不同的开发场景。</p>
+<p>以面向过程的思想编写代码只需要单线程思考，在能够提取出明确主干的小型任务中具有优势；而面向对象的思想能显著降低复杂任务的耦合程度，便于后期运维。</p>
+<p>作为一个长期进行面向过程 coding 的 OIer，对我来说，将一切都丢入类中这件事是不自然的。因此，迭代初期我的代码中还有着明显的面向过程风格，<code>MainProcess</code> 类冗长无比。各种类的设立似乎只是为了面向对象而面向对象，并没有起到解耦的作用。</p>
+<p>直到主类行数爆炸了，我才进行了一次大面积重构。把这些本应写为对象方法的操作从主控中删去。这一波重构虽然前后耗费了我大量时间，但却让我感觉自己实现了从面向过程到面向对象的飞跃。</p>
+<p>在那之后，每次新增指令我都会先预先考虑怎样能最小化程序的耦合度。自此，接下来的一次次迭代成功也就是水到渠成的事情了。</p>
+<hr>
+<h3 id="对课程的建议">对课程的建议</h3>
+<ul>
+<li>课上学的各类高层次的思想和作业实现的内容之间存在差距，难以运用。（当然这也是课时所限。作为一门先导课能在课堂中起引领作用已经很好了）</li>
+<li>感觉可以在个别场次开放互叉环节。让大家提前感受正课热火朝天的氛围。</li>
+</ul>
+<hr>
+<h4 id="祝-BUAA-面向对象先导课程越办越好！">祝 BUAA 面向对象先导课程越办越好！</h4>
+
                 
               </div>
             
@@ -285,6 +346,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OO/" class="print-no-link">#OO</a>
+      
+    </div>
   
 </div>
 
@@ -338,6 +427,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/11/15/%E2%8C%88BUAA%20CO%E2%8C%8Bp4%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p4 课下记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">⌈BUAA CO⌋ p4 课下记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
