@@ -1,0 +1,1189 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
+  <link rel="icon" href="/img/avatar.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#222">
+  <meta name="author" content="istina">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="你可以从本文初步了解笔者流水线cpu搭建的心路历程，和其中一些注意事项。但你基本不可能通过这篇文章学会流水线。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="⌈BUAA CO⌋ p5 课下记录">
+<meta property="og:url" content="http://istinaa.github.io/2025/11/19/%E2%8C%88BUAA%20CO%E2%8C%8Bp5%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Istina&#39;s Blog">
+<meta property="og:description" content="你可以从本文初步了解笔者流水线cpu搭建的心路历程，和其中一些注意事项。但你基本不可能通过这篇文章学会流水线。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/19/%E2%8C%88BUAA%20CO%E2%8C%8Bp5%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%AF%84%E5%AD%98%E5%99%A8.png">
+<meta property="og:image" content="http://istinaa.github.io/2025/11/19/%E2%8C%88BUAA%20CO%E2%8C%8Bp5%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/%E7%9B%AE%E5%BD%95.png">
+<meta property="article:published_time" content="2025-11-19T08:39:41.000Z">
+<meta property="article:modified_time" content="2025-11-23T08:13:05.828Z">
+<meta property="article:author" content="istina">
+<meta property="article:tag" content="CO">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://istinaa.github.io/2025/11/19/%E2%8C%88BUAA%20CO%E2%8C%8Bp5%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%AF%84%E5%AD%98%E5%99%A8.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>⌈BUAA CO⌋ p5 课下记录 - Istina&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"istinaa.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Istina&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ p5 课下记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-19 16:39" pubdate>
+          2025年11月19日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">⌈BUAA CO⌋ p5 课下记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="前言">前言</h3>
+<p>一条指令的执行周期中，我们可以抽象出 <strong>取指-译码-执行-写回</strong> 等阶段。模块中有些是负责取指的（比如 <code>IM</code>），有些则被划分进执行阶段（如 <code>ALU</code>）。</p>
+<p>我们注意到指令执行到靠后阶段时，前面阶段的闲置的模块也没有被利用起来，这无疑折损了CPU的运行效率。为了利用这些闲置模块，达成每个模块都在同时工作的流水线式效果，五级全速流水线CPU应运而生。</p>
+<p>简单来说，流水线CPU的实现方法就是用寄存器将每一级的处理结果存下来，时钟上升沿到来时再将它们传递到下一级，与此同时，<code>IM</code> 模块取出下一条指令进入流水线以占据闲置模块。</p>
+<p>这样一来，单周期CPU的一周期内，理想状态下流水线CPU能处理五条指令。大大提升了CPU的运行效率。</p>
+<h3 id="概述">概述</h3>
+<p>模块的总体架构可以参考这张图（从mhgg的传奇blog扒的）</p>
+<p><img src="%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%AF%84%E5%AD%98%E5%99%A8.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>总体架构其实大家的设计都大同小异，区别是出在具体实现上。下面我展示一下我的文件目录，并讲讲几处关键的地方我的实现。</p>
+<p><img src="%E7%9B%AE%E5%BD%95.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="命名方式">命名方式</h3>
+<p>由于流水线CPU中信号和模块过多，我们需要进一步规范命名方式。</p>
+<ul>
+<li>将模块和信号所属的分级（<code>F</code>，<code>D</code>，<code>E</code>，<code>M</code>，<code>W</code>）都反映在命名中。比如M级当前指令的<code>PC</code> 值命名为 <code>M_PC</code>。</li>
+<li>用大小写区分模块名和实例化的模块。如 <code>E_DEC</code> 和 <code>E_dec</code>。</li>
+<li>用 <code>FW</code> 标识转发信号。如 <code>FWE_A_sgn</code> 表示 <code>E</code> 级中 <code>RD1</code> 对应的转发信号，<code>FWD_B_val</code> 表示 <code>D</code> 级中 <code>RD2</code> 选择的转发值。</li>
+<li>较长的命名采取 大写 + 下划线 + 小写 的形式。</li>
+</ul>
+<h3 id="译码方式">译码方式</h3>
+<p>流水线CPU的译码方式通常可以分为两种。</p>
+<p>第一种是 <strong>集中式译码</strong> 。在 <code>D</code> 级即译出指令对应的所有控制信号，使得这些信号随着 <code>Instr</code> 信号一起，在流水线寄存器上逐级传递，直到用不到为止。</p>
+<p>第二种是 <strong>分布式译码</strong> 。就是给流水线上各级都写一个译码器，让本级内需要的控制信号随译随用，而不需要进入流水线寄存器。</p>
+<p>我的设计中选用的是 <strong>分布式译码</strong>，因为这样使得流水线寄存器显得十分简洁。一想到集中式译码要在顶层写 
+    <span id="mjx-fd9bc86">
+      <style>
+      #mjx-fd9bc86{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.009ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 888 683" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>N</mi></math></mjx-assistive-mml></mjx-container>
+    </span>
+   行巨长带各种后缀的 <code>wire</code> 定义区分各级流水线寄存器上的值，我就感到透不过气…而分布式能有效的解决这一点。</p>
+<h3 id="分级解析">分级解析</h3>
+<h4 id="F级（Fetch）">F级（Fetch）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模块名</th>
+<th style="text-align:left">关键输入</th>
+<th style="text-align:left">关键输出</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>F_IFU</code></td>
+<td style="text-align:left"><code>WE</code>, <code>PC_next</code>, <code>IFU_Sel</code></td>
+<td style="text-align:left"><code>Instr</code>，<code>PC</code></td>
+<td style="text-align:left">从 <code>IM</code> 取出下一条进入流水线的指令</td>
+</tr>
+</tbody>
+</table>
+<p>和 P4 相比，做的改动主要有以下几点：</p>
+<ul>
+<li>把分线器的功能删掉，归还给译码器了。</li>
+<li>增加写使能信号 <code>WE</code>，控制阻塞。</li>
+<li>增加 <code>IFU_Sel</code> 信号，解决 <code>PC-&gt;PC+4</code> 慢一拍的问题。</li>
+</ul>
+<h4 id="D级（Decode）">D级（Decode）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模块名</th>
+<th style="text-align:left">关键输入</th>
+<th style="text-align:left">关键输出</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>D_REG</code></td>
+<td style="text-align:left"><code>clk</code>, <code>reset</code>, <code>D_WE</code></td>
+<td style="text-align:left"><code>D_Instr</code>, <code>D_PC</code></td>
+<td style="text-align:left"><code>D</code> 级流水线寄存器，<code>D_WE</code> 受 <code>Stall</code> 控制</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>D_GRF</code></td>
+<td style="text-align:left"><code>A1</code>, <code>A2</code>, <code>A3</code>, <code>WD</code></td>
+<td style="text-align:left"><code>RD1</code>, <code>RD2</code></td>
+<td style="text-align:left">寄存器堆，读属于 <code>D</code> 级，写属于 <code>W</code> 级</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>D_DEC</code></td>
+<td style="text-align:left"><code>Instr</code></td>
+<td style="text-align:left"><code>B_type</code>, <code>Branch</code>, <code>rs</code>/<code>rt</code></td>
+<td style="text-align:left"><code>D</code> 级译码，重点是解析跳转类型</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>D_NPC</code></td>
+<td style="text-align:left"><code>PC</code>, <code>imm</code>, <code>Branch</code></td>
+<td style="text-align:left"><code>PC_next</code>, <code>IFU_Sel</code></td>
+<td style="text-align:left">计算跳转地址，生成 <code>IFU</code> 的选择信号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>D_CMP</code></td>
+<td style="text-align:left"><code>RD1</code>, <code>RD2</code>, <code>B_type</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">比较器，辅助 <code>beq</code> 等指令的判断</td>
+</tr>
+</tbody>
+</table>
+<p>需要注意的地方：</p>
+<ul>
+<li>将分支判定涉及到的 <code>CMP</code> 组件从 <code>ALU</code> 拆出单列在 <code>D</code> 级，保证跳转正确。</li>
+<li>关于 <code>D</code> 级转发。由于 <code>D_CMP</code> 和 <code>D_NPC</code> 需要正确数据，因此 <code>D_RD1</code> 和 <code>D_RD2</code> 进入流水线寄存器前需要经历 对应的多路转发选择器。</li>
+</ul>
+<h4 id="E级（Execute）">E级（Execute）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模块名</th>
+<th style="text-align:left">关键输入</th>
+<th style="text-align:left">关键输出</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>E_REG</code></td>
+<td style="text-align:left"><code>clk</code>, <code>reset</code>, <code>Instr</code></td>
+<td style="text-align:left"><code>E_Instr</code>, <code>E_PC</code></td>
+<td style="text-align:left"><code>E</code> 级流水线寄存器，<code>reset</code> 兼具暂停功能</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>E_DEC</code></td>
+<td style="text-align:left"><code>Instr</code></td>
+<td style="text-align:left"><code>ALUControl</code>, <code>jal</code></td>
+<td style="text-align:left"><code>E</code> 级译码，解析 <code>ALU</code> 控制码和 <code>jal</code> 标记</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>E_ALU</code></td>
+<td style="text-align:left"><code>A</code>, <code>B</code>, <code>ALUOp</code></td>
+<td style="text-align:left"><code>ALUout</code></td>
+<td style="text-align:left">算术逻辑单元</td>
+</tr>
+</tbody>
+</table>
+<p>需要注意的地方：</p>
+<ul>
+<li>关于 <code>jal</code> 指令的特殊处理。为了解决 <code>jal</code> 指令后续的依赖，我们在 <code>E</code> 级即算出 <code>PC+8</code>，并参与 <code>M</code> 级寄存器前的多路选择。</li>
+<li><code>Stall</code> 信号置高时，<code>D</code> 级指令不能进入 <code>E</code> 级。为了实现插入气泡的效果，我们让 <code>reset</code> 端口在 <code>Stall</code> 置高时也置高。</li>
+</ul>
+<h4 id="M级（Memory）">M级（Memory）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模块名</th>
+<th style="text-align:left">关键输入</th>
+<th style="text-align:left">关键输出</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>M_REG</code></td>
+<td style="text-align:left"><code>clk</code>, <code>ALUout</code>, <code>RD2</code></td>
+<td style="text-align:left"><code>M_ALUout</code>, <code>M_RD2</code></td>
+<td style="text-align:left">M级流水线寄存器</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>M_DEC</code></td>
+<td style="text-align:left"><code>Instr</code></td>
+<td style="text-align:left"><code>DM_enable</code>, <code>load</code></td>
+<td style="text-align:left">M级译码，控制内存读写</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>M_DM</code></td>
+<td style="text-align:left"><code>Addr</code>, <code>Data</code>, <code>WE</code></td>
+<td style="text-align:left"><code>DMout</code></td>
+<td style="text-align:left">数据存储器</td>
+</tr>
+</tbody>
+</table>
+<h4 id="W级（Writeback）">W级（Writeback）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模块名</th>
+<th style="text-align:left">关键输入</th>
+<th style="text-align:left">关键输出</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>W_REG</code></td>
+<td style="text-align:left"><code>clk</code>, <code>ALUout</code>, <code>DMout</code></td>
+<td style="text-align:left"><code>W_ALUout</code>, <code>W_DMout</code></td>
+<td style="text-align:left">W级流水线寄存器</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>W_DEC</code></td>
+<td style="text-align:left"><code>Instr</code></td>
+<td style="text-align:left"><code>RF_A3</code>, <code>RF_WD</code></td>
+<td style="text-align:left">W级译码，选择写回地址和数据</td>
+</tr>
+</tbody>
+</table>
+<p>需要注意的地方：</p>
+<ul>
+<li>将 <code>RF_A3</code> 的选择加入 <code>W_DEC</code>，让其根据信号选择 <code>A3</code> 取 <code>ALUout</code>，<code>DMout</code> 还是 <code>PC+8</code>。</li>
+</ul>
+<h3 id="冲突处理">冲突处理</h3>
+<p>这是全速流水线的核心，HU 模块统筹解决冒险冲突问题。</p>
+<h4 id="转发机制">转发机制</h4>
+<p>转发是为了解决数据还没写回，后面就要用的问题。我的设计支持：</p>
+<ul>
+<li><strong>M 级转发（M-&gt;D, M-&gt;E）：</strong> 数据在 <code>M</code> 级（<code>ALU</code> 刚算完或 <code>jal</code> 的 <code>PC+8</code>），直接给 <code>D</code> 级或 <code>E</code> 级。</li>
+<li><strong>W 级转发（W-&gt;D, W-&gt;E）：</strong> 数据在 <code>W</code> 级准备写回，直接给 <code>D</code> 级或 <code>E</code> 级。</li>
+</ul>
+<p><strong>优先级策略：</strong> M 级转发 &gt; W 级转发。因为 M 级的数据更新。</p>
+<h4 id="阻塞机制">阻塞机制</h4>
+<p>有些冒险是转发解决不了的，必须暂停流水线。我的 <code>HU</code> 识别以下三种情况并拉高 <code>Stall</code>：</p>
+<ol>
+<li><strong>Load-Use Hazard：</strong><br>
+<code>E</code> 级是 <code>lw</code> 类指令，<code>D</code> 级需要用该寄存器。数据还没读出来，必须停 1 周期。</li>
+<li><strong>Branch-Load Hazard：</strong><br>
+<code>M</code> 级是 <code>lw</code> 类指令，D 级是分支指令（<code>beq</code>/ <code>jr</code>）需要用该寄存器。数据刚读出来在 <code>M</code> 级，<code>D</code> 级来不及拿，必须停 1 周期。</li>
+<li><strong>Calc-Branch Hazard：</strong><br>
+<code>E</code> 级是计算类指令，<code>D</code> 级是分支指令（<code>beq</code>/ <code>jr</code>）需要用该寄存器。<code>E</code> 级正在算，<code>D</code> 级马上要跳转，来不及转发，必须停 1 周期。</li>
+</ol>
+<h3 id="测试方案">测试方案</h3>
+<p>借用了学长 <a target="_blank" rel="noopener" href="https://flyinglandlord.github.io/">FlyingLandlord</a>的评测机，测试了若干随机数据。没有检测出错误。</p>
+<p>这个评测机的操作流程还是比较方便的。可以参考 <a target="_blank" rel="noopener" href="https://github.com/flyinglandlord/BUAA-CO-2021/blob/master/P5/README.md">他的说明文档</a>。</p>
+<h3 id="思考题">思考题</h3>
+<p><strong>Q:</strong> 我们使用提前分支判断的方法尽早产生结果来减少因不确定而带来的开销，但实际上这种方法并非总能提高效率，请从流水线冒险的角度思考其原因并给出一个指令序列的例子。</p>
+<p><strong>A:</strong> 简单来说，这带来了新的 D-E 级的数据冲突，可能导致流水线必须阻塞一周期。比如下面这段指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs assembly">add $1, $2, $3<br>beq $1, $4, label<br></code></pre></td></tr></table></figure>
+<p><strong>Q:</strong> 因为延迟槽的存在，对于 jal 等需要将指令地址写入寄存器的指令，要写回 PC + 8，请思考为什么这样设计？</p>
+<p><strong>A:</strong> 返回时不希望重复执行延迟槽对应的指令。</p>
+<p><strong>Q:</strong> 我们要求所有转发数据都来源于流水寄存器而不能是功能部件（如 DM、ALU），请思考为什么？</p>
+<p><strong>A:</strong> 可能带来毛刺，影响稳定输出。</p>
+<p><strong>Q:</strong> 我们为什么要使用 GPR 内部转发？该如何实现？</p>
+<p><strong>A:</strong> 因为存在 W-D 冒险。用 <code>GPR</code> 内部转发可以简化外部的数据通路。</p>
+<p>当 <code>A1/A2</code> 和 <code>A3</code> 相同，写使能有效时，直接将写入的数据作为输出。</p>
+<p><strong>Q:</strong> 我们转发时数据的需求者和供给者可能来源于哪些位置？共有哪些转发数据通路？</p>
+<p><strong>A:</strong> 需求者：D，E，M。供给者：M，W。</p>
+<p>转发通路共五种：M-&gt;D, W-&gt;D, M-&gt;E, W-&gt;E, W-&gt;M。</p>
+<p><strong>Q:</strong> 在课上测试时，我们需要你现场实现新的指令，对于这些新的指令，你可能需要在原有的数据通路上做哪些扩展或修改？提示：你可以对指令进行分类，思考每一类指令可能修改或扩展哪些位置。</p>
+<p><strong>A:</strong> 我觉得可以分为以下这几类：</p>
+<ul>
+<li><strong>计算类：</strong>
+<ul>
+<li><strong>扩展：</strong> <code>E_ALU</code> 增加运算逻辑；<code>E_DEC</code> 增加 <code>ALUControl</code> 信号生成。</li>
+<li><strong>修改：</strong> 不需要改数据通路，只需改译码。</li>
+</ul>
+</li>
+<li><strong>分支跳转类：</strong>
+<ul>
+<li><strong>扩展：</strong> <code>D_CMP</code> 增加比较逻辑；<code>D_NPC</code> 增加跳转目标计算。</li>
+<li><strong>修改：</strong> <code>D_DEC</code> 识别新指令；<code>HU</code> 确保新指令正确触发 <code>Stall</code>。</li>
+</ul>
+</li>
+<li><strong>访存类：</strong>
+<ul>
+<li><strong>修改：</strong> <code>M_DEC</code> 增加控制信号；<code>HU</code> 识别 <code>Load</code> 类型以处理 <code>Load-Use</code> 冒险。</li>
+</ul>
+</li>
+</ul>
+<p><strong>Q:</strong> 简要描述你的译码器架构，并思考该架构的优势以及不足。</p>
+<p><strong>A:</strong> 采用 <strong>分布式译码</strong>。在上文已经说过。</p>
+<p><strong>优势：</strong> 流水寄存器简洁，减少各级之间的依赖，容易定位错误。</p>
+<p><strong>不足：</strong> 修改繁琐。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>⌈BUAA CO⌋ p5 课下记录</div>
+      <div>http://istinaa.github.io/2025/11/19/⌈BUAA CO⌋p5 课下记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>istina</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/27/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6II-3/" title="⌈离散数学II⌋ 第三章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">⌈离散数学II⌋ 第三章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/17/%E2%8C%88BUAA%20CO%E2%8C%8Bp4%20%E8%AF%BE%E4%B8%8A%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p4 课上记录">
+                        <span class="hidden-mobile">⌈BUAA CO⌋ p4 课上记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline-test-vert-three.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
