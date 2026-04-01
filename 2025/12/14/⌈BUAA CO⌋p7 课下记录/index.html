@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
+  <link rel="icon" href="/img/avatar.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#222">
+  <meta name="author" content="istina">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="记录了p7课下构建MIPS微系统的过程，步骤真够繁琐。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="⌈BUAA CO⌋ p7 课下记录">
+<meta property="og:url" content="http://istinaa.github.io/2025/12/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp7%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Istina&#39;s Blog">
+<meta property="og:description" content="记录了p7课下构建MIPS微系统的过程，步骤真够繁琐。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-14T09:58:41.000Z">
+<meta property="article:modified_time" content="2025-12-14T10:38:29.729Z">
+<meta property="article:author" content="istina">
+<meta property="article:tag" content="CO">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>⌈BUAA CO⌋ p7 课下记录 - Istina&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"istinaa.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Istina&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="⌈BUAA CO⌋ p7 课下记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-14 17:58" pubdate>
+          2025年12月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">⌈BUAA CO⌋ p7 课下记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="一、-设计概述">一、 设计概述</h3>
+<p>相信跟我一样在看完教程后一头雾水的同学不在少数。看似内容很全面，但语言过于抽象，导致我根本不知道该从哪里开始改造我的设计。</p>
+<p>现在全部完成后，回过头去看。要做的事情无非是这几件：</p>
+<ul>
+<li>将原来的 <code>mips.v</code> 降格成 <code>CPU.v</code>。额外加入 <code>timer</code> 和 <code>Bridge</code> 以构成新的顶层。相应地修改输入输出端口。</li>
+<li>根据教程中的异常表，识别各种异常信号，在流水线中进行合并后传入 <code>CP0</code> 模块。</li>
+<li>为新添加的四条指令 <code>mfc0</code>，<code>mtc0</code>，<code>eret</code>，<code>syscall</code> 改造数据通路。并处理它们可能触发的冒险。</li>
+<li>改造流水线寄存器，让它们处理好 <code>reset &gt; Req &gt; clear</code> 这一优先级关系。</li>
+</ul>
+<p>说的很轻松，但这些事情足足将我硬控了半周。正如你所见，到了ddl前的几个小时，我刚开始写设计文档。</p>
+<hr>
+<h3 id="二、功能模块">二、功能模块</h3>
+<h4 id="CP0">CP0</h4>
+<p>处理中断异常、控制陷入内核态过程的核心模块。</p>
+<table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>位宽</th>
+<th>方向</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clk</code></td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>reset</code></td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WE</code></td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>addr</code></td>
+<td>5</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>WD</code></td>
+<td>32</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>32</td>
+<td>O</td>
+<td></td>
+</tr>
+<tr>
+<td><code>VPC</code></td>
+<td>32</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>BD</code></td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>ExcCode</code></td>
+<td>5</td>
+<td>I</td>
+<td>引起异常的原因（0表示无异常）</td>
+</tr>
+<tr>
+<td><code>HWInt</code></td>
+<td>6</td>
+<td>I</td>
+<td>6 台外部设备的外部中断信号</td>
+</tr>
+<tr>
+<td><code>EXLclr</code></td>
+<td>1</td>
+<td>I</td>
+<td></td>
+</tr>
+<tr>
+<td><code>EPCout</code></td>
+<td>32</td>
+<td>O</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Req</code></td>
+<td>1</td>
+<td>O</td>
+<td>下一周期是否需要陷入内核？</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Bridge">Bridge</h4>
+<p>本质是一个组合电路，根据解码得到的地址分发数据。</p>
+<p>映射策略如下：</p>
+<ul>
+<li><code>0x0000_0000</code> ~ <code>0x0000_2FFF</code> -&gt; <code>DM</code></li>
+<li><code>0x0000_7F00</code> ~ <code>0x0000_7F0B</code> -&gt; <code>Timer0</code></li>
+<li><code>0x0000_7F10</code> ~ <code>0x0000_7F1B</code> -&gt; <code>Timer1</code></li>
+<li><code>0x0000_7F20</code> ~ <code>0x0000_7F23</code> -&gt; 中断发生器</li>
+</ul>
+<p>具体的端口就不写出来了，因为太长了。</p>
+<hr>
+<h3 id="三、BUG记录">三、BUG记录</h3>
+<p><strong>Bug 1 : mfc0 相关的冒险</strong><br>
+起初只要 <code>mfc0</code> 后面紧跟一条用对应寄存器的指令，寄存器的值就是错的。<br>
+我的修改方案是将其加入 <code>HU</code> 模块，将 <code>mtc0</code> 的 <code>Tuse</code> 设为 1，将 <code>mfc0</code> 的 <code>Tnew</code> 设为 2（同 Load）。并在 CPU 数据通路中修正 <code>Forwarding</code> 数据源。</p>
+<p><strong>Bug 2 : <code>eret</code> 的延迟槽</strong><br>
+<code>eret</code> 在 D 级跳转时，F 级已经取出了下一条指令。如果不处理，这条指令会混入流水线执行。<br>
+在 D_REG 的复位逻辑中加入 <code>(D_eret &amp;&amp; !Stall)</code> 条件。当 D 级是 <code>eret</code> 时，强制把下一拍进入 D 级的指令刷成 <code>NOP</code>。</p>
+<p><strong>Bug 3 : 未知指令识别</strong><br>
+这个主要是个人实现问题了。本来采用了扁平的指令识别方法，导致中测后两个点一直过不了。最后还是让 <code>Gemini</code> 查出来的（</p>
+<hr>
+<h3 id="四、测试方案">四、测试方案</h3>
+<p>本次初试久负盛名的 <code>COT</code> （到了P7才用是否有点晚了）和 zxt 同学进行了多轮对拍，未发现错误。并未尝试手搓评测机。</p>
+<hr>
+<h3 id="五、思考题">五、思考题</h3>
+<p><strong>鼠标和键盘的输入信号是如何被 CPU 知晓的？</strong></p>
+<p>通过中断机制。当有按键或移动时，外设控制器向 CPU 发送中断请求信号。CPU 暂停当前程序，跳转到中断处理程序（ISR），通过 I/O 端口或内存映射读取输入缓冲区的数据，处理完毕后恢复现场。</p>
+<p><strong>为什么中断异常入口地址必须指定？支持用户自定义会有什么问题？</strong></p>
+<ul>
+<li><strong>原因</strong>：为了安全和稳定。异常处理涉及核心态权限（修改 CP0、操作硬件），入口地址固定相当于硬件强制跳转到受信任的 OS 内核代码。</li>
+<li><strong>问题</strong>：如果允许用户自定义入口，恶意程序可以将入口指向自己的代码，从而获取内核权限（提权攻击），或者用户程序本身有 Bug 导致死循环/崩溃，导致系统无法从异常中恢复。</li>
+</ul>
+<p><strong>为何与外设通信需要 Bridge？</strong></p>
+<p>为了解耦。CPU 只需要关注统一的内存地址空间，通过标准的读写信号操作。Bridge 负责屏蔽不同外设的接口差异（如选择信号、地址偏移等），降低了 CPU 设计的复杂度，也便于扩展外设。</p>
+<p><strong>定时器的两种中断模式异同及状态转移</strong></p>
+<ul>
+<li><strong>模式 0</strong>：倒计数到 0 后，输出中断信号并保持，直到重置。适合单次定时。</li>
+<li><strong>模式 1</strong>：倒计数到 0 后，输出中断脉冲（通常一个周期），然后自动重载 Preset 值继续计数。适合周期性脉冲。</li>
+<li><strong>状态机</strong>：
+<ul>
+<li><code>IDLE</code> (空闲) --(<code>ctrl[0]=1</code>)–&gt; <code>LOAD</code> (加载预设值)</li>
+<li><code>LOAD</code> --(无条件)–&gt; <code>CNT</code> (计数)</li>
+<li><code>CNT</code> --(<code>count</code>&gt;1)–&gt; <code>CNT</code></li>
+<li><code>CNT</code> --(<code>count</code>=1)–&gt; <code>INT</code> (触发中断)</li>
+<li><code>INT</code> --(模式0)–&gt; <code>IDLE</code> / --(模式1)–&gt; <code>LOAD</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>中断发生时，宏观 PC 级如果是空泡（Bubble），会有什么问题？保留哪些信息？</strong></p>
+<ul>
+<li><strong>问题</strong>：如果 M 级是空泡，它通常没有有效的 PC。存入 <code>EPC</code> 后，中断返回后 PC = 0，程序会跑飞。</li>
+<li><strong>保留信息</strong>：保留原指令的 <code>PC</code> 以及 <code>BD</code> 信号。</li>
+</ul>
+<p><strong>为什么 <code>jalr $31, $31</code> 不能这样写？</strong></p>
+<p>相当于引入了数据竞争（？自己破坏了自己的返回地址。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CO/" class="print-no-link">#CO</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>⌈BUAA CO⌋ p7 课下记录</div>
+      <div>http://istinaa.github.io/2025/12/14/⌈BUAA CO⌋p7 课下记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>istina</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/02/06/26%E5%AF%92%E8%AE%AD1%E9%A2%98%E8%A7%A3/" title="⌈26寒训⌋ 第一场题解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">⌈26寒训⌋ 第一场题解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/04/%E2%8C%88BUAA%20CO%E2%8C%8Bp6%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p6 课下记录">
+                        <span class="hidden-mobile">⌈BUAA CO⌋ p6 课下记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
+      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline-test-vert-three.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
