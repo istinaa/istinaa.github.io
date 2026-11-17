@@ -111,6 +111,8 @@ body { background-color: #f7f7f5; }
   padding-left: .95em;
   background: linear-gradient(var(--tl-accent), var(--tl-accent)) no-repeat 0 calc(100% - .4em) / .45em .45em;
 }
+/* 悬停时的锚点图标（anchor.js，左侧放置）挪到红色小方块左边，避免重叠 */
+.markdown-body h4 > .anchorjs-link { margin-left: -2.5em !important; }
 .markdown-body .note {
   border-left: 3px solid var(--tl-ink); border-radius: 0; font-size: .95rem; padding: .85rem 1.2rem;
   background: #f6f6f3; color: #333;
@@ -139,8 +141,8 @@ body { background-color: #f7f7f5; }
 .markdown-body table th { font-family: var(--tl-sans); font-size: .85em; letter-spacing: .06em; border-bottom: 1px solid var(--tl-ink) !important; background: transparent !important; }
 .markdown-body table tr:nth-child(2n) { background-color: #fafafa !important; }
 .markdown-body p > img, .markdown-body figure > img { border-radius: 0; box-shadow: none; outline: 1px solid #eee; outline-offset: 6px; }
-.markdown-body hr { border-top: 0; height: 1em !important; text-align: center; overflow: visible; }
-.markdown-body hr::after { content: "◆  ◆  ◆"; letter-spacing: .3em; color: var(--tl-accent); font-size: .6em; }
+.markdown-body hr { border: 0 !important; height: 1px !important; margin: 2.6em 0; background: linear-gradient(to right, transparent, #c9c9c9 18%, #c9c9c9 82%, transparent); }
+.markdown-body hr::after { content: none; }
 
 /* ---------- toc / side ---------- */
 .toc-header { font-family: var(--tl-serif); letter-spacing: .14em; color: var(--tl-ink); font-size: 1rem; }
