@@ -327,9 +327,9 @@
 <tr>
 <td>在表头插入</td>
 <td>
-    <span id="mjx-163c20d">
+    <span id="mjx-faefe3c">
       <style>
-      #mjx-163c20d{
+      #mjx-faefe3c{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -489,9 +489,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-d6956e7">
+    <span id="mjx-45c351a">
       <style>
-      #mjx-d6956e7{
+      #mjx-45c351a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -651,9 +651,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-51edaca">
+    <span id="mjx-fd8f974">
       <style>
-      #mjx-51edaca{
+      #mjx-fd8f974{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -817,9 +817,9 @@ g[data-mml-node="xypic"] path {
 <td>在表尾插入</td>
 <td>xxxxxxxxxx150 1#include &lt;bits/stdc++.h&gt;2using namespace std;3​4#define FOR(i,j,k) for (int i = j; i &lt;= k; i++)5#define ROF(i,j,k) for (int i = j; i &gt;= k; i–)6​7int n, m, k;8​9inline int read() {10    char ch = getchar(); int x = 0, f = 1;11    while ((ch &gt; ‘9’ || ch &lt; ‘0’) &amp;&amp; ch != ‘-’) ch = getchar();12    if (ch == ‘-’) { ch = getchar(); f = - 1; }13    while (ch &gt;= ‘0’ &amp;&amp; ch &lt;= ‘9’) { x = x * 10 + ch - ‘0’; ch = getchar(); }14    return x * f;15}16​17template &lt;class Info, class Tag&gt; class SGT {18​19private:20​21    #define l(p) (p &lt;&lt; 1)22    #define r(p) (p &lt;&lt; 1 | 1)23    #define mid (l + r) / 224​25    int n;26    vector<Info> info;27    vector<Tag> tag;28​29    void pushup(int p) { info[p] = info[l(p)] + info[r(p)]; }30​31    void pushdown(int p, int l, int r) {32        addTag(l(p), l, mid, tag[p]);33        addTag(r(p), mid + 1, r, tag[p]);34        tag[p] = Tag();35    }36​37    void addTag(int p, int l, int r, const Tag &amp;v) {38        info[p].apply(v); tag[p].apply(v);39    }40​41    void rmodify(int p, int l, int r, int x, int y, const Tag &amp;v) {42        if (l &gt; y || r &lt; x) return;43        if (r &lt;= y &amp;&amp; l &gt;= x) { addTag(p, l, r, v); return; }44        pushdown(p, l, r);45        rmodify(l(p), l, mid, x, y, v);46        rmodify(r(p), mid + 1, r, x, y, v);47        pushup(p);48    }49​50    void pmodify(int p, int l, int r, int x, const Info &amp;v) {51        if (l == r) { info[p] = v; return; }52        pushdown(p, l, r);53        if (x &lt;= mid) pmodify(l(p), l, mid, x, v);54        else pmodify(r(p), mid + 1, r, x, v);55        pushup(p);56    }57​58    Info query(int p, int l, int r, int x, int y) {59        if (l &gt; y || r &lt; x) return Info();60        if (r &lt;= y &amp;&amp; l &gt;= x) return info[p];61        pushdown(p, l, r);62        return query(l(p), l, mid, x, y) + query(r(p), mid + 1, r, x, y);63    }64​65    int findkth(int p, int l, int r, int k) {66        if (l == r) return l;67        else {68            pushdown(p, l, r);69            if (info[l(p)].sum &gt;= k) return findkth(l(p), l, mid, k);70            else return findkth(r(p), mid + 1, r, k - info[l(p)].sum);71            pushup(p);72        }73    }74​75public:76​77    SGT(int _n) : n(_n), info(_n &lt;&lt; 2), tag(_n &lt;&lt; 2) {};78    79    SGT(vector<Info> vc) : SGT(vc.size()) {80        auto build = [&amp;](auto self, int p, int l, int r) {81            if (l == r) {82                info[p] = vc[l];83                return;84            }85            self(self, l(p), l, mid);86            self(self, r(p), mid + 1, r);87            pushup(p);88        };89        build(build, 1, 1, n);90    }91​92    void rmodify(int x, int y, const Tag &amp;v) { rmodify(1, 1, n, x, y, v); }93    94    void pmodify(int x, const Info &amp;v) { pmodify(1, 1, n, x, v); }95​96    Info query(int x, int y) { return query(1, 1, n, x, y); }97​98    int findkth(int k) { return findkth(1, 1, n, k); }99​100};101​102struct Tag {103    long long add;104    Tag(): add(0) {}105    Tag(int val): add(val) {}106    void apply(Tag v) { add += v.add; }107};108​109struct Info {110    int len;111    long long sum;112    Info(): len(1), sum(0) {}113    Info(int val): len(1), sum(val) {}114    void apply(Tag v) { sum += v.add * len; }115};116​117Info operator+(Info a, Info b) {118    Info c;119    c.len = a.len + b.len;120    c.sum = a.sum + b.sum;121    return c;122}123​124signed main() {125    n = read();126    vector<int> p(n + 1), q(n + 1);127    vector<int> rp(n + 1), rq(n + 1), rk(n + 1);128    vector<bool> vis(n + 1);129    FOR(i, 1, n) p[i] = read() + 1;130    FOR(i, 1, n) q[i] = read() + 1;131    SGT&lt;Info, Tag&gt; tp(n), tq(n), tt(n);132    FOR(i, 1, n) {133        tp.pmodify(p[i], Info(1));134        rp[i] = p[i] - tp.query(1, p[i]).sum;135        tq.pmodify(q[i], Info(1));136        rq[i] = q[i] - tq.query(1, q[i]).sum;137        rk[i] = rp[i] + rq[i];138    }139    ROF(i, n - 1, 1) {140        rk[i - 1] += rk[i] / (n - i + 1);141        rk[i] %= (n - i + 1);142    }143    FOR(i, 1, n) tt.pmodify(i, Info(1));144    FOR(i, 1, n) {145        int u = tt.findkth(rk[i] + 1);146        tt.pmodify(u, Info(0));147        cout &lt;&lt; u - 1 &lt;&lt; &quot; &quot;;148    }149    return 0;150}C++</td>
 <td>
-    <span id="mjx-636ba98">
+    <span id="mjx-82ef33d">
       <style>
-      #mjx-636ba98{
+      #mjx-82ef33d{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -979,9 +979,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-94de879">
+    <span id="mjx-38eb4b7">
       <style>
-      #mjx-94de879{
+      #mjx-38eb4b7{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1144,9 +1144,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>在指定元素后插入</td>
 <td>
-    <span id="mjx-4112ce">
+    <span id="mjx-6c497ef">
       <style>
-      #mjx-4112ce{
+      #mjx-6c497ef{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1306,9 +1306,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-e6975d2">
+    <span id="mjx-d73dabe">
       <style>
-      #mjx-e6975d2{
+      #mjx-d73dabe{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1468,9 +1468,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-18d420a">
+    <span id="mjx-a071be">
       <style>
-      #mjx-18d420a{
+      #mjx-a071be{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1633,9 +1633,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>在指定元素前插入</td>
 <td>
-    <span id="mjx-ddd9c1b">
+    <span id="mjx-fef56e">
       <style>
-      #mjx-ddd9c1b{
+      #mjx-fef56e{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1795,9 +1795,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-3db22b2">
+    <span id="mjx-afae65b">
       <style>
-      #mjx-3db22b2{
+      #mjx-afae65b{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1957,9 +1957,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-a2db29d">
+    <span id="mjx-1d80995">
       <style>
-      #mjx-a2db29d{
+      #mjx-1d80995{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2122,9 +2122,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>删除指定元素</td>
 <td>
-    <span id="mjx-9263d6">
+    <span id="mjx-dbb4d41">
       <style>
-      #mjx-9263d6{
+      #mjx-dbb4d41{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2284,9 +2284,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-09a623">
+    <span id="mjx-977aa4c">
       <style>
-      #mjx-09a623{
+      #mjx-977aa4c{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2446,9 +2446,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-b00c429">
+    <span id="mjx-8fe7f36">
       <style>
-      #mjx-b00c429{
+      #mjx-8fe7f36{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
