@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
   <link rel="icon" href="/img/avatar.png">
@@ -20,21 +20,24 @@
   <meta name="author" content="istina">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="26春训1题解">
-<meta property="og:url" content="http://istinaa.github.io/2026/04/01/26%E6%98%A5%E8%AE%AD%E9%A2%98%E8%A7%A3%E5%90%88%E8%BE%91/index.html">
+    <meta name="description" content="记录了OO第二单元电梯调度系统的迭代过程。以及一些个人感悟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OO Unit2 总结">
+<meta property="og:url" content="http://istinaa.github.io/2026/04/27/OO%20Unit2%20%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Istina&#39;s Blog">
+<meta property="og:description" content="记录了OO第二单元电梯调度系统的迭代过程。以及一些个人感悟。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-04-01T05:34:22.000Z">
-<meta property="article:modified_time" content="2026-04-01T05:34:22.121Z">
+<meta property="article:published_time" content="2026-04-26T16:00:08.000Z">
+<meta property="article:modified_time" content="2026-04-27T04:32:30.260Z">
 <meta property="article:author" content="istina">
+<meta property="article:tag" content="OO">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>26春训1题解 - Istina&#39;s Blog</title>
+  <title>OO Unit2 总结 - Istina&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -64,6 +67,10 @@
   <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
 
+
+
+  
+<link rel="stylesheet" href="/css/theme.css">
 
 
 
@@ -204,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="26春训1题解"></span>
+            <span id="subtitle" data-typed-text="OO Unit2 总结"></span>
           
         </div>
 
@@ -215,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-04-01 13:34" pubdate>
-          2026年4月1日 下午
+        <time datetime="2026-04-27 00:00" pubdate>
+          2026年4月27日 凌晨
         </time>
       </span>
     
@@ -227,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.8k 字
         
       </span>
     
@@ -238,7 +245,7 @@
         
         
         
-          1 分钟
+          16 分钟
         
       </span>
     
@@ -284,12 +291,82 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">26春训1题解</h1>
+            <h1 id="seo-header">OO Unit2 总结</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h3 id="第二单元-OO-学习与反思">第二单元 OO 学习与反思</h3>
+<p>第二单元的三次作业围绕着电梯调度系统逐步迭代。从指定电梯到分配电梯，从单轿厢到多轿厢。难点主要集中在多线程的处理上。什么信息可以共享，什么状态需要加锁，才能在保证安全性的前提下不拖累程序的效率，这都是我们需要考虑的问题。</p>
+<h4 id="一、同步块的设置和锁">一、同步块的设置和锁</h4>
+<h5 id="1-迭代过程">1. 迭代过程</h5>
+<ul>
+<li><code>hw5</code>：在 <code>RequestQueue</code> 的各方法中都采取 <code>synchronized</code> 修饰。</li>
+<li><code>hw6</code>：由于状态会被电梯和调度器同时访问。选择用 <code>waitingQueue</code> 的锁进行 <code>notify()</code>，与此同时调度器和电梯拿不同的锁，这样一来就不会有问题。</li>
+<li><code>hw7</code>：为了解决 F2 层的换乘的互斥问题，引入了 <code>Shaft</code> 类，专门用来 <code>ReleaseF2</code> 以及 <code>AcquireF2</code>。</li>
+</ul>
+<p><strong>2. 锁和同步处理语句间的关系</strong></p>
+<ul>
+<li>锁用于保护同步块内的语句只被一个线程访问。</li>
+<li>锁和块内语句没什么联系。锁通常可以任取。</li>
+</ul>
+<h4 id="二、调度器设计与线程交互">二、调度器设计与线程交互</h4>
+<ul>
+<li><code>hw5</code>：无需调度器。直接取指定的电梯号，通过总队列和分队列分别与输入线程以及电梯线程进行交互。</li>
+<li><code>hw6 &amp; hw7</code>：输入线程将所有乘客扔进队列，调度器从中拉取信息，运行影子电梯（提前大致模拟哪个电梯用时能最短）后选取最优方案。</li>
+</ul>
+<p>总的说来，关于调度策略我关注的其实只有时间，至于其他指标如耗电量，我只是在实现层面做到了尽量精细，没有涉及架构层面。</p>
+<h4 id="三、BUG-分析和调试方法">三、BUG 分析和调试方法</h4>
+<p><strong>1. 程序出现的 bug</strong></p>
+<ul>
+<li><code>hw5</code>：<code>Elevator</code> 内部方法和 <code>Strategy</code> 的开关门策略没有统一。导致程序反复开关门在一个地方卡死消耗尽运行时间。这个 bug 导致我强测只得了 50 几分，喜提 O 房。</li>
+<li><code>hw6</code>：强测没有出现问题，顺利进入 A 房。但是在互测中被叉了 25 发。经排查，本质不同 bug 只有两个。
+<ul>
+<li>一处是大家都有的经典问题：卡点占用五部电梯，然后同时发送大量乘客请求。由于我的初版调度策略只考虑了当前状态，默认已载客的电梯不可再使用，调度器会将所有请求都分配给剩下的那一部电梯。这导致最终运行时间超时。</li>
+<li>还有一处是实现层面的不够精细：当全部电梯都不可载客时我的选择是直接交给一号电梯，而非全部返回等待队列。导致 RECEIVE 信息和其他信息间出现了时序问题。</li>
+</ul>
+</li>
+<li><code>hw7</code>：在强测和互测中没有遇到任何问题。但在编写过程中 F2 的互斥问题一直让我相当困扰。我反复试了各种方法如何优雅地解决，最后选择听从 Gemini 的建议，引入一个外部类专门管理这里的锁，算是比较好地解决了问题。</li>
+</ul>
+<p><strong>2. debug 方法</strong></p>
+<ul>
+<li>
+<p>为了方便调试，写了一个简单的批处理脚本来批量运行程序，如下。但是没有写合法性判断。这一块我主要还是肉眼看，并用大模型进行辅助调试。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">set</span> JAVA_EXE=&quot;xxx\.jdks\openjdk-<span class="hljs-number">24</span>.<span class="hljs-number">0</span>.<span class="hljs-number">2</span>+<span class="hljs-number">12</span>-<span class="hljs-number">54</span>\bin\java.exe&quot;<br><span class="hljs-built_in">set</span> CP=&quot;xxx.jar;elevator3-<span class="hljs-number">2026</span>.jar&quot;<br><br><span class="hljs-built_in">echo</span> Running...<br>datainput_student_win64.exe | <span class="hljs-variable">%JAVA_EXE%</span> -cp <span class="hljs-variable">%CP%</span> MainClass<br><br><span class="hljs-built_in">echo</span>.<br><span class="hljs-built_in">echo</span> Finished。<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>最后一次作业中，我借用同学的评测机进行了一番测试，成功发现并修复了一个 bug。感觉自己动手搭建评测机是一件很有成就感的事情，写合法性检验的同时可以加深自己对题目的理解（虽然我嫌麻烦没搭）</p>
+</li>
+</ul>
+<h4 id="四、线程安全和层次化设计">四、线程安全和层次化设计</h4>
+<p><strong>1. 线程安全</strong></p>
+<p>线程安全不是将所有方法加上 <code>synchronized</code>，而是要时刻清楚以下问题：</p>
+<p>谁拥有状态，是否可能被同时访问？负责通信的是谁？状态改变时需要即刻被通知的有谁？</p>
+<p>如果编程时自己不能回答这些问题，那么心里始终会对线程安全问题感到没底。</p>
+<p><strong>2. 层次化设计</strong></p>
+<p>我写的时候并没有刻意地追求这一点。现在回头看我项目结构的层次还是比较清晰的。主要分成以下层次：</p>
+<ul>
+<li><strong>输入层：</strong> 负责将输入转成任务。</li>
+<li><strong>全局状态层：</strong> 负责保存未分配的任务，更改计数器状态，接收再分配请求。、</li>
+<li><strong>调度层：</strong> 根据快照做出分配决策。</li>
+<li><strong>执行层：</strong> 电梯线程开关门、移动、乘客进出。</li>
+</ul>
+<h4 id="五、大模型使用心得">五、大模型使用心得</h4>
+<p>全程使用 Gemini 3.1 Pro 辅助作业。</p>
+<p>总的来说感觉我算是维新派（？对大模型的放权程度较高。我负责组织语言描述任务请求和我构想的项目框架，然后直接让大模型在框架中进行填充了。为了提升代码含人量，我会让大模型多生成注释，便于我人工审阅和自行修改。</p>
+<p>面对复杂任务时，大模型的优势在于强悍的文本理解能力和上下文联想能力。人力调试时，有时为了追溯一个 bug 的源头，需要一层层跳转写 test 进行调试，而大模型通常可以省去这些步骤。</p>
+<p>遇到的困难在于后期对话文本量膨胀后大模型幻觉太过严重。我印象最深的是，我在让它检查我的输出是否合法时它言之凿凿地指出某行有某某报错，但实际上并没有。我试着纠正它的幻觉，但它只是口头认错，同样的幻觉后面依旧存在。</p>
+<p>最近使用大模型的感受是，之前担心的程序员完全被大模型取代这件事似乎不会这么快到来。短期内，大模型的角色还会是辅助编程的工具。虽然他的功能前所未有地强大，让历史上的任何工具都黯然失色，但没有人类的主导似乎还是缺乏灵魂。</p>
+<h4 id="六、体验和感受">六、体验和感受</h4>
+<p>可能是因为有了强力大模型的辅助吧，通关电梯的过程并没有学长们口中那么煎熬。</p>
+<p>过程中我对这个作业的考察方向的理解一直在改变。动手写之前，我以为这次作业的重点是写一个最优的调度器，和大家拼命地卷性能分。但随着我在强测的碰壁，我意识到保护线程安全、保证不出冲突才是最重要的。毕竟性能分的差异加起来最多也就相差三四分，而一个错误带来的损失就不止这么多了。</p>
+<p>最后，我的建议如下。都是关于完善课程网站功能的：</p>
+<ol>
+<li>加入查看历史 bug 修复记录功能。</li>
+<li>加入查看历史 hack 记录功能。</li>
+<li>在新版平台也加入互测得分的查看功能。</li>
+</ol>
+
                 
               </div>
             
@@ -297,6 +374,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8D%9A%E5%AE%A2%E4%BD%9C%E4%B8%9A/" class="category-chain-item">博客作业</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/OO/" class="print-no-link">#OO</a>
+      
+    </div>
   
 </div>
 
@@ -306,8 +411,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>26春训1题解</div>
-      <div>http://istinaa.github.io/2026/04/01/26春训题解合辑/</div>
+      <div>OO Unit2 总结</div>
+      <div>http://istinaa.github.io/2026/04/27/OO Unit2 总结/</div>
     </div>
     <div class="license-meta">
       
@@ -319,7 +424,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年4月1日</div>
+          <div>2026年4月27日</div>
         </div>
       
       
@@ -351,12 +456,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2026/04/28/%E2%8C%88BUAA%20OS%E2%8C%8Blab3/" title="⌈BUAA OS⌋ lab3">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">⌈BUAA OS⌋ lab3</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/04/01/OO%20Unit1%20%E6%80%BB%E7%BB%93/" title="OO Unit1 总结">
-                        <span class="hidden-mobile">OO Unit1 总结</span>
+                      <a href="/2026/04/08/%E2%8C%88BUAA%20OS%E2%8C%8Blab2/" title="⌈BUAA OS⌋ lab2">
+                        <span class="hidden-mobile">⌈BUAA OS⌋ lab2</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -371,28 +482,40 @@
   
     <article id="comments" lazyload>
       
-  <div id="waline"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
-      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
-        var options = Object.assign(
-          {"serverURL":"https://waline-test-vert-three.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
-          {
-            el: '#waline',
-            path: window.location.pathname
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"istinaa/istinaa.github.io","repo-id":"R_kgDOP8lQkQ","category":"Announcements","category-id":"DIC_kwDOP8lQkc4DLUbo","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        Waline.init(options);
-        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
-          var imgSelector = '#waline .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>

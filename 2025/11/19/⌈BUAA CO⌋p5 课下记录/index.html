@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
   <link rel="icon" href="/img/avatar.png">
@@ -70,6 +70,10 @@
   <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
 
+
+
+  
+<link rel="stylesheet" href="/css/theme.css">
 
 
 
@@ -318,9 +322,9 @@
 <p>第一种是 <strong>集中式译码</strong> 。在 <code>D</code> 级即译出指令对应的所有控制信号，使得这些信号随着 <code>Instr</code> 信号一起，在流水线寄存器上逐级传递，直到用不到为止。</p>
 <p>第二种是 <strong>分布式译码</strong> 。就是给流水线上各级都写一个译码器，让本级内需要的控制信号随译随用，而不需要进入流水线寄存器。</p>
 <p>我的设计中选用的是 <strong>分布式译码</strong>，因为这样使得流水线寄存器显得十分简洁。一想到集中式译码要在顶层写 
-    <span id="mjx-7f6c50e">
+    <span id="mjx-49da4bf">
       <style>
-      #mjx-7f6c50e{
+      #mjx-49da4bf{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -826,28 +830,40 @@ g[data-mml-node="xypic"] path {
   
     <article id="comments" lazyload>
       
-  <div id="waline"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
-      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
-        var options = Object.assign(
-          {"serverURL":"https://waline-test-vert-three.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
-          {
-            el: '#waline',
-            path: window.location.pathname
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"istinaa/istinaa.github.io","repo-id":"R_kgDOP8lQkQ","category":"Announcements","category-id":"DIC_kwDOP8lQkc4DLUbo","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        Waline.init(options);
-        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
-          var imgSelector = '#waline .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>

@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/icon1.png">
   <link rel="icon" href="/img/avatar.png">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="记录一些日常使用LaTeX时碰到的问题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-07T08:53:34.000Z">
-<meta property="article:modified_time" content="2026-02-07T10:28:07.814Z">
+<meta property="article:modified_time" content="2026-11-17T06:47:18.827Z">
 <meta property="article:author" content="istina">
 <meta property="article:tag" content="LaTeX">
 <meta name="twitter:card" content="summary_large_image">
@@ -67,6 +67,10 @@
   <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
 
+
+
+  
+<link rel="stylesheet" href="/css/theme.css">
 
 
 
@@ -230,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          376 字
+          411 字
         
       </span>
     
@@ -309,6 +313,8 @@
 <p>一般来说 CCT 的东西当然不能在 TeX Live 上编译。但我们可以伪造一个 <code>cctart.cls</code> 文件。</p>
 <p>在根目录下新建一个名为 <code>cctart.cls</code> 的文件，内容为：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-keyword">\NeedsTeXFormat</span>&#123;LaTeX2e&#125;<br><span class="hljs-keyword">\ProvidesClass</span>&#123;cctart&#125;<br><span class="hljs-keyword">\PassOptionsToClass</span>&#123;<span class="hljs-keyword">\CurrentOption</span>&#125;&#123;ctexart&#125;<br><span class="hljs-keyword">\LoadClass</span>[fontset=fandol]&#123;ctexart&#125;<br><span class="hljs-keyword">\@namedef</span>&#123;ver@breakurl.sty&#125;&#123;9999/99/99&#125;<br><span class="hljs-keyword">\csname</span> ctex<span class="hljs-built_in">_</span>at<span class="hljs-built_in">_</span>end<span class="hljs-built_in">_</span>package:nn<span class="hljs-keyword">\endcsname</span><br>  &#123;hyperref&#125;&#123;<span class="hljs-keyword">\let</span><span class="hljs-keyword">\C</span><span class="hljs-keyword">\undefined</span>&#125;<br><span class="hljs-keyword">\endinput</span><br></code></pre></td></tr></table></figure>
+<h4 id="三、此贴完结">三、此贴完结</h4>
+<p>大模型真是太厉害了。有了claude大人谁还怕编辑不出完美的Latex源码？！我已投降。</p>
 
                 
               </div>
@@ -409,8 +415,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/02/06/26%E5%AF%92%E8%AE%AD%E9%A2%98%E8%A7%A3%E5%90%88%E8%BE%91/" title="⌈26寒训⌋ 第一场题解">
-                        <span class="hidden-mobile">⌈26寒训⌋ 第一场题解</span>
+                      <a href="/2025/12/14/%E2%8C%88BUAA%20CO%E2%8C%8Bp7%20%E8%AF%BE%E4%B8%8B%E8%AE%B0%E5%BD%95/" title="⌈BUAA CO⌋ p7 课下记录">
+                        <span class="hidden-mobile">⌈BUAA CO⌋ p7 课下记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -425,28 +431,40 @@
   
     <article id="comments" lazyload>
       
-  <div id="waline"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#waline', function() {
-      Fluid.utils.createCssLink('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.css')
-      Fluid.utils.createScript('https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/waline.js', function() {
-        var options = Object.assign(
-          {"serverURL":"https://waline-test-vert-three.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
-          {
-            el: '#waline',
-            path: window.location.pathname
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"istinaa/istinaa.github.io","repo-id":"R_kgDOP8lQkQ","category":"Announcements","category-id":"DIC_kwDOP8lQkc4DLUbo","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        Waline.init(options);
-        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
-          var imgSelector = '#waline .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>
